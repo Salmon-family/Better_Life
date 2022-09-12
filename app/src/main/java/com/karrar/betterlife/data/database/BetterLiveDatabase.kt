@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.karrar.betterlife.data.DayResult
 import com.karrar.betterlife.data.database.entity.Habit
+import com.karrar.betterlife.data.database.entity.HabitResult
 
-@Database(entities = [Habit::class, DayResult::class], version = 1)
+@Database(entities = [Habit::class, HabitResult::class], version = 1)
 abstract class BetterLiveDatabase: RoomDatabase() {
     abstract fun <T> betterLiveDao(): BetterLiveDao<T>
 

@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Habit(
     @PrimaryKey(autoGenerate = true) val id: Long,
     val name: String,
-    val points: Int,
+    val point: Int,
 )
