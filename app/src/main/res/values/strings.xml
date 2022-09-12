@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Better Life</string>
+    <string name="add_habit">New Habit</string>
+    <string name="habit_name">Habit Name</string>
+    <string name="habit_hint">Give positive numbers for good habits, and negative numbers for bad ones. </string>
+    <string name="add_button">Add</string>
+    <string name="cancel_button">Cancel</string>
+
 </resources>
