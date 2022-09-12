@@ -9,7 +9,8 @@ import com.karrar.betterlife.data.database.entity.HabitResult
 
 @Database(entities = [Habit::class, HabitResult::class], version = 1)
 abstract class BetterLiveDatabase: RoomDatabase() {
-    abstract fun <T> betterLiveDao(): BetterLiveDao
+    abstract fun habitDao(): HabitDao
+    abstract fun habitResultDao():  HabitResultDao
 
 
     companion object {
