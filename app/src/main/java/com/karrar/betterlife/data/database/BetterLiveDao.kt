@@ -9,12 +9,12 @@ import androidx.room.Update
 interface BetterLiveDao<T> {
 
     @Insert
-    fun insert(BetterLive: T)
+    suspend fun insert(BetterLive: T)
 
     @Update
-    fun update(BetterLive: T)
+    suspend fun update(BetterLive: T)
 
     @Delete
-    fun delete(BetterLive: T)
+    suspend fun delete(BetterLive: T)
 
 }
