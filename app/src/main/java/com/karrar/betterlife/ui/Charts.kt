@@ -22,8 +22,8 @@ class Charts<T>(dataOfHabits: Array<T>) {
                 AASeriesElement()
                     .name(FIRST_COLUMN)
                     .data(dataOfHabits as Array<Any>)
-                    .borderRadiusTopLeft(BORDER_RADIUS)
-                    .borderRadiusTopRight(BORDER_RADIUS),
+                    .borderRadius(BORDER_RADIUS)
+                    .borderWidth(BORDER_WIDTH),
             )
             )
 
@@ -35,5 +35,6 @@ class Charts<T>(dataOfHabits: Array<T>) {
         const val FIRST_COLUMN = "habits"
 
         const val BORDER_RADIUS = 8.0
+        const val BORDER_WIDTH = 4.0
     }
 }
