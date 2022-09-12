@@ -25,13 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    private lateinit var adapter: CategoryAdapter
-
     override fun setup() {
-//        adapter = CategoryAdapter(categories)
-//        binding.recycler.layoutManager = GridLayoutManager(requireContext(), 15)
-//        binding.recycler.adapter = adapter
-
         binding.addHabitButton.setOnClickListener {
             val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
             val prev: Fragment? = requireFragmentManager().findFragmentByTag("dialog")
