@@ -10,16 +10,19 @@ import com.karrar.betterlife.data.Habit
 abstract class HabitDatabase: RoomDatabase() {
     abstract fun betterLifeDao(): HabitDao
 
-    companion object{
+    companion object {
         private const val DATABASE_NAME = "BetterLiveDatabase"
+
+        @Volatile
         private var instance: HabitDatabase? = null
 
-        fun getInstance(context: Context):HabitDatabase{
-            return instance ?: synchronized(this){buildDatabase(context).also { instance = it } }
+        fun getInstance(context: Context): HabitDatabase {
+            return instance ?: synchronized(this) { buildDatabase(context).also { instance = it } }
         }
 
-        private fun buildDatabase(context: Context):HabitDatabase{
-            return Room.databaseBuilder(context,HabitDatabase::class.java, DATABASE_NAME).build()
+        private fun buildDatabase(context: Context): HabitDatabase {
+            return Room.databaseBuilder(context, HabitDatabase::class.java, DATABASE_NAME)
+                .allowMainThreadQueries().build()
         }
     }
 }

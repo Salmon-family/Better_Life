@@ -7,15 +7,15 @@ import com.karrar.betterlife.data.Habit
 interface HabitDao {
 
     @Insert
-    fun insert(betterLive: Habit)
+    fun insert(habit: Habit)
 
     @Update
-    fun update(betterLive: Habit)
+    fun update(habit: Habit)
 
     @Delete
-    fun delete(betterLive: Habit)
+    fun delete(habit: Habit)
 
-    @Query("SELECT * FROM BETTER_LIFE_TABLE")
+    @Query("SELECT * FROM HABIT_TABLE")
     fun getAllBetterLife(): List<Habit>
 
 }
