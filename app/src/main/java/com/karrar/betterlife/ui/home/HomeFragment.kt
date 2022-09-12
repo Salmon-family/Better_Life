@@ -10,7 +10,6 @@ import com.karrar.betterlife.R
 import com.karrar.betterlife.data.Category
 import com.karrar.betterlife.databinding.FragmentHomeBinding
 import com.karrar.betterlife.ui.base.BaseFragment
-import com.karrar.betterlife.ui.dialog.AddHabitDialogFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val layoutIdFragment = R.layout.fragment_home
@@ -26,16 +25,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     override fun setup() {
-        binding.addHabitButton.setOnClickListener {
-            val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-            val prev: Fragment? = requireFragmentManager().findFragmentByTag("dialog")
-            if (prev != null) {
-                ft.remove(prev)
-            }
-            val newFragment: DialogFragment = AddHabitDialogFragment()
-            newFragment.show(ft, "dialog")
-        }
-
         setupChipGroupDynamically()
     }
 
