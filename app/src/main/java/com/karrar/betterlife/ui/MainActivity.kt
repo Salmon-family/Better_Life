@@ -1,6 +1,7 @@
 package com.karrar.betterlife.ui
 
 import android.os.Bundle
+import com.github.aachartmodel.aainfographics.aachartcreator.*
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // just to test
+        val aaCharts = Charts(arrayOf(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2))
+
+        val aaChartView = findViewById<AAChartView>(R.id.aa_chart_view)
+        aaChartView.aa_drawChartWithChartModel(aaCharts.drawCharts())
+
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         _binding.apply {
             viewModel = _viewModel
