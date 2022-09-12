@@ -1,20 +1,38 @@
 package com.karrar.betterlife.data.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Update
+import androidx.room.*
+import com.karrar.betterlife.data.database.entity.Habit
+import com.karrar.betterlife.data.database.entity.HabitResult
 
 @Dao
-interface BetterLiveDao<T> {
+interface BetterLiveDao {
 
     @Insert
-    suspend fun insert(BetterLive: T)
+    suspend fun insertHabit(habit: Habit)
 
-    @Update
-    suspend fun update(BetterLive: T)
+    @Insert
+    suspend fun insertHabitResult(HabitResult: HabitResult)
+
+
+    @Insert
+    suspend fun updateHabit(habit: Habit)
+
+    @Insert
+    suspend fun updateHabitResult(HabitResult: HabitResult)
+
 
     @Delete
-    suspend fun delete(BetterLive: T)
+    suspend fun deleteHabit(habit: Habit)
+
+    @Delete
+    suspend fun deleteHabitResult(HabitResult: HabitResult)
+
+
+    @Query("SELECT * FROM HABIT_TABLE")
+    suspend fun getAllHabit(habit: Habit)
+
+    @Query("SELECT * FROM RESULT_TABLE")
+    suspend fun getAllHabitResult(HabitResult: HabitResult)
+
 
 }
