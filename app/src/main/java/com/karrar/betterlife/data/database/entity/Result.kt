@@ -3,9 +3,10 @@ package com.karrar.betterlife.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "HABIT_TABLE")
-data class Habit(
+@Entity(tableName = "RESULT_TABLE")
+data class DayResult(
     @PrimaryKey(autoGenerate = true) val id: Long,
-    val name: String,
-    val points: Int,
+    var id_habit: Long,
+    val point: Int,
+    val date: Int
 )
