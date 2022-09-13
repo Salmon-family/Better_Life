@@ -9,5 +9,5 @@ data class HabitResult(
     @PrimaryKey(autoGenerate = true) val id: Long,
     var id_habit: Long,
     val point: Int,
-    val date: Date
+    val date: Int
 )
