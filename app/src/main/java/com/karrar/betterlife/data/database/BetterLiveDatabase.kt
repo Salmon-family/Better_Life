@@ -4,13 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
 
 @Database(entities = [Habit::class, HabitResult::class], version = 1)
-abstract class BetterLiveDatabase: RoomDatabase() {
+@TypeConverters(DateConverter::class)
+abstract class BetterLiveDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
-    abstract fun habitResultDao():  HabitResultDao
+    abstract fun habitResultDao(): HabitResultDao
 
 
     companion object {
@@ -24,7 +26,8 @@ abstract class BetterLiveDatabase: RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): BetterLiveDatabase {
-            return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME).build()
+            return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
+                .build()
         }
     }
 }
