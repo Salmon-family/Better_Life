@@ -2,6 +2,7 @@ package com.karrar.betterlife.ui.home
 
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.entity.Habit
