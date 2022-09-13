@@ -10,7 +10,7 @@
     </data>
 
     <com.google.android.material.chip.Chip
-        style="@style/Widget.Material3.Chip.Suggestion"
+        style="@style/habitChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{item.name}" />

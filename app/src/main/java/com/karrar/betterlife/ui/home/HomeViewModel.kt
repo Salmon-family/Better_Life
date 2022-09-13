@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
 
     fun addFakeData() {
         viewModelScope.launch {
-            val num = random().toInt()
+            val num = habits.value?.size?.plus(1)?:0
             repository.insertNewHabit(Habit(name = "category#$num", point = num))
         }
     }

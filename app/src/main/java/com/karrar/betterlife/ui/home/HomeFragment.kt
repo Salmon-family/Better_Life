@@ -2,8 +2,10 @@ package com.karrar.betterlife.ui.home
 
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.entity.Habit
@@ -22,17 +24,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setupChipGroupDynamically() {
-        binding.chipGroup.isSingleSelection = true
-        viewModel.habits?.let {
-            it.observe(this) {
-                binding.chipGroup.removeAllViews()
-                it?.let {
-                    it.forEach { habit ->
-                        binding.chipGroup.addView(createChip(habit))
-                    }
+        binding.habitsChipGroup.isSingleSelection = true
+        viewModel.habits.observe(this) {
+            binding.habitsChipGroup.removeAllViews()
+            it?.let {
+                it.forEach { habit ->
+                    binding.habitsChipGroup.addView(createChip(habit))
                 }
             }
         }
+
     }
 
     private fun createChip(item: Habit): Chip {
@@ -40,9 +41,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             LayoutInflater.from(requireActivity()).inflate(R.layout.item_category, null) as Chip
         chip.text = item.name
         if (item.point % 2 == 0) {
-            chip.chipStrokeColor = resources.getColorStateList(android.R.color.holo_red_dark)
+            chip.setTextAppearanceResource(R.style.badHabit)
+            chip.setChipBackgroundColorResource(R.color.light_red)
+            chip.chipStrokeColor =
+                ContextCompat.getColorStateList(requireContext(), R.color.selected_bad_habit_chip)
         } else {
-            chip.chipStrokeColor = resources.getColorStateList(android.R.color.holo_green_dark)
+            chip.setTextAppearanceResource(R.style.goodHabit)
+            chip.setChipBackgroundColorResource(R.color.light_green)
+            chip.chipStrokeColor =
+                ContextCompat.getColorStateList(requireContext(), R.color.selected_good_habit_chip)
         }
         return chip
     }

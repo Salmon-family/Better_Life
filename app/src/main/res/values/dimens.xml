@@ -9,6 +9,7 @@
     <dimen name="radius_small">8dp</dimen>
     <dimen name="chip_stroke_Width">1dp</dimen>
 
+    <dimen name="font_small">12sp</dimen>
     <dimen name="font_extra_large">20sp</dimen>
     <dimen name="font_huge">28sp</dimen>
 
