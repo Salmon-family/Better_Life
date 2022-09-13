@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.karrar.betterlife.data.Category" />
+            type="com.karrar.betterlife.data.database.entity.Habit" />
 
     </data>
 

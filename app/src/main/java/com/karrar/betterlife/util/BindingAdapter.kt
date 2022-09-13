@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.util
+package com.karrar.betterlife.util
 
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
