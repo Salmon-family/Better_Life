@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.karrar.betterlife.R
+import com.karrar.betterlife.data.database.BetterLiveDatabase
 import com.karrar.betterlife.databinding.ActivityMainBinding
 import com.karrar.betterlife.ui.home.HomeViewModel
 
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, it.toString(), Toast.LENGTH_SHORT).show()
         }
 
+        //BetterLiveDatabase.getInstance(applicationContext)
 
     }
 }

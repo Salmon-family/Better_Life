@@ -10,4 +10,11 @@
         android:name="com.karrar.betterlife.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/habitFragment"
+        android:name="com.karrar.betterlife.ui.habit.HabitFragment"
+        android:label="GameFragment"
+        tools:layout="@layout/fragment_habit_list">
+
+    </fragment>
 </navigation>
