@@ -3,7 +3,6 @@ package com.karrar.betterlife.ui.home.addHabitDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
@@ -19,10 +18,10 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        onHabitDone()
+        onAddHabitDone()
     }
 
-    private fun onHabitDone() {
+    private fun onAddHabitDone() {
         viewModel.isAddHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
