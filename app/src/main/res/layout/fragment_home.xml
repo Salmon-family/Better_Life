@@ -12,14 +12,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background">
+        android:layout_height="match_parent">
 
         <ScrollView
             android:id="@+id/habit_scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/spacing_large"
+            android:layout_marginHorizontal="@dimen/spacing_medium"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +34,7 @@
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:backgroundTint="@color/secondary_color"
+                    android:backgroundTint="@color/green_8"
                     android:elevation="0dp"
                     app:cardCornerRadius="@dimen/radius_small"
                     app:layout_constraintDimensionRatio="2:1"
@@ -61,7 +60,7 @@
                     android:fontFamily="@font/playball_regular"
                     android:gravity="center"
                     android:text="@string/home_banner_text"
-                    android:textSize="@dimen/font_huge"
+                    android:textSize="@dimen/text_extra_large"
                     app:layout_constraintBottom_toBottomOf="@+id/habit_home_card"
                     app:layout_constraintEnd_toEndOf="@+id/habit_home_card"
                     app:layout_constraintStart_toEndOf="@+id/habit_banner_image"
@@ -74,7 +73,7 @@
                     android:layout_marginTop="@dimen/spacing_small"
                     android:fontFamily="sans-serif-black"
                     android:text="@string/home_title"
-                    android:textSize="@dimen/font_extra_large"
+                    android:textSize="@dimen/text_extra_large"
                     app:layout_constraintTop_toBottomOf="@+id/habit_home_card" />
 
 

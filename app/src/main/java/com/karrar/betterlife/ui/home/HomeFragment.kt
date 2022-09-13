@@ -50,12 +50,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         val chip = chipBinding.root as Chip
         if (item.point % 2 == 0) {
             chip.setTextAppearanceResource(R.style.badHabit)
-            chip.setChipBackgroundColorResource(R.color.light_red)
+            chip.setChipBackgroundColorResource(R.color.red_8)
             chip.chipStrokeColor =
                 ContextCompat.getColorStateList(requireContext(), R.color.selected_bad_habit_chip)
         } else {
             chip.setTextAppearanceResource(R.style.goodHabit)
-            chip.setChipBackgroundColorResource(R.color.light_green)
+            chip.setChipBackgroundColorResource(R.color.green_8)
             chip.chipStrokeColor =
                 ContextCompat.getColorStateList(requireContext(), R.color.selected_good_habit_chip)
         }
