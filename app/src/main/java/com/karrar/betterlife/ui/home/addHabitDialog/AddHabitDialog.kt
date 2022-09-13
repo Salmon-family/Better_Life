@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
+import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
 
 
@@ -18,14 +19,17 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        addNewHabitAndBackToHome()
+        onHabitDone()
     }
 
-    private fun addNewHabitAndBackToHome() {
-        viewModel.isAddHabit.observe(viewLifecycleOwner) {
-            findNavController().popBackStack()
-            Toast.makeText(this.context, "Add habit is successfully", Toast.LENGTH_SHORT).show()
-        }
+    private fun onHabitDone() {
+        viewModel.isAddHabit.observe(this, EventObserve {
+            if (it) {
+                dismiss()
+                Toast.makeText(this.context, R.string.toast_success, Toast.LENGTH_SHORT).show()
+
+            }
+        })
     }
 
 }

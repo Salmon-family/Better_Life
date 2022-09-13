@@ -16,16 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rounded_dialog"
-        android:padding="@dimen/spacing_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="@dimen/spacing_large">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/materialTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
             android:text="@string/add_habit"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -39,8 +35,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/spacing_large"
             android:hint="@string/habit_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView"
             app:layout_constraintTop_toBottomOf="@+id/materialTextView">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -63,31 +59,13 @@
             app:layout_constraintTop_toBottomOf="@+id/habit_name_layout" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/habit_point_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:hint="@string/habit_name"
-            app:layout_constraintStart_toStartOf="@+id/point_part"
-            app:layout_constraintTop_toBottomOf="@+id/point_part">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/habit_point"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@={viewModel.habitName}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <ImageView
             android:id="@+id/idea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
             android:src="@drawable/ic_idea"
-            app:layout_constraintStart_toStartOf="@+id/habit_point_layout"
-            app:layout_constraintTop_toBottomOf="@+id/habit_point_layout" />
+            app:layout_constraintStart_toStartOf="@+id/point_part"
+            app:layout_constraintTop_toBottomOf="@+id/point_part" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/habit_hint"
@@ -97,9 +75,11 @@
             android:text="@string/habit_hint"
             android:textColor="@color/secondary_text"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/habit_point_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/habit_name_layout"
             app:layout_constraintStart_toEndOf="@+id/idea"
-            app:layout_constraintTop_toTopOf="@+id/idea" />
+            app:layout_constraintTop_toTopOf="@+id/idea"
+            app:layout_constraintVertical_bias="0.0" />
 
 
         <Button
@@ -107,9 +87,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_large"
             android:backgroundTint="@color/primary_color"
             android:onClick="@{() -> viewModel.addNewHabit()}"
+            android:enabled="@{!viewModel.isAddHabit().peekContent()}"
             android:text="@string/add_button"
             android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"
@@ -124,13 +104,14 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="@string/cancel_button"
             android:textColor="@color/primary_color"
             android:textSize="@dimen/spacing_medium"
             app:cornerRadius="@dimen/spacing_small"
-            app:layout_constraintBottom_toBottomOf="@+id/add"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/idea"
-            app:layout_constraintTop_toTopOf="@+id/add"
+            app:layout_constraintTop_toBottomOf="@+id/habit_hint"
             app:strokeColor="@color/primary_color"
             tools:ignore="SpUsage" />
 
