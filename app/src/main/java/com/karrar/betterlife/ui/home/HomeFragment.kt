@@ -15,16 +15,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setup() {
         setupChipGroupDynamically()
-//        viewModel.checkedBtnObs.observe(this) {
-//            it?.let {
-//                viewModel.setTodayHabit(it.toLong())
-//            }
-//            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-//        }
     }
 
     private fun setupChipGroupDynamically() {
-        binding.habitsChipGroup.isSingleSelection = true
         viewModel.habits.observe(this) {
             binding.habitsChipGroup.removeAllViews()
             it?.let {
