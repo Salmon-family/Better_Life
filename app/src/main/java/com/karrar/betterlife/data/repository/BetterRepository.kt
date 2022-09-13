@@ -20,6 +20,8 @@ class BetterRepository {
         dailyDao.insert(habit)
     }
 
+    suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
+
     fun getAllHabit() = habitDao.getAllHabit()
 
     suspend fun getHabitByID(habitID: Long) = habitDao.getHabitByID(id = habitID)
