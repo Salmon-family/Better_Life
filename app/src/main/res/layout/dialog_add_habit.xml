@@ -108,7 +108,7 @@
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/primary_color"
             android:onClick="@{() -> viewModel.addNewHabit()}"
-            android:enabled="@{viewModel.validation}"
+            android:enabled="@{viewModel.addHabitValidation}"
             android:text="@string/add_button"
             android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"

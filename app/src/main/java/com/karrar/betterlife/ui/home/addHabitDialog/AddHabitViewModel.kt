@@ -14,16 +14,16 @@ class AddHabitViewModel : ViewModel() {
     val habitPoints = MutableLiveData<String>()
     val isAddHabit = MutableLiveData(Event(false))
 
-    val validation = MediatorLiveData<Boolean>().apply {
+    val addHabitValidation = MediatorLiveData<Boolean>().apply {
         addSource(habitName, this@AddHabitViewModel::checkValidation)
         addSource(habitPoints, this@AddHabitViewModel::checkValidation)
     }
 
     private fun checkValidation(value: String) {
         if (habitName.value?.isNotEmpty() == true && habitPoints.value?.isNotEmpty() == true) {
-            validation.postValue(true)
+            addHabitValidation.postValue(true)
         } else {
-            validation.postValue(false)
+            addHabitValidation.postValue(false)
         }
     }
 
