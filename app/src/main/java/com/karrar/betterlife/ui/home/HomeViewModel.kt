@@ -8,18 +8,18 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeViewModel : ViewModel() {
-
     private val repository = BetterRepository()
 
-    val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
+    private val _navigateAddHabit = MutableLiveData<Boolean>()
+    val navigateAddHabit: LiveData<Boolean>
+        get() = _navigateAddHabit
 
+    val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
     val checkedBtnObs = MutableLiveData<Int>()
 
-    fun addFakeData() {
-        viewModelScope.launch {
-            val num = habits.value?.size?.plus(1) ?: 0
-            repository.insertNewHabit(Habit(name = "category#$num", point = num))
-        }
+
+    fun navigateToAddHabitDialog(){
+        _navigateAddHabit.postValue(true)
     }
 
     fun setTodayHabit(habitID: Long) {
