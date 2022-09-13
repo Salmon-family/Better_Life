@@ -11,21 +11,32 @@ class AddHabitViewModel : ViewModel() {
     private val repository = BetterRepository()
 
     val habitName = MutableLiveData<String>()
-
+    val habitNumber = MutableLiveData<Int>()
     val isAddHabit = MutableLiveData(Event(false))
+
+    val validation = MediatorLiveData<Boolean>().apply {
+        addSource(habitName, this@AddHabitViewModel::checkIsValidation)
+    }
+
+    private fun checkIsValidation(value: String) {
+        if (habitName.value.isNullOrEmpty() && habitNumber.value == 0) {
+            validation.postValue(true)
+        } else {
+            validation.postValue(false)
+        }
+    }
 
 
     fun addNewHabit() {
-        if (!habitName.value.isNullOrEmpty()){
-            isAddHabit.postValue(Event(true))
-            viewModelScope.launch {
-                repository.insertNewHabit(
-                    Habit(
-                        name = habitName.value.toString(),
-                        point = 100
-                    )
+        isAddHabit.postValue(Event(true))
+        viewModelScope.launch {
+            repository.insertNewHabit(
+                Habit(
+                    name = habitName.value.toString(),
+                    point = 100
                 )
-            }
+            )
         }
     }
+
 }
