@@ -31,7 +31,7 @@ abstract class BaseAdapter<T>(
         val currentItem = items[position]
         when (holder) {
             is ItemViewHolder -> {
-                holder.binding.setVariable(BR.item, currentItem)
+                holder.binding.setVariable(BR.viewModel, currentItem)
 //                holder.binding.setVariable(BR.listener, listener)
             }
         }

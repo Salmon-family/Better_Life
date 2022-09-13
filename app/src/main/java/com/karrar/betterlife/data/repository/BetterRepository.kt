@@ -12,13 +12,9 @@ class BetterRepository {
     private val dailyDao =
         BetterLiveDatabase.getInstance(BetterLifeApp.applicationContext()).habitResultDao()
 
-    suspend fun insertNewHabit(habit: Habit) {
-        habitDao.insert(habit)
-    }
+    suspend fun insertTodayHabit(habit: HabitResult) = dailyDao.insert(habit)
 
-    suspend fun insertTodayHabit(habit: HabitResult) {
-        dailyDao.insert(habit)
-    }
+    suspend fun insertNewHabit(habit: Habit) = habitDao.insert(habit)
 
     suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
 

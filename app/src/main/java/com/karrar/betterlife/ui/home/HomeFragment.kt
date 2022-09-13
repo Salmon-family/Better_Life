@@ -1,16 +1,12 @@
 package com.karrar.betterlife.ui.home
 
-import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipDrawable
-import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.databinding.FragmentHomeBinding
+import com.karrar.betterlife.databinding.ItemCategoryBinding
 import com.karrar.betterlife.ui.base.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -19,12 +15,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setup() {
         setupChipGroupDynamically()
-        viewModel.checkedBtnObs.observe(this) {
-            it?.let {
-                viewModel.setTodayHabit(it.toLong())
-            }
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-        }
+//        viewModel.checkedBtnObs.observe(this) {
+//            it?.let {
+//                viewModel.setTodayHabit(it.toLong())
+//            }
+//            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+//        }
     }
 
     private fun setupChipGroupDynamically() {
@@ -41,9 +37,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun createChip(item: Habit): Chip {
-        val chip =
-            LayoutInflater.from(requireActivity()).inflate(R.layout.item_category, null) as Chip
-        chip.text = item.name
+        val chipBinding: ItemCategoryBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.item_category,
+            binding.habitsChipGroup,
+            false
+        )
+
+        chipBinding.viewModel = viewModel
+        chipBinding.item = item
+        val chip = chipBinding.root as Chip
         if (item.point % 2 == 0) {
             chip.setTextAppearanceResource(R.style.badHabit)
             chip.setChipBackgroundColorResource(R.color.light_red)

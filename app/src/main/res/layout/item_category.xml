@@ -6,13 +6,17 @@
         <variable
             name="item"
             type="com.karrar.betterlife.data.database.entity.Habit" />
+        <variable
+            name="viewModel"
+            type="com.karrar.betterlife.ui.home.HomeViewModel" />
 
     </data>
 
     <com.google.android.material.chip.Chip
         style="@style/habitChip"
+        android:onClick="@{() -> viewModel.setTodayHabit(item.id)}"
+        android:text="@{item.name}"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{item.name}" />
+        android:layout_height="wrap_content" />
 
 </layout>

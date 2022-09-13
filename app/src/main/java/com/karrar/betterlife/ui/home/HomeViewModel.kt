@@ -25,13 +25,15 @@ class HomeViewModel : ViewModel() {
     fun setTodayHabit(habitID: Long) {
         viewModelScope.launch {
             val habit = repository.getHabitByID(habitID)
-            repository.insertTodayHabit(
-                HabitResult(
-                    id_habit = habit.id,
-                    point = habit.point,
-                    date = Date()
+            habit?.let {
+                repository.insertTodayHabit(
+                    HabitResult(
+                        id_habit = it.id,
+                        point = it.point,
+                        date = Date()
+                    )
                 )
-            )
+            }
         }
     }
 }
