@@ -22,7 +22,7 @@ class AddHabitViewModel : ViewModel() {
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = 0
+                    point = 100
                 )
             )
         }
