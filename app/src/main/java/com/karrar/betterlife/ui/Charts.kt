@@ -3,21 +3,21 @@ package com.karrar.betterlife.ui
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 
-class Charts<T>(dataOfHabits: Array<T>) {
+class Charts<T>(dataOfHabits: Array<T>, title: String, nameOfCategory: Array<String>) {
 
     private val aaChartModel = AAChartModel()
 
     private val charts =
         aaChartModel.chartType(AAChartType.Column).stacking(AAChartStackingType.Normal)
-            .title(TITLE)
+            .title(title)
             .yAxisTitle(TITLE_AXIS_Y)
             .titleStyle(AAStyle().fontWeight(AAChartFontWeightType.Bold))
             .backgroundColor("#FAFAFB")
             .colorsTheme(arrayOf(
-                "#6C5DD3",
+                "#26B05D",
             ))
             .dataLabelsEnabled(false)
-            .categories(arrayOf("M", "T", "W", "T", "F", "S", "S"))
+            .categories(nameOfCategory)
             .series(arrayOf(
                 AASeriesElement()
                     .name(FIRST_COLUMN)
@@ -30,7 +30,6 @@ class Charts<T>(dataOfHabits: Array<T>) {
     fun drawCharts(): AAChartModel = charts
 
     companion object {
-        const val TITLE = "Completed in the last 7 Days"
         const val TITLE_AXIS_Y = ""
         const val FIRST_COLUMN = "habits"
 
