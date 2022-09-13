@@ -15,7 +15,7 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
     override val layoutIdFragment: Int = R.layout.dialog_add_habit
 
     override fun setup() {
-        setWidthPercent(85)
+        setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         addNewHabitAndBackToHome()
