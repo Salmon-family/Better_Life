@@ -9,4 +9,6 @@
     <color name="primary_color">#26B05D</color>
     <color name="secondary_color">#1026B05D</color>
     <color name="background">#FFFFFFFF</color>
+    <color name="secondary_text">#FF141514</color>
+
 </resources>
