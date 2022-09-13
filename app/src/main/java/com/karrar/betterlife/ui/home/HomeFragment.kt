@@ -3,6 +3,7 @@ package com.karrar.betterlife.ui.home
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
@@ -19,6 +20,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun setup() {
         setupChipGroupDynamically()
         viewModel.checkedBtnObs.observe(this) {
+            it?.let {
+                viewModel.setTodayHabit(it.toLong())
+            }
             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
         }
     }

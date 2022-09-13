@@ -16,6 +16,11 @@ interface HabitDao {
     @Delete
     suspend fun delete(habit: Habit)
 
+
+    @Query("SELECT * FROM HABIT_TABLE WHERE id=:id ")
+    suspend fun getHabitByID(id: Long): Habit
+
     @Query("SELECT * FROM HABIT_TABLE")
     fun getAllHabit(): Flow<List<Habit>>
+
 }
