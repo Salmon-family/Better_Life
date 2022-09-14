@@ -47,5 +47,11 @@
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">@color/red</item>
     </style>
+    
+    <style name="Theme.AppCompat.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/green</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_better_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.BetterLife</item>
+    </style>
 
 </resources>
