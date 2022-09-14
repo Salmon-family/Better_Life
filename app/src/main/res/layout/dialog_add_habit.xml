@@ -47,25 +47,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/habit_points_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:hint="@string/habit_points"
-            app:layout_constraintEnd_toEndOf="@+id/habit_name_layout"
-            app:layout_constraintStart_toStartOf="@+id/habit_name_layout"
-            app:layout_constraintTop_toBottomOf="@+id/habit_name_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/habit_points"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:text="@={viewModel.habitPoints}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/point_part"
             android:layout_width="wrap_content"
@@ -75,16 +56,88 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/habit_name_layout"
-            app:layout_constraintTop_toBottomOf="@+id/habit_points_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/habit_name_layout" />
+
+
+        <TextView
+            android:id="@+id/seek_bar_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.habitPoints}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/point_part"
+            app:layout_constraintEnd_toEndOf="@+id/habit_name_layout"
+            app:layout_constraintTop_toTopOf="@+id/point_part" />
+
+        <SeekBar
+            android:id="@+id/seek_habit_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:min="-100"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:progressTint="@color/green"
+            android:thumb="@drawable/seek_bar_custom_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/point_part" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:background="@color/green"
+            app:layout_constraintBottom_toBottomOf="@+id/seek_habit_point"
+            app:layout_constraintEnd_toEndOf="@+id/seek_habit_point"
+            app:layout_constraintStart_toStartOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toTopOf="@+id/seek_habit_point" />
+
+        <TextView
+            android:id="@+id/seek_bar_zero_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/seek_habit_point"
+            app:layout_constraintStart_toStartOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toBottomOf="@+id/seek_habit_point" />
+
+        <TextView
+            android:id="@+id/seek_bar_min_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-100"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/seek_bar_zero_number"
+            app:layout_constraintStart_toStartOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toTopOf="@+id/seek_bar_zero_number" />
+
+        <TextView
+            android:id="@+id/seek_bar_max_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/seek_bar_zero_number"
+            app:layout_constraintEnd_toEndOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toTopOf="@+id/seek_bar_zero_number" />
 
 
         <ImageView
             android:id="@+id/idea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:src="@drawable/ic_lamp"
             app:layout_constraintStart_toStartOf="@+id/point_part"
-            app:layout_constraintTop_toBottomOf="@+id/point_part" />
+            app:layout_constraintTop_toBottomOf="@+id/seek_bar_zero_number" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/habit_hint"
@@ -107,8 +160,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.addNewHabit()}"
             android:enabled="@{viewModel.addHabitValidation}"
+            android:onClick="@{() -> viewModel.addNewHabit()}"
             android:text="@string/add"
             android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"

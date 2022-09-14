@@ -11,7 +11,7 @@ class AddHabitViewModel : ViewModel() {
     private val repository = BetterRepository()
 
     val habitName = MutableLiveData<String>()
-    val habitPoints = MutableLiveData<String>()
+    val habitPoints = MutableLiveData("0")
     val isAddHabit = MutableLiveData(Event(false))
 
     val addHabitValidation = MediatorLiveData<Boolean>().apply {
@@ -34,7 +34,7 @@ class AddHabitViewModel : ViewModel() {
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = 100
+                    point = habitPoints.value?.toInt() ?: 0
                 )
             )
         }
