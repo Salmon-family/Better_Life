@@ -28,7 +28,8 @@ fun setChipsListener(view: ChipGroup?, attChange: InverseBindingListener) {
 }
 
 @BindingAdapter("app:shopCharts")
-fun showCharts(view: AAChartView, dataCharts: DataCharts){
-    val aaCharts = Charts(dataCharts.dataOfHabit, dataCharts.nameOfCategories)
+fun showCharts(view: AAChartView, dataCharts: DataCharts) {
+    val aaCharts =
+        Charts(dataCharts.dataOfHabit.toTypedArray(), dataCharts.nameOfCategories.toTypedArray())
     view.aa_drawChartWithChartModel(aaCharts.drawCharts())
 }
