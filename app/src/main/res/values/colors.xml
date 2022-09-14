@@ -15,4 +15,6 @@
     <color name="green">#26B05D</color>
     <color name="green_8">#1426B05D</color>
 
+    <color name="background">#FFFFFFFF</color>
+
 </resources>
