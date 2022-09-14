@@ -9,7 +9,6 @@ import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
 
-
 class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewModel>() {
     override val viewModelClass: Class<AddHabitViewModel> = AddHabitViewModel::class.java
     override val layoutIdFragment: Int = R.layout.dialog_add_habit
@@ -19,6 +18,7 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         onAddHabitDone()
+        cancelDialogOfHabit()
     }
 
     private fun onAddHabitDone() {
@@ -27,6 +27,14 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
                 dismiss()
                 Toast.makeText(this.context, R.string.toast_success, Toast.LENGTH_SHORT).show()
 
+            }
+        })
+    }
+
+    private fun cancelDialogOfHabit() {
+        viewModel.isCancel.observe(this, EventObserve {
+            if (it) {
+                dismiss()
             }
         })
     }
