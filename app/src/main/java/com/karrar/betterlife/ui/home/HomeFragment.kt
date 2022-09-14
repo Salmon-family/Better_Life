@@ -5,9 +5,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.karrar.betterlife.R
+import com.karrar.betterlife.data.DailyHabit
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.databinding.FragmentHomeBinding
-import com.karrar.betterlife.databinding.ItemCategoryBinding
+import com.karrar.betterlife.databinding.ItemHabitBinding
 import com.karrar.betterlife.ui.base.BaseFragment
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -15,6 +16,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModelClass = HomeViewModel::class.java
 
     override fun setup() {
+        val list = mutableListOf<DailyHabit>()
+        for (i in 0..15){
+            list.add(DailyHabit("Fri",100))
+        }
+        val adapter = HabitDailyAdapter(list)
+        binding.recyclerDay.adapter = adapter
+
         setupChipGroupDynamically()
         navigateToAddHabitDialog()
     }
@@ -34,17 +42,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 }
             }
         }
-
     }
 
     private fun createChip(item: Habit): Chip {
-        val chipBinding: ItemCategoryBinding = DataBindingUtil.inflate(
+        val chipBinding: ItemHabitBinding = DataBindingUtil.inflate(
             layoutInflater,
-            R.layout.item_category,
+            R.layout.item_habit,
             binding.habitsChipGroup,
             false
         )
-
         chipBinding.viewModel = viewModel
         chipBinding.item = item
         val chip = chipBinding.root as Chip
