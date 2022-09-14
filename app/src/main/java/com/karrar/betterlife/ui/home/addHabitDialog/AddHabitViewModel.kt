@@ -6,7 +6,6 @@ import com.karrar.betterlife.data.repository.BetterRepository
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
-
 class AddHabitViewModel : ViewModel() {
     private val repository = BetterRepository()
 

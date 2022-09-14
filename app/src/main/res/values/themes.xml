@@ -54,8 +54,17 @@
     </style>
 
     <style name="MaterialButtonStyle">
-        <item name="backgroundTint">@color/add_button_style</item>
         <item name="cornerRadius">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="MaterialButtonStyle.MaterialAddButtonStyle">
+        <item name="backgroundTint">@color/add_button_style</item>
+    </style>
+
+    <style name="MaterialButtonStyle.MaterialCancelButtonStyle">
+        <item name="backgroundTint">@color/black_30</item>
     </style>
 
 </resources>
