@@ -18,6 +18,8 @@ class BetterRepository {
 
     suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
 
+    suspend fun deleteHabit(habit: Habit) = habitDao.delete(habit)
+
     fun getAllHabit() = habitDao.getAllHabit()
 
     suspend fun getHabitByID(habitID: Long) = habitDao.getHabitByID(id = habitID)

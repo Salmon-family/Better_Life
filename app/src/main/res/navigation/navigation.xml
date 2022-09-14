@@ -9,14 +9,25 @@
         android:id="@+id/homeFragment"
         android:name="com.karrar.betterlife.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_addHabitDialog"
-            app:destination="@id/addHabitDialog" />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
     <dialog
         android:id="@+id/addHabitDialog"
         android:name="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitDialog"
         android:label="AddHabitDialog"
         tools:layout="@layout/dialog_add_habit" />
+
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.karrar.betterlife.ui.edit.EditHabitFragment"
+        android:label="EditFragment"
+        tools:layout="@layout/fragment_edit_habit">
+        <action
+            android:id="@+id/action_editFragment_to_editHabitDialog"
+            app:destination="@id/editHabitDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/editHabitDialog"
+        android:name="com.karrar.betterlife.ui.edit.editHabitDialog.EditHabitDialog"
+        android:label="EditHabitDialog"
+        tools:layout="@layout/dialog_edit_habit" />
 </navigation>
