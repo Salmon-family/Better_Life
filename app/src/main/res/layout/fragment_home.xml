@@ -16,7 +16,7 @@
         android:background="@color/background">
 
         <ScrollView
-            android:id="@+id/habit_scrollView"
+            android:id="@+id/scrollView_habit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
@@ -51,7 +51,7 @@
                 </com.google.android.material.appbar.AppBarLayout>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/habit_home_card"
+                    android:id="@+id/card_habit_home"
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -65,28 +65,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
                 <ImageView
-                    android:id="@+id/habit_banner_image"
+                    android:id="@+id/image_habit_banner"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_margin="@dimen/spacing_medium"
                     android:elevation="2dp"
                     android:src="@drawable/banner"
-                    app:layout_constraintBottom_toBottomOf="@+id/habit_home_card"
-                    app:layout_constraintStart_toStartOf="@+id/habit_home_card"
-                    app:layout_constraintTop_toTopOf="@id/habit_home_card" />
+                    app:layout_constraintBottom_toBottomOf="@+id/card_habit_home"
+                    app:layout_constraintStart_toStartOf="@+id/card_habit_home"
+                    app:layout_constraintTop_toTopOf="@id/card_habit_home" />
 
                 <TextView
-                    android:id="@+id/habit_card_title_text"
+                    android:id="@+id/text_habit_card_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/playball_regular"
                     android:gravity="center"
                     android:text="@string/home_banner_text"
                     android:textSize="@dimen/text_extra_large"
-                    app:layout_constraintBottom_toBottomOf="@+id/habit_home_card"
-                    app:layout_constraintEnd_toEndOf="@+id/habit_home_card"
-                    app:layout_constraintStart_toEndOf="@+id/habit_banner_image"
-                    app:layout_constraintTop_toTopOf="@+id/habit_home_card" />
+                    app:layout_constraintBottom_toBottomOf="@+id/card_habit_home"
+                    app:layout_constraintEnd_toEndOf="@+id/card_habit_home"
+                    app:layout_constraintStart_toEndOf="@+id/image_habit_banner"
+                    app:layout_constraintTop_toTopOf="@+id/card_habit_home" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_day"
@@ -98,10 +98,10 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/habit_home_card" />
+                    app:layout_constraintTop_toBottomOf="@+id/card_habit_home" />
 
                 <TextView
-                    android:id="@+id/title_text"
+                    android:id="@+id/text_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
@@ -113,14 +113,14 @@
 
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/habits_chipGroup"
+                    android:id="@+id/chipGroup_habit"
                     checkedChipButtonId="@={viewModel.checkedBtnObs}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_text"
+                    app:layout_constraintTop_toBottomOf="@+id/text_title"
                     app:singleSelection="false" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

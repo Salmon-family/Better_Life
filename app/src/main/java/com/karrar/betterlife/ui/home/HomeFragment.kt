@@ -35,10 +35,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun setupChipGroupDynamically() {
         viewModel.habits.observe(this) {
-            binding.habitsChipGroup.removeAllViews()
+            binding.chipGroupHabit.removeAllViews()
             it?.let {
                 it.forEach { habit ->
-                    binding.habitsChipGroup.addView(createChip(habit))
+                    binding.chipGroupHabit.addView(createChip(habit))
                 }
             }
         }
@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         val chipBinding: ItemHabitBinding = DataBindingUtil.inflate(
             layoutInflater,
             R.layout.item_habit,
-            binding.habitsChipGroup,
+            binding.chipGroupHabit,
             false
         )
         chipBinding.viewModel = viewModel
