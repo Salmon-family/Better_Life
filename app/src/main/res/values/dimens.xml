@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- icons -->
+    <dimen name="icon_medium">24dp</dimen>
+    <dimen name="icon_large">32dp</dimen>
+
+    <!-- spacing -->
+    <dimen name="spacing_extra_large">32dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_too_small">4dp</dimen>
+
+    <!-- texts -->
+    <dimen name="text_extra_large">24sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+
+    <!-- radius -->
+    <dimen name="radius_extra_large">32dp</dimen>
+    <dimen name="radius_large">24dp</dimen>
+    <dimen name="radius_medium">16dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
+    <dimen name="radius_too_small">4dp</dimen>
+
+    <!-- strokes -->
+    <dimen name="stroke_small">1dp</dimen>
+
+    <!-- buttons -->
+    <dimen name="button_width">80dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+
+    <!-- other dimensions -->
+
+</resources>

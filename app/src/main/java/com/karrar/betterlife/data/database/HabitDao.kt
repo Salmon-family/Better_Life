@@ -2,6 +2,7 @@ package com.karrar.betterlife.data.database
 
 import androidx.room.*
 import com.karrar.betterlife.data.database.entity.Habit
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HabitDao {
@@ -15,6 +16,10 @@ interface HabitDao {
     @Delete
     suspend fun delete(habit: Habit)
 
+    @Query("SELECT * FROM HABIT_TABLE WHERE id=:id ")
+    suspend fun getHabitByID(id: Long): Habit?
+
     @Query("SELECT * FROM HABIT_TABLE")
-    suspend fun getAllHabit(): List<Habit>
+    fun getAllHabit(): Flow<List<Habit>>
+
 }
