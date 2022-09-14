@@ -1,13 +1,11 @@
 package com.karrar.betterlife.util
 
-import android.annotation.SuppressLint
-import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.ChipGroup
-import com.karrar.betterlife.R
+import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.ui.Charts
 
 @BindingAdapter(value = ["checkedChipButtonId"])
@@ -27,4 +25,10 @@ fun setChipsListener(view: ChipGroup?, attChange: InverseBindingListener) {
     view?.setOnCheckedStateChangeListener { group, checkedId ->
         attChange.onChange()
     }
+}
+
+@BindingAdapter("app:shopCharts")
+fun showCharts(view: AAChartView, dataCharts: DataCharts){
+    val aaCharts = Charts(dataCharts.dataOfHabit, dataCharts.nameOfCategories)
+    view.aa_drawChartWithChartModel(aaCharts.drawCharts())
 }

@@ -25,12 +25,22 @@
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_Day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:onClick="@{() -> viewModel.chartsDaily()}"
+                android:text="Daily"
+                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.chip.Chip
                 android:id="@+id/chip_week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:onClick="@{() -> viewModel.chartsWeek()}"
-                android:text="Week"
+                android:onClick="@{() -> viewModel.chartsWeekly()}"
+                android:text="Weekly"
                 app:layout_constraintBottom_toTopOf="@+id/cardView"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -38,9 +48,9 @@
                 android:id="@+id/chip_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:onClick="@{() -> viewModel.chartsMonth()}"
-                android:text="Month"
+                android:layout_marginStart="24dp"
+                android:onClick="@{() -> viewModel.chartsMonthly()}"
+                android:text="Monthly"
                 app:layout_constraintBottom_toTopOf="@+id/cardView"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -51,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +73,7 @@
                 android:id="@+id/aa_chart_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                app:shopCharts="@{viewModel.charts}"
                 tools:ignore="MissingClass" />
 
         </androidx.cardview.widget.CardView>

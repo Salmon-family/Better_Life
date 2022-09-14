@@ -3,13 +3,13 @@ package com.karrar.betterlife.ui
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 
-class Charts<T>(dataOfHabits: Array<T>, title: String, nameOfCategory: Array<String>) {
+class Charts<T>(dataOfHabits: Array<T>, nameOfCategory: Array<String>) {
 
     private val aaChartModel = AAChartModel()
 
     private val charts =
         aaChartModel.chartType(AAChartType.Column).stacking(AAChartStackingType.Normal)
-            .title(title)
+            .title("")
             .yAxisTitle(TITLE_AXIS_Y)
             .titleStyle(AAStyle().fontWeight(AAChartFontWeightType.Bold))
             .backgroundColor("#FAFAFB")
