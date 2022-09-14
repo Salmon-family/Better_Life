@@ -2,8 +2,6 @@ package com.karrar.betterlife.ui.home.addHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
-import android.widget.SeekBar
 import android.widget.Toast
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddHabitBinding
@@ -16,14 +14,11 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
     override val layoutIdFragment: Int = R.layout.dialog_add_habit
 
     override fun setup() {
-        customizeWindowSize()
-        onAddHabitDone()
-        cancelDialogOfHabit()
-    }
-
-    private fun customizeWindowSize() {
         setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        onAddHabitDone()
+        cancelDialogOfHabit()
     }
 
     private fun onAddHabitDone() {
