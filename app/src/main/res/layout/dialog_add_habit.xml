@@ -154,18 +154,17 @@
             app:layout_constraintVertical_bias="0.0" />
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:backgroundTint="@color/green"
+            style="@style/MaterialButtonStyle"
             android:enabled="@{viewModel.addHabitValidation}"
             android:onClick="@{() -> viewModel.addNewHabit()}"
             android:text="@string/add"
             android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"
-            app:cornerRadius="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/habit_hint"
             app:layout_constraintTop_toBottomOf="@+id/habit_hint"
