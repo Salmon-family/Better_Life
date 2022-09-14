@@ -13,6 +13,7 @@ class AddHabitViewModel : ViewModel() {
     val habitName = MutableLiveData<String>()
     val habitPoints = MutableLiveData("0")
     val isAddHabit = MutableLiveData(Event(false))
+    val isCancel = MutableLiveData(Event(false))
 
     val addHabitValidation = MediatorLiveData<Boolean>().apply {
         addSource(habitName, this@AddHabitViewModel::checkValidation)
@@ -20,7 +21,7 @@ class AddHabitViewModel : ViewModel() {
     }
 
     private fun checkValidation(value: String) {
-        if (habitName.value?.isNotEmpty() == true && habitPoints.value?.isNotEmpty() == true) {
+        if (habitName.value?.isNotEmpty() == true && habitPoints.value != "0") {
             addHabitValidation.postValue(true)
         } else {
             addHabitValidation.postValue(false)
@@ -38,6 +39,10 @@ class AddHabitViewModel : ViewModel() {
                 )
             )
         }
+    }
+
+    fun cancelDialog(){
+        isCancel.postValue(Event(true))
     }
 
 }

@@ -10,17 +10,33 @@ import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
 
-
 class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewModel>() {
     override val viewModelClass: Class<AddHabitViewModel> = AddHabitViewModel::class.java
     override val layoutIdFragment: Int = R.layout.dialog_add_habit
 
     override fun setup() {
+        customizeWindowSize()
+        getPointBySeekBar()
+        onAddHabitDone()
+        cancelDialogOfHabit()
+    }
+
+    private fun customizeWindowSize() {
         setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
 
-        onAddHabitDone()
-        getPointBySeekBar()
+    private fun getPointBySeekBar() {
+        binding.seekHabitPoint.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                binding.seekBarPoint.text = p1.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+
+        })
     }
 
     private fun onAddHabitDone() {
@@ -33,18 +49,12 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         })
     }
 
-    private fun getPointBySeekBar() {
-        binding.seekHabitPoint.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                binding.seekBarPoint.text = p1.toString()
+    private fun cancelDialogOfHabit() {
+        viewModel.isCancel.observe(this, EventObserve {
+            if (it) {
+                dismiss()
             }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-
         })
     }
+
 }
