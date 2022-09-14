@@ -32,6 +32,11 @@
     </style>
 
 
+    <style name="title_Toolbar">
+        <item name="android:textSize">@dimen/text_extra_large</item>
+        <item name="android:fontFamily">@font/playball_regular</item>
+    </style>
+
     <style name="habitChip" parent="Widget.Material3.Chip.Suggestion">
         <item name="chipStrokeColor">@color/green</item>
         <item name="chipSurfaceColor">@color/white</item>
