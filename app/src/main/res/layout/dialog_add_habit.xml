@@ -60,15 +60,16 @@
 
 
         <TextView
-            android:id="@+id/seek_bar_point"
+            android:id="@+id/text_seek_bar_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.habitPoints}"
+            android:text="@{String.valueOf(viewModel.habitPoints)}"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/point_part"
             app:layout_constraintEnd_toEndOf="@+id/habit_name_layout"
-            app:layout_constraintTop_toTopOf="@+id/point_part" />
+            app:layout_constraintTop_toTopOf="@+id/point_part"
+            tools:text="0"/>
 
         <SeekBar
             android:id="@+id/seek_habit_point"
@@ -77,8 +78,7 @@
             android:layout_marginTop="8dp"
             android:max="100"
             android:min="-100"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
+            android:progress="@={viewModel.habitPoints}"
             android:progressTint="@color/green"
             android:thumb="@drawable/seek_bar_custom_thumb"
             app:layout_constraintEnd_toEndOf="parent"

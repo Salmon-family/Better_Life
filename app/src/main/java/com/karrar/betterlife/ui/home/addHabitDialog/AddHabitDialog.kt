@@ -2,6 +2,7 @@ package com.karrar.betterlife.ui.home.addHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.widget.SeekBar
 import android.widget.Toast
 import com.karrar.betterlife.R
@@ -16,7 +17,6 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
 
     override fun setup() {
         customizeWindowSize()
-        getPointBySeekBar()
         onAddHabitDone()
         cancelDialogOfHabit()
     }
@@ -24,19 +24,6 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
     private fun customizeWindowSize() {
         setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    }
-
-    private fun getPointBySeekBar() {
-        binding.seekHabitPoint.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                binding.seekBarPoint.text = p1.toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {}
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {}
-
-        })
     }
 
     private fun onAddHabitDone() {

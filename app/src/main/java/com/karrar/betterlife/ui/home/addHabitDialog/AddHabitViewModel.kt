@@ -11,7 +11,7 @@ class AddHabitViewModel : ViewModel() {
     private val repository = BetterRepository()
 
     val habitName = MutableLiveData<String>()
-    val habitPoints = MutableLiveData("0")
+    val habitPoints = MutableLiveData(0)
     val isAddHabit = MutableLiveData(Event(false))
     val isCancel = MutableLiveData(Event(false))
 
@@ -20,8 +20,8 @@ class AddHabitViewModel : ViewModel() {
         addSource(habitPoints, this@AddHabitViewModel::checkValidation)
     }
 
-    private fun checkValidation(value: String) {
-        if (habitName.value?.isNotEmpty() == true && habitPoints.value != "0") {
+    private fun checkValidation(value: Any) {
+        if (habitName.value?.isNotEmpty() == true && habitPoints.value != 0) {
             addHabitValidation.postValue(true)
         } else {
             addHabitValidation.postValue(false)
@@ -35,7 +35,7 @@ class AddHabitViewModel : ViewModel() {
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = habitPoints.value?.toInt() ?: 0
+                    point = habitPoints.value ?: 0
                 )
             )
         }
