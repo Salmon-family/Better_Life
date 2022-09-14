@@ -15,7 +15,7 @@
 
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+            android:id="@+id/chip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -31,7 +31,7 @@
                 android:layout_marginStart="24dp"
                 android:onClick="@{() -> viewModel.chartsDaily()}"
                 android:text="Daily"
-                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.chip.Chip
@@ -41,7 +41,7 @@
                 android:layout_marginStart="24dp"
                 android:onClick="@{() -> viewModel.chartsWeekly()}"
                 android:text="Weekly"
-                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.chip.Chip
@@ -51,13 +51,13 @@
                 android:layout_marginStart="24dp"
                 android:onClick="@{() -> viewModel.chartsMonthly()}"
                 android:text="Monthly"
-                app:layout_constraintBottom_toTopOf="@+id/cardView"
+                app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -66,7 +66,7 @@
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chip_group"
             tools:ignore="MissingConstraints">
 
             <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
