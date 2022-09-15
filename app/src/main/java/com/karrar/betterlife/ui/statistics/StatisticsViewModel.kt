@@ -1,62 +1,84 @@
 package com.karrar.betterlife.ui.statistics
 
+import android.os.Build
+import android.provider.SyncStateContract
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
-import com.karrar.betterlife.data.ChartsCases
 import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.entity.HabitResult
 import com.karrar.betterlife.data.repository.BetterRepository
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 class StatisticsViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
-    private val _charts = MutableLiveData<DataCharts>(DataCharts(listOf(), listOf()))
+    private val _charts = MutableLiveData<DataCharts>(DataCharts(mutableListOf(), mutableListOf()))
     val charts: LiveData<DataCharts>
         get() = _charts
 
-    private val _chartsCases = MutableLiveData<ChartsCases>()
-    val chartsCases: LiveData<ChartsCases>
-        get() = _chartsCases
-
-    val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
-    val checkedBtnObs = MutableLiveData<Int>()
-
-    val isSelectedDate = MutableLiveData(ChartsCases.DAILY)
+    private val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
     init {
-        showAllCases()
-    }
-
-    private fun showAllCases() {
-        _chartsCases.value?.let { state ->
-            when (state) {
-                ChartsCases.DAILY -> _charts.postValue(DataCharts(listOf(20, 30, 33, 12, 16, 9, 13),
-                    listOf("S", "S", "M", "T", "W", "T", "F")))
-                ChartsCases.WEEKLY -> _charts.postValue(DataCharts(listOf(20, 30, 33, 12),
-                    listOf("First Week", "Second Week", "Third Week", "Forth Week")))
-                ChartsCases.MONTHLY -> _charts.postValue(DataCharts(listOf(20, 30, 33, 12, 20, 30, 33),
-                    listOf("J", "F", "M", "A", "J", "J", "O")))
-            }
+        viewModelScope.launch {
+            val date = repository.selectDate(Date().time)
+            Log.i("test date", date.toString())
         }
 
+        chartsDaily()
+        getPrevSevenDaysFormattedDates()
     }
 
-
     fun chartsDaily() {
-        isSelectedDate.postValue(ChartsCases.DAILY)
+        viewModelScope.launch {
+            repository.isAnyHabitsInThisDay(Date().time).forEach {
+                _charts.postValue(DataCharts(mutableListOf(it.point), DAYS_OF_THE_WEEK))
+            }
+        }
     }
 
     fun chartsWeekly() {
-        isSelectedDate.postValue(ChartsCases.WEEKLY)
+        viewModelScope.launch {
+            repository.getAllHabit().collect { it ->
+                _charts.postValue(DataCharts(mutableListOf(it.sumOf { it.point }),
+                    WEEKS_OF_THE_MONTH))
+            }
+        }
     }
 
     fun chartsMonthly() {
-        isSelectedDate.postValue(ChartsCases.MONTHLY)
+        viewModelScope.launch {
+            repository.getAllHabit().collect { it ->
+                _charts.postValue(DataCharts(mutableListOf(it.sumOf { it.point }),
+                    MONTHS_OF_THE_YEAR))
+            }
+        }
+    }
+
+    fun getPrevSevenDaysFormattedDates(): ArrayList<Long> {
+        val formattedDateList = ArrayList<Long>()
+
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, -7)
+        for (i in 0..DEFAULT_END_DATE_DAYS) {
+            val currentTime = calendar.time
+            formattedDateList.add(currentTime.time)
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+        }
+        return formattedDateList
     }
 
 
+    companion object {
+        const val DEFAULT_END_DATE_DAYS = 7
+
+        val DAYS_OF_THE_WEEK = mutableListOf("S", "S", "M", "T", "W", "T", "F")
+        val WEEKS_OF_THE_MONTH =
+            mutableListOf("First Week", "Second Week", "Third Week", "Forth Week")
+        val MONTHS_OF_THE_YEAR =
+            mutableListOf("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D")
+    }
 }

@@ -73,7 +73,7 @@
                 android:id="@+id/aa_chart_view"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                app:shopCharts="@{viewModel.charts}"
+                app:shopCharts="@{viewModel.charts }"
                 tools:ignore="MissingClass" />
 
         </androidx.cardview.widget.CardView>

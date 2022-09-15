@@ -3,7 +3,7 @@ package com.karrar.betterlife.ui
 import com.github.aachartmodel.aainfographics.aachartcreator.*
 import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 
-class Charts<T>(dataOfHabits: Array<T>, nameOfCategory: Array<String>) {
+class Charts(dataOfHabits: Array<Any>, nameOfCategory: Array<String>) {
 
     private val aaChartModel = AAChartModel()
 
@@ -21,7 +21,7 @@ class Charts<T>(dataOfHabits: Array<T>, nameOfCategory: Array<String>) {
             .series(arrayOf(
                 AASeriesElement()
                     .name(FIRST_COLUMN)
-                    .data(dataOfHabits as Array<Any>)
+                    .data(dataOfHabits)
                     .borderRadius(BORDER_RADIUS)
                     .borderWidth(BORDER_WIDTH),
             )
