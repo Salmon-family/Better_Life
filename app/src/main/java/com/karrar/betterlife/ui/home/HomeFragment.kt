@@ -16,13 +16,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setup() {
         setupChipGroupDynamically()
-
+        navigateToStatistics()
         navigateToAddHabitDialog()
     }
 
     private fun navigateToAddHabitDialog() {
         viewModel.navigateAddHabit.observe(viewLifecycleOwner) {
-            findNavController().navigate(R.id.addHabitDialog)
+            if (it)
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToStatistics()
+                )
+        }
+    }
+
+    private fun navigateToStatistics() {
+        viewModel.navigateShowStatistics.observe(viewLifecycleOwner) {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStatistics())
         }
     }
 

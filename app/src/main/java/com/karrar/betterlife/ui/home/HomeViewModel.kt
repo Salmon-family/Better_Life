@@ -14,6 +14,10 @@ class HomeViewModel : ViewModel() {
     val navigateAddHabit: LiveData<Boolean>
         get() = _navigateAddHabit
 
+    private val _navigateShowStatistics = MutableLiveData<Boolean>()
+    val navigateShowStatistics: LiveData<Boolean>
+        get() = _navigateShowStatistics
+
     private val _habits = MutableLiveData<List<Habit>>()
     private val allHabits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
@@ -59,6 +63,10 @@ class HomeViewModel : ViewModel() {
 
     fun navigateToAddHabitDialog() {
         _navigateAddHabit.postValue(true)
+    }
+
+    fun navigateToAddHabitStatistics() {
+        _navigateShowStatistics.postValue(true)
     }
 
     fun setTodayHabit(habitID: Long) {
