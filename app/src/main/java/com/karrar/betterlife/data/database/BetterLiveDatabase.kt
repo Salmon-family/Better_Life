@@ -22,11 +22,14 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         private var instance: BetterLiveDatabase? = null
 
         fun getInstance(context: Context): BetterLiveDatabase {
-            return instance ?: synchronized(this) { buildDatabase(context).also { instance = it } }
+            return instance ?: synchronized(this) { buildDatabase(context, DateConverter()).also { instance = it } }
         }
 
-        private fun buildDatabase(context: Context): BetterLiveDatabase {
+        private fun buildDatabase(
+            context: Context, dateConverter: DateConverter
+        ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
+                .addTypeConverter(dateConverter)
                 .build()
         }
     }
