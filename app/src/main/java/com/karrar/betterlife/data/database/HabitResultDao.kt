@@ -18,14 +18,14 @@ interface HabitResultDao {
     suspend fun delete(habitResult: HabitResult)
 
     @Query("SELECT * FROM RESULT_TABLE WHERE id_habit == :habitID")
-    suspend fun getTodayHabitResultByID(habitID: Long): HabitResult
+    suspend fun getTodayHabitResultByID(habitID: Long): HabitResult?
 
     @Query("SELECT * FROM RESULT_TABLE")
     suspend fun getAllHabitResult(): List<HabitResult>
 
 
     @Query("SELECT * FROM RESULT_TABLE WHERE date(date / 1000,'unixepoch') = date(:day / 1000,'unixepoch')")
-    suspend fun isAnyHabitsByThisDay(day: Long): List<HabitResult>
+    suspend fun isAnyHabitsByThisDay(day: Long): List<HabitResult>?
 
 
     @Query("SELECT SUM(point) FROM RESULT_TABLE WHERE date BETWEEN :fromDate AND :toDate ")
