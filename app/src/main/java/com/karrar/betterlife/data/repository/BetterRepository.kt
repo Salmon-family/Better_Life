@@ -1,10 +1,8 @@
 package com.karrar.betterlife.data.repository
 
-import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.BetterLiveDatabase
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
-import java.util.Date
 
 class BetterRepository {
     private val habitDao =

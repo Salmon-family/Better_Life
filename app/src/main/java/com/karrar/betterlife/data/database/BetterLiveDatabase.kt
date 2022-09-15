@@ -1,6 +1,5 @@
 package com.karrar.betterlife.data.database
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -24,16 +23,29 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         private var instance: BetterLiveDatabase? = null
 
         fun getInstance(context: Context): BetterLiveDatabase {
-            return instance ?: synchronized(this) { buildDatabase(context).also { instance = it } }
+            return instance ?: synchronized(this) {
+                buildDatabase(
+                    context,
+                    DateConverter()
+                ).also { instance = it }
+            }
         }
 
-        fun getInstanceByApplicationContext():BetterLiveDatabase{
-            return instance ?: synchronized(this) { buildDatabase(BetterLifeApp.applicationContext()).also { instance = it } }
+        fun getInstanceByApplicationContext(): BetterLiveDatabase {
+            return instance ?: synchronized(this) {
+                buildDatabase(
+                    BetterLifeApp.applicationContext(),
+                    DateConverter()
+                ).also { instance = it }
+            }
 
         }
 
-        private fun buildDatabase(context: Context): BetterLiveDatabase {
+        private fun buildDatabase(
+            context: Context, dateConverter: DateConverter
+        ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
+                .addTypeConverter(dateConverter)
                 .build()
         }
     }

@@ -47,9 +47,13 @@ class HomeViewModel : ViewModel() {
     private fun isDoneForToday() {
         viewModelScope.launch {
             val todayHabits = repository.isAnyHabitsInThisDay(Date().time)
-            _doneToday.postValue(todayHabits.isNotEmpty())
-            if (todayHabits.isNotEmpty()) {
-                setHabits(todayHabits)
+            if (todayHabits == null) {
+                _doneToday.postValue(false)
+            } else {
+                _doneToday.postValue(true)
+                if (todayHabits.isNotEmpty()) {
+                    setHabits(todayHabits)
+                }
             }
         }
     }

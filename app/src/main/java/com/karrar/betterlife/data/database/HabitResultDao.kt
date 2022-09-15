@@ -23,7 +23,7 @@ interface HabitResultDao {
     @Query("SELECT * FROM RESULT_TABLE")
     suspend fun getAllHabitResult(): List<HabitResult>
 
-    @Query("SELECT * FROM RESULT_TABLE WHERE date(date / 1000,'unixepoch') = date(:day / 1000,'unixepoch')")
+    @Query("SELECT * FROM RESULT_TABLE WHERE date == :day")
     suspend fun isAnyHabitsByThisDay(day: Long): List<HabitResult>
 
 
