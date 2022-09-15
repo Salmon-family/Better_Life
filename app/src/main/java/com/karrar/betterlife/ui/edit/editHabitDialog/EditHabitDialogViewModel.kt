@@ -6,7 +6,7 @@ import com.karrar.betterlife.data.repository.BetterRepository
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
-class EditHabitViewModel : ViewModel() {
+class EditHabitDialogViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
@@ -20,8 +20,8 @@ class EditHabitViewModel : ViewModel() {
         get() = _isDialogClose
 
      val editHabitValidation = MediatorLiveData<Boolean>().apply {
-        addSource(name, this@EditHabitViewModel::checkValidation)
-        addSource(points, this@EditHabitViewModel::checkValidation)
+        addSource(name, this@EditHabitDialogViewModel::checkValidation)
+        addSource(points, this@EditHabitDialogViewModel::checkValidation)
     }
 
     private fun checkValidation(value: String) {

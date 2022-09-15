@@ -13,15 +13,10 @@ class EditHabitFragment : BaseFragment<FragmentEditHabitBinding, EditHabitViewMo
     override val viewModelClass = EditHabitViewModel::class.java
 
     override fun setup() {
-
         startTheGame()
 
         val adapter = HabitAdapter(mutableListOf(),viewModel)
         binding.recyclerHabitList.adapter = adapter
-
-
-//        val adapter = HabitAdapter(mutableListOf(),object : HabitInteractionListener{})
-//        binding.recyclerHabitList.adapter = adapter
     }
 
     private fun startTheGame() {
