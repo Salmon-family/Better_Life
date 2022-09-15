@@ -1,15 +1,11 @@
 package com.karrar.betterlife.ui.statistics
 
-import android.os.Build
-import android.provider.SyncStateContract
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 class StatisticsViewModel : ViewModel() {
@@ -24,7 +20,7 @@ class StatisticsViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            val date = repository.selectDate(Date().time)
+            val date = repository.getTotalHabitPointInResult(166326658730, 166326658748)
             Log.i("test date", date.toString())
         }
 
