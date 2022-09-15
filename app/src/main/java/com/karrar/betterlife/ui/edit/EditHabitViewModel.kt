@@ -9,7 +9,7 @@ import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 import java.util.*
 
-class EditHabitViewModel : ViewModel(){
+class EditHabitViewModel : ViewModel(),HabitInteractionListener{
     private val repository = BetterRepository()
 
         val newHabitText = MutableLiveData<String>()
@@ -32,7 +32,11 @@ class EditHabitViewModel : ViewModel(){
         fun navigateTOEditHabitDialog() {
             _navigateTOEditHabit.postValue(Event(true))
         }
+
+    override fun onClickHabit(habit: Habit) {
+        TODO("Not yet implemented")
     }
+}
 
 //fun updateDataHabit(habit: Habit) {
 //    viewModelScope.launch {

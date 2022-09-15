@@ -3,6 +3,7 @@ package com.karrar.betterlife.ui.edit
 import androidx.navigation.Navigation
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.FragmentEditHabitBinding
+import com.karrar.betterlife.ui.HabitAdapter
 import com.karrar.betterlife.ui.HabitInteractionListener
 import com.karrar.betterlife.ui.base.BaseFragment
 import com.karrar.betterlife.util.EventObserve
@@ -12,7 +13,16 @@ class EditHabitFragment : BaseFragment<FragmentEditHabitBinding, EditHabitViewMo
     override val viewModelClass = EditHabitViewModel::class.java
 
     override fun setup() {
+        binding.viewModel=viewModel
         startTheGame()
+        val adapter = HabitAdapter(mutableListOf(),viewModel)
+        binding.recyclerHabitList.adapter = adapter
+
+        viewModel.habits.observe(this){
+            adapter.setItems(it)
+        }
+//        val adapter = HabitAdapter(mutableListOf(),object : HabitInteractionListener{})
+//        binding.recyclerHabitList.adapter = adapter
     }
 
     private fun startTheGame() {

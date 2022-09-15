@@ -12,8 +12,8 @@
 
         <variable
             name="listener"
-            type="com.karrar.betterlife.ui.base.BaseInteractionListener" />
-
+            type="com.karrar.betterlife.ui.HabitInteractionListener" />
+<!--        base.BaseInteractionListener-->
         <variable
             name="viewModel"
             type="com.karrar.betterlife.ui.edit.EditHabitViewModel" />
@@ -40,7 +40,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:elevation="2dp"
-                    android:text="@{item.name}"
+                    android:text="@{String.valueOf(item.name)}"
                     android:textSize="24sp"
                     android:hint="point 125"
                     app:layout_constraintStart_toStartOf="parent"
@@ -67,13 +67,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+<!--                android:onClick="@{ () ->viewModel.navigateTOEditHabitDialog()}"-->
+
                 <ImageButton
                     android:id="@+id/editButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:src="@drawable/ic_edit"
-                    android:onClick="@{ () ->viewModel.navigateTOEditHabitDialog()}"
+                    android:onClick="@{ () ->listener.onClickHabit(item)}"
                     app:layout_constraintEnd_toStartOf="@+id/deleteButton"
                     app:layout_constraintTop_toTopOf="@+id/deleteButton" />
 
