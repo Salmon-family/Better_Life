@@ -22,4 +22,7 @@ interface HabitDao {
     @Query("SELECT * FROM HABIT_TABLE")
     fun getAllHabit(): Flow<List<Habit>>
 
+    @Query("SELECT * FROM HABIT_TABLE WHERE id IN (:habitIds)")
+    suspend fun getAllHabitByIDs(habitIds: List<Long>): List<Habit>
+
 }

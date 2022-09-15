@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="item"
-            type="com.karrar.betterlife.data.database.entity.Habit" />
+            type="com.karrar.betterlife.data.database.entity.HabitWithType" />
+
         <variable
             name="viewModel"
             type="com.karrar.betterlife.ui.home.HomeViewModel" />
@@ -14,9 +16,11 @@
 
     <com.google.android.material.chip.Chip
         style="@style/habitChip"
-        android:onClick="@{() -> viewModel.setTodayHabit(item.id)}"
-        android:text="@{item.name}"
+        app:chipColor="@{item.type}"
+        app:doneToday="@{viewModel.doneToday}"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.setTodayHabit(item.id)}"
+        android:text="@{item.name}" />
 
 </layout>

@@ -3,6 +3,9 @@ package com.karrar.betterlife.ui.home.addHabitDialog
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
+import com.karrar.betterlife.util.Constants
+import com.karrar.betterlife.util.Constants.BAD
+import com.karrar.betterlife.util.Constants.GOOD
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
@@ -31,16 +34,18 @@ class AddHabitViewModel : ViewModel() {
     fun addNewHabit() {
         isAddHabit.postValue(Event(true))
         viewModelScope.launch {
+            val point = habitPoints.value ?: 0
+
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = habitPoints.value ?: 0
+                    point = point
                 )
             )
         }
     }
 
-    fun cancelDialog(){
+    fun cancelDialog() {
         isCancel.postValue(Event(true))
     }
 

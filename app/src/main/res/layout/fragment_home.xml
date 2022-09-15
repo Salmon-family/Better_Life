@@ -30,26 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
 
-                <com.google.android.material.appbar.AppBarLayout
-                    android:id="@+id/appBarLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background"
-                    android:paddingHorizontal="@dimen/spacing_small"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.appbar.MaterialToolbar
-                        android:id="@+id/topAppBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        app:menu="@menu/home_menu"
-                        app:title="@string/app_name"
-                        app:titleTextAppearance="@style/title_Toolbar" />
-
-                </com.google.android.material.appbar.AppBarLayout>
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_habit_home"
                     style="?attr/materialCardViewFilledStyle"
@@ -62,7 +42,7 @@
                     app:layout_constraintDimensionRatio="2:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/image_habit_banner"
@@ -114,7 +94,6 @@
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup_habit"
-                    checkedChipButtonId="@={viewModel.checkedBtnObs}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
@@ -133,6 +112,7 @@
             android:layout_margin="16dp"
             android:backgroundTint="@color/green"
             android:onClick="@{() -> viewModel.navigateToAddHabitDialog()}"
+            app:doneToday="@{viewModel.doneToday}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24"

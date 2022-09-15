@@ -1,10 +1,12 @@
 package com.karrar.betterlife.data.database
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
 
@@ -23,6 +25,11 @@ abstract class BetterLiveDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): BetterLiveDatabase {
             return instance ?: synchronized(this) { buildDatabase(context).also { instance = it } }
+        }
+
+        fun getInstanceByApplicationContext():BetterLiveDatabase{
+            return instance ?: synchronized(this) { buildDatabase(BetterLifeApp.applicationContext()).also { instance = it } }
+
         }
 
         private fun buildDatabase(context: Context): BetterLiveDatabase {
