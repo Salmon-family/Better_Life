@@ -6,21 +6,21 @@ import com.karrar.betterlife.data.repository.BetterRepository
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
-
 class AddHabitViewModel : ViewModel() {
     private val repository = BetterRepository()
 
     val habitName = MutableLiveData<String>()
-    val habitPoints = MutableLiveData<String>()
+    val habitPoints = MutableLiveData(0)
     val isAddHabit = MutableLiveData(Event(false))
+    val isCancel = MutableLiveData(Event(false))
 
     val addHabitValidation = MediatorLiveData<Boolean>().apply {
         addSource(habitName, this@AddHabitViewModel::checkValidation)
         addSource(habitPoints, this@AddHabitViewModel::checkValidation)
     }
 
-    private fun checkValidation(value: String) {
-        if (habitName.value?.isNotEmpty() == true && habitPoints.value?.isNotEmpty() == true) {
+    private fun checkValidation(value: Any) {
+        if (habitName.value?.isNotEmpty() == true && habitPoints.value != 0) {
             addHabitValidation.postValue(true)
         } else {
             addHabitValidation.postValue(false)
@@ -34,10 +34,14 @@ class AddHabitViewModel : ViewModel() {
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = 100
+                    point = habitPoints.value ?: 0
                 )
             )
         }
+    }
+
+    fun cancelDialog(){
+        isCancel.postValue(Event(true))
     }
 
 }

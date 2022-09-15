@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         chipBinding.viewModel = viewModel
         chipBinding.item = item
         val chip = chipBinding.root as Chip
-        if (item.point % 2 == 0) {
+        if (item.point < 0) {
             chip.setTextAppearanceResource(R.style.badHabit)
             chip.setChipBackgroundColorResource(R.color.red_8)
             chip.chipStrokeColor =
