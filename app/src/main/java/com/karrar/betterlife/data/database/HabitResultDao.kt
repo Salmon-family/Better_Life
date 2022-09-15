@@ -23,10 +23,11 @@ interface HabitResultDao {
     @Query("SELECT * FROM RESULT_TABLE")
     suspend fun getAllHabitResult(): List<HabitResult>
 
-    @Query("SELECT * FROM RESULT_TABLE WHERE date == :day")
+
+    @Query("SELECT * FROM RESULT_TABLE WHERE date(date / 1000,'unixepoch') = date(:day / 1000,'unixepoch')")
     suspend fun isAnyHabitsByThisDay(day: Long): List<HabitResult>
 
 
     @Query("SELECT SUM(point) FROM RESULT_TABLE WHERE date BETWEEN :fromDate AND :toDate ")
-    suspend fun getTotalHabitPointsInRange(fromDate : Long, toDate: Long): Int
+    suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long): Int
 }
