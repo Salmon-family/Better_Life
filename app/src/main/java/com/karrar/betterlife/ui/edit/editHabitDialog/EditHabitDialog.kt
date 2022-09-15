@@ -26,7 +26,7 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitView
         viewModel.isEditHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
-                Toast.makeText(this.context, R.string.toast_success, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, R.string.toast_update, Toast.LENGTH_SHORT).show()
             }
         })
     }

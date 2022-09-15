@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.editDataHabit()}"
+            android:onClick="@{() -> viewModel.onApplyHabit()}"
             android:enabled="@{viewModel.editHabitValidation}"
             android:text="Apply"
             android:textColor="@color/white"
@@ -126,14 +126,14 @@
             android:layout_marginTop="24dp"
             android:onClick="@{() -> viewModel.closeDialog()}"
             android:text="@string/cancel"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"
             app:cornerRadius="@dimen/spacing_small"
+            android:backgroundTint="@color/black_30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/add"
             app:layout_constraintStart_toEndOf="@+id/idea"
             app:layout_constraintTop_toBottomOf="@+id/habit_hint"
-            app:strokeColor="@color/black"
             tools:ignore="SpUsage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

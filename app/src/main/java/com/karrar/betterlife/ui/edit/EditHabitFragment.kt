@@ -13,20 +13,19 @@ class EditHabitFragment : BaseFragment<FragmentEditHabitBinding, EditHabitViewMo
     override val viewModelClass = EditHabitViewModel::class.java
 
     override fun setup() {
-        binding.viewModel=viewModel
+
         startTheGame()
+
         val adapter = HabitAdapter(mutableListOf(),viewModel)
         binding.recyclerHabitList.adapter = adapter
 
-        viewModel.habits.observe(this){
-            adapter.setItems(it)
-        }
+
 //        val adapter = HabitAdapter(mutableListOf(),object : HabitInteractionListener{})
 //        binding.recyclerHabitList.adapter = adapter
     }
 
     private fun startTheGame() {
-        viewModel.navigateTOEditHabit.observe(this, EventObserve {
+        viewModel.navigateTOEditHabitDialog.observe(this, EventObserve {
             if (it) {
                 Navigation.findNavController(binding.root)
                     .navigate(EditHabitFragmentDirections.actionEditFragmentToEditHabitDialog())

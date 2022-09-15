@@ -12,6 +12,7 @@ class EditHabitViewModel : ViewModel() {
 
      val name = MutableLiveData<String>()
      val points = MutableLiveData<String>()
+
     val isEditHabit = MutableLiveData(Event(false))
 
     private val _isDialogClose = MutableLiveData(Event(false))
@@ -31,8 +32,7 @@ class EditHabitViewModel : ViewModel() {
         }
     }
 
-
-    fun editDataHabit() {
+    fun onApplyHabit() {
         isEditHabit.postValue(Event(true))
         viewModelScope.launch {
             repository.updateHabit(
