@@ -4,6 +4,7 @@ import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.BetterLiveDatabase
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
+import java.util.Date
 
 class BetterRepository {
     private val habitDao =
@@ -32,4 +33,7 @@ class BetterRepository {
     suspend fun deleteHabit(habit: HabitResult) = dailyDao.delete(habit)
 
     suspend fun isAnyHabitsInThisDay(day: Long) = dailyDao.isAnyHabitsByThisDay(day)
+
+    suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long) =
+        dailyDao.getTotalHabitPointsInRange(fromDate, toDate)
 }

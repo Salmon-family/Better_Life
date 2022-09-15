@@ -1,5 +1,6 @@
 package com.karrar.betterlife.ui.home
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
@@ -79,7 +80,7 @@ class HomeViewModel : ViewModel() {
                         HabitResult(
                             id_habit = habit.id,
                             point = habit.point,
-                            date = Date().time
+                            date = Date()
                         )
                     )
                 } else {
