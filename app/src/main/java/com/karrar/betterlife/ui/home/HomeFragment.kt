@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.navigateAddHabit.observe(viewLifecycleOwner) {
             if (it)
                 findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToStatistics()
+                    HomeFragmentDirections.actionHomeFragmentToAddHabitDialog()
                 )
         }
     }
