@@ -15,9 +15,9 @@ abstract class BetterLiveDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
     abstract fun habitResultDao(): HabitResultDao
 
-
     companion object {
         private const val DATABASE_NAME = "BetterLiveDatabase"
+        private const val DEFAULT_DATABASE_NAME = "BetterLiveDefaultDataBase.db"
 
         @Volatile
         private var instance: BetterLiveDatabase? = null
@@ -46,6 +46,7 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
                 .addTypeConverter(dateConverter)
+                .createFromAsset(DEFAULT_DATABASE_NAME)
                 .build()
         }
     }
