@@ -18,6 +18,7 @@
         style="@style/habitChip"
         app:chipColor="@{item.type}"
         app:doneToday="@{viewModel.doneToday}"
+        android:checked="@{viewModel.isHabitSelected(item.id)}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="@{() -> viewModel.setTodayHabit(item.id)}"
