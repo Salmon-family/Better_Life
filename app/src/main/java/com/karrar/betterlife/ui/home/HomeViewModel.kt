@@ -22,6 +22,9 @@ class HomeViewModel : ViewModel() {
     private val _habits = MutableLiveData<List<Habit>>()
     private val allHabits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
+    private val selectedHabits = MutableLiveData<List<HabitResult>>()
+
+
     val habits = MediatorLiveData<List<Habit>>().apply {
         addSource(allHabits, this@HomeViewModel::setHabitList)
         addSource(_habits, this@HomeViewModel::setHabitList)
@@ -92,8 +95,18 @@ class HomeViewModel : ViewModel() {
                 } else {
                     repository.deleteHabit(selectedHabit)
                 }
+                selectedHabits.postValue(repository.isAnyHabitsInThisDay(Date().time))
             }
         }
     }
 
+
+    fun isHabitSelected(habitID: Long): Boolean {
+        selectedHabits.value?.let { it ->
+            if (it.any { it.id_habit == habitID }) {
+                return true
+            }
+        }
+        return false
+    }
 }
