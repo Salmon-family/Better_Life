@@ -32,3 +32,11 @@ fun setChipsStyle(chip: Chip, good: Boolean) {
         }
     }
 }
+
+@BindingAdapter("app:shopCharts")
+fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
+    dataCharts?.dataOfHabit?.let {
+        val aaCharts = Charts(it.toTypedArray(), dataCharts.nameOfCategories.toTypedArray())
+        view.aa_drawChartWithChartModel(aaCharts.drawCharts())
+    }
+}

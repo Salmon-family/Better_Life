@@ -1,5 +1,6 @@
 package com.karrar.betterlife.data.repository
 
+import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.BetterLiveDatabase
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
@@ -15,11 +16,17 @@ class BetterRepository {
 
     suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
 
+    suspend fun getTotalPointsOfDay(day: Long) = dailyDao.getTotalPointsOfDay(day)
+
+    suspend fun getTotalHabitPointInResult(fromDate: Long, toDate: Long) = dailyDao.getTotalHabitPointInResult(fromDate, toDate)
+
+    fun getAllHabit() = habitDao.getAllHabit()
+
+    fun getAllResultHabit() = habitDao.getAllResultHabit()
+
     suspend fun getHabitByID(habitID: Long) = habitDao.getHabitByID(id = habitID)
 
     suspend fun getAllHabitByIDs(habitIds: List<Long>) = habitDao.getAllHabitByIDs(habitIds)
-
-    fun getAllHabit() = habitDao.getAllHabit()
 
     /**
      * Daily Habits...
