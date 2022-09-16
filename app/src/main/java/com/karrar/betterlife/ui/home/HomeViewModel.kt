@@ -1,22 +1,22 @@
 package com.karrar.betterlife.ui.home
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
 import com.karrar.betterlife.data.repository.BetterRepository
+import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeViewModel : ViewModel() {
     private val repository = BetterRepository()
 
-    private val _navigateAddHabit = MutableLiveData<Boolean>()
-    val navigateAddHabit: LiveData<Boolean>
+    private val _navigateAddHabit = MutableLiveData<Event<Boolean>>()
+    val navigateAddHabit: LiveData<Event<Boolean>>
         get() = _navigateAddHabit
 
-    private val _navigateShowStatistics = MutableLiveData<Boolean>()
-    val navigateShowStatistics: LiveData<Boolean>
+    private val _navigateShowStatistics = MutableLiveData<Event<Boolean>>()
+    val navigateShowStatistics: LiveData<Event<Boolean>>
         get() = _navigateShowStatistics
 
     private val _habits = MutableLiveData<List<Habit>>()
@@ -69,11 +69,11 @@ class HomeViewModel : ViewModel() {
     }
 
     fun navigateToAddHabitDialog() {
-        _navigateAddHabit.postValue(true)
+        _navigateAddHabit.postValue(Event(true))
     }
 
     fun navigateToAddHabitStatistics() {
-        _navigateShowStatistics.postValue(true)
+        _navigateShowStatistics.postValue(Event(true))
     }
 
     fun setTodayHabit(habitID: Long) {

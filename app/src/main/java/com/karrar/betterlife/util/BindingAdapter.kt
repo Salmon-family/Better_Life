@@ -6,9 +6,12 @@ import androidx.core.view.forEach
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
+import com.karrar.betterlife.data.database.DataCharts
+import com.karrar.betterlife.ui.Charts
 
 @BindingAdapter("app:doneToday")
 fun setEnableButton(view: View, doneToday: Boolean) {

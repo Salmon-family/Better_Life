@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/statisticsFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -14,8 +14,8 @@
             android:id="@+id/action_homeFragment_to_addHabitDialog"
             app:destination="@id/addHabitDialog" />
         <action
-            android:id="@+id/action_homeFragment_to_statistics"
-            app:destination="@id/statistics" />
+            android:id="@+id/action_homeFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
@@ -27,9 +27,4 @@
         android:name="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitDialog"
         android:label="AddHabitDialog"
         tools:layout="@layout/dialog_add_habit" />
-    <fragment
-        android:id="@+id/statistics"
-        android:name="com.karrar.betterlife.ui.statistics.Statistics"
-        android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" />
 </navigation>

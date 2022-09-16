@@ -8,6 +8,7 @@ import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.databinding.FragmentHomeBinding
 import com.karrar.betterlife.databinding.ItemHabitBinding
 import com.karrar.betterlife.ui.base.BaseFragment
+import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.asHabitWithType
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -21,18 +22,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun navigateToAddHabitDialog() {
-        viewModel.navigateAddHabit.observe(viewLifecycleOwner) {
-            if (it)
+        viewModel.navigateAddHabit.observe(viewLifecycleOwner, EventObserve{
+            if (it){
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToAddHabitDialog()
                 )
-        }
+            }
+        })
     }
 
     private fun navigateToStatistics() {
-        viewModel.navigateShowStatistics.observe(viewLifecycleOwner) {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStatistics())
-        }
+        viewModel.navigateShowStatistics.observe(viewLifecycleOwner, EventObserve{
+            if (it) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStatisticsFragment())
+            }
+        })
     }
 
     private fun setupChipGroupDynamically() {
