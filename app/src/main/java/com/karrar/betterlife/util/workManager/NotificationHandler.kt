@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.workManager
+package com.karrar.betterlife.util.workManager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

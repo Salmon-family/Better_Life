@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.workManager
+package com.karrar.betterlife.util.workManager
 
 import android.content.Context
 import androidx.work.Data

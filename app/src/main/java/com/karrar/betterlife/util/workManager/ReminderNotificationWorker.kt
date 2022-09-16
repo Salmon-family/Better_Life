@@ -1,7 +1,6 @@
-package com.karrar.betterlife.ui.workManager
+package com.karrar.betterlife.util.workManager
 
 import android.content.Context
-import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 
