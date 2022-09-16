@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="viewModel"
+            type="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rounded_dialog"
+        android:padding="@dimen/spacing_large">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_new_habit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_habit"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_habit_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:hint="@string/habit_name"
+            app:layout_constraintEnd_toEndOf="@+id/text_new_habit"
+            app:layout_constraintStart_toStartOf="@+id/text_new_habit"
+            app:layout_constraintTop_toBottomOf="@+id/text_new_habit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_habit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.habitName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_point_part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="@string/points"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/layout_habit_name"
+            app:layout_constraintTop_toBottomOf="@+id/layout_habit_name" />
+
+
+        <TextView
+            android:id="@+id/text_seek_bar_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.habitPoints)}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_point_part"
+            app:layout_constraintEnd_toEndOf="@+id/layout_habit_name"
+            app:layout_constraintTop_toTopOf="@+id/text_point_part"
+            tools:text="0" />
+
+        <SeekBar
+            android:id="@+id/seek_habit_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:min="-100"
+            android:progress="@={viewModel.habitPoints}"
+            android:progressTint="@color/green"
+            android:thumb="@drawable/seek_bar_custom_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_point_part" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:background="@color/green"
+            app:layout_constraintBottom_toBottomOf="@+id/seek_habit_point"
+            app:layout_constraintEnd_toEndOf="@+id/seek_habit_point"
+            app:layout_constraintStart_toStartOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toTopOf="@+id/seek_habit_point" />
+
+        <TextView
+            android:id="@+id/text_zero_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/seek_habit_point"
+            app:layout_constraintStart_toStartOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toBottomOf="@+id/seek_habit_point" />
+
+        <TextView
+            android:id="@+id/text_min_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/min_point"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_zero_point"
+            app:layout_constraintStart_toStartOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toTopOf="@+id/text_zero_point" />
+
+        <TextView
+            android:id="@+id/text_max_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/max_point"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_zero_point"
+            app:layout_constraintEnd_toEndOf="@+id/seek_habit_point"
+            app:layout_constraintTop_toTopOf="@+id/text_zero_point" />
+
+
+        <ImageView
+            android:id="@+id/image_idea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_lamp"
+            app:layout_constraintStart_toStartOf="@+id/text_point_part"
+            app:layout_constraintTop_toBottomOf="@+id/text_zero_point" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_habit_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:text="@string/habit_hint"
+            android:textColor="@color/black_60"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/layout_habit_name"
+            app:layout_constraintStart_toEndOf="@+id/image_idea"
+            app:layout_constraintTop_toTopOf="@+id/image_idea"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add"
+            style="@style/MaterialButtonStyle.MaterialAddButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:enabled="@{viewModel.addHabitValidation}"
+            android:onClick="@{() -> viewModel.addNewHabit()}"
+            android:text="@string/add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_habit_hint"
+            app:layout_constraintTop_toBottomOf="@+id/text_habit_hint" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_close"
+            style="@style/MaterialButtonStyle.MaterialCancelButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="@{() -> viewModel.cancelDialog()}"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/image_idea"
+            app:layout_constraintTop_toBottomOf="@+id/text_habit_hint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+
+
+
+
+
+

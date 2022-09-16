@@ -1,3 +1,51 @@
 <resources>
+
     <string name="app_name">Better Life</string>
+
+    <!-- home screen -->
+    <string name="home_title">Today’s Habits</string>
+    <string name="home_banner_text">Better Habits \nBetter Life</string>
+
+    <!-- statistics screen -->
+    <string name="you_are_almost_there">You are almost there!</string>
+    <string name="build_a_new_habit">Build a new habit!</string>
+    <string name="good_habits_goals_completed">good habits goals completed</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="this_week">This Week</string>
+    <string name="statistics">Statistics</string>
+
+    <!-- habits list screen -->
+    <string name="habits_list">Habits List</string>
+    <string name="points">Points</string>
+
+    <!-- to do screen -->
+
+    <!-- add dialog -->
+    <string name="new_habit">New Habit</string>
+    <string name="habit_name">Habit Name</string>
+    <string name="habit_hint">Give positive numbers for good habits, and negative numbers for bad ones.</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+
+    <!-- edit dialog -->
+    <string name="edit_habit">Edit Habit</string>
+    <string name="apply">Apply</string>
+
+    <!-- delete dialog -->
+    <string name="delete_habit">Delete Habit</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="delete_caption">Do you really want to delete this habit?\nThis process cannot be undone.</string>
+    <string name="delete">Delete</string>
+
+    <!-- other strings -->
+    <string name="toast_success">Add habit is successfully</string>
+    <string name="habit_points">Habit Points</string>
+    <string name="zero">0</string>
+    <string name="min_point">-100</string>
+    <string name="max_point">100</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

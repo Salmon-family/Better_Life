@@ -5,6 +5,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".BetterLifeApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +15,8 @@
         android:theme="@style/Theme.BetterLife"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.AppCompat.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

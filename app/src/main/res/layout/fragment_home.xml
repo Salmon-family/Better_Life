@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.karrar.betterlife.ui.home.HomeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <TextView
+            android:id="@+id/text_home_title"
+            style="@style/title_Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:gravity="center_vertical"
+            android:text="@string/app_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_8"
+            app:layout_constraintTop_toBottomOf="@id/text_home_title" />
+
+        <ImageView
+            android:id="@+id/image_statistics"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:onClick="@{() -> viewModel.navigateToAddHabitStatistics()}"
+            android:src="@drawable/ic_statistics"
+            app:layout_constraintBottom_toBottomOf="@+id/text_home_title"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/text_home_title"
+            app:layout_constraintTop_toTopOf="@+id/text_home_title" />
+
+        <ScrollView
+            android:id="@+id/scrollView_habit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_habit_home"
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:backgroundTint="@color/green_8"
+                    android:elevation="0dp"
+                    app:cardCornerRadius="@dimen/radius_small"
+                    app:layout_constraintDimensionRatio="2:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_habit_banner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:elevation="2dp"
+                    android:src="@drawable/banner"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_habit_home"
+                    app:layout_constraintStart_toStartOf="@+id/card_habit_home"
+                    app:layout_constraintTop_toTopOf="@id/card_habit_home" />
+
+                <TextView
+                    android:id="@+id/text_habit_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/playball_regular"
+                    android:gravity="center"
+                    android:text="@string/home_banner_text"
+                    android:textSize="@dimen/text_extra_large"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_habit_home"
+                    app:layout_constraintEnd_toEndOf="@+id/card_habit_home"
+                    app:layout_constraintStart_toEndOf="@+id/image_habit_banner"
+                    app:layout_constraintTop_toTopOf="@+id/card_habit_home" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="horizontal"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_habit_home" />
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/home_title"
+                    android:textSize="@dimen/text_extra_large"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_day" />
+
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup_habit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_title"
+                    app:singleSelection="false" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/green"
+            android:onClick="@{() -> viewModel.navigateToAddHabitDialog()}"
+            app:doneToday="@{viewModel.doneToday}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            app:tint="@color/white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
