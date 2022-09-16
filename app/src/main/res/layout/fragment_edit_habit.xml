@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.edit.EditHabitViewModel" />
+            type="com.karrar.betterlife.ui.edit.HabitViewModel" />
 
     </data>
 

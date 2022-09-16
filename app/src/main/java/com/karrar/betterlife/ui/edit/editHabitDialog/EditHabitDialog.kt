@@ -3,7 +3,7 @@ package com.karrar.betterlife.ui.edit.editHabitDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.navArgs
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogEditHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
@@ -15,13 +15,19 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDial
     override val layoutIdFragment: Int = R.layout.dialog_edit_habit
 
     override fun setup() {
+
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setWidthPercent(90)
         onEditHabitDone()
-        closeDialog()
+        cancelDialog()
+
     }
 
     private fun onEditHabitDone() {
+        val args:EditHabitDialogArgs by navArgs()
+        //binding.habitName.text = args.habitId
+
+
         viewModel.isEditHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
@@ -30,7 +36,7 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDial
         })
     }
 
-    private fun closeDialog() {
+    private fun cancelDialog() {
         viewModel.isDialogClose.observe(this,EventObserve{
             if (it) {
                 dismiss()

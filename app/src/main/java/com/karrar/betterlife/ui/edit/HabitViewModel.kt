@@ -7,13 +7,13 @@ import com.karrar.betterlife.ui.HabitInteractionListener
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
-class EditHabitViewModel : ViewModel(), HabitInteractionListener {
+class HabitViewModel : ViewModel(), HabitInteractionListener {
     private val repository = BetterRepository()
-    
+
     val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
-    private val _navigateTOEditHabitDialog = MutableLiveData(Event(false))
-    val navigateTOEditHabitDialog: LiveData<Event<Boolean>>
+    private val _navigateTOEditHabitDialog = MutableLiveData<Event<Int>>()
+    val navigateTOEditHabitDialog: LiveData<Event<Int>>
         get() = _navigateTOEditHabitDialog
     
     override fun onDeleteHabit(habit: Habit) {
@@ -22,8 +22,8 @@ class EditHabitViewModel : ViewModel(), HabitInteractionListener {
         }
     }
 
-    override fun onEditHabit(habit: Habit) {
-        _navigateTOEditHabitDialog.postValue(Event(true))
+    override fun onEditHabit(habitId: Int) {
+        _navigateTOEditHabitDialog.postValue(Event(habitId))
     }
 
 }

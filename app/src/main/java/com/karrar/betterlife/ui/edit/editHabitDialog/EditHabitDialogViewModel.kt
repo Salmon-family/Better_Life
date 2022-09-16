@@ -44,7 +44,7 @@ class EditHabitDialogViewModel : ViewModel() {
         }
     }
 
-    fun closeDialog(){
+    fun cancelDialog(){
         _isDialogClose.postValue(Event(true))
     }
 

@@ -15,10 +15,11 @@
             type="com.karrar.betterlife.ui.HabitInteractionListener" />
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.edit.EditHabitViewModel" />
+            type="com.karrar.betterlife.ui.edit.HabitViewModel" />
     </data>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_list_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/radius_small"
@@ -91,7 +92,7 @@
                     android:layout_marginEnd="24dp"
                     android:src="@drawable/ic_edit"
                     android:backgroundTint="@android:color/transparent"
-                    android:onClick="@{ () ->listener.onEditHabit(item)}"
+                    android:onClick="@{ () ->listener.onEditHabit(item.id)}"
                     app:layout_constraintEnd_toStartOf="@+id/delete_button"
                     app:layout_constraintTop_toTopOf="@+id/delete_button" />
 

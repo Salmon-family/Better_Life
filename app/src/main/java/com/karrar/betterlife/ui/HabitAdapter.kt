@@ -12,6 +12,6 @@ class HabitAdapter(items:List<Habit>,listener:HabitInteractionListener):BaseAdap
    // val binding = ItemEditHabitBinding.bind(View())
 }
 interface HabitInteractionListener:BaseInteractionListener {
-    fun onDeleteHabit(habit:Habit)
-    fun onEditHabit(habit: Habit)
+    fun onDeleteHabit(habit: Habit)
+    fun onEditHabit(habitId: Int)
 }

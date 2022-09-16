@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.karrar.betterlife.ui.edit.EditHabitFragment"
+        android:name="com.karrar.betterlife.ui.edit.HabitFragment"
         android:label="EditFragment"
         tools:layout="@layout/fragment_edit_habit">
         <action
@@ -29,5 +29,9 @@
         android:id="@+id/editHabitDialog"
         android:name="com.karrar.betterlife.ui.edit.editHabitDialog.EditHabitDialog"
         android:label="EditHabitDialog"
-        tools:layout="@layout/dialog_edit_habit" />
+        tools:layout="@layout/dialog_edit_habit" >
+        <argument
+            android:name="habitId"
+            app:argType="integer" />
+    </dialog>
 </navigation>
