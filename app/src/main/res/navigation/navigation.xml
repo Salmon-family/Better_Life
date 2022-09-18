@@ -17,14 +17,23 @@
             android:id="@+id/action_homeFragment_to_statisticsFragment"
             app:destination="@id/statisticsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.karrar.betterlife.ui.statistics.StatisticsFragment"
         android:label="StatisticsFragment"
         tools:layout="@layout/fragment_statistics"/>
+
     <dialog
         android:id="@+id/addHabitDialog"
         android:name="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitDialog"
         android:label="AddHabitDialog"
         tools:layout="@layout/dialog_add_habit" />
+
+    <fragment
+        android:id="@+id/toDoFragment"
+        android:name="com.karrar.betterlife.ui.toDo.ToDoFragment"
+        android:label="ToDoFragment"
+        tools:layout="@layout/fragment_to_do"/>
+
 </navigation>
