@@ -5,8 +5,7 @@ import android.graphics.Rect
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.entity.HabitResult
-import com.karrar.betterlife.data.database.entity.HabitWithType
+import com.karrar.betterlife.data.HabitWithType
 import com.karrar.betterlife.util.Constants.BAD
 import com.karrar.betterlife.util.Constants.GOOD
 

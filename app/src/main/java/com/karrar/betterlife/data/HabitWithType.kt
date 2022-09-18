@@ -1,4 +1,4 @@
-package com.karrar.betterlife.data.database.entity
+package com.karrar.betterlife.data
 
 import androidx.room.PrimaryKey
 
