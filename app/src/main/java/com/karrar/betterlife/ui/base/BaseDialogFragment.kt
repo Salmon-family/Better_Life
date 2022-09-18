@@ -33,12 +33,4 @@ abstract class BaseDialogFragment<VDB : ViewDataBinding, VM : ViewModel> : Dialo
             return root
         }
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setup()
-    }
-
-    abstract fun setup()
 }

@@ -1,5 +1,6 @@
 package com.karrar.betterlife.ui.home
 
+import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
@@ -15,10 +16,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val layoutIdFragment = R.layout.fragment_home
     override val viewModelClass = HomeViewModel::class.java
 
-    override fun setup() {
-        setupChipGroupDynamically()
-        navigateToStatistics()
+    override fun onStart() {
+        super.onStart()
         navigateToAddHabitDialog()
+        navigateToStatistics()
+        setupChipGroupDynamically()
     }
 
     private fun navigateToAddHabitDialog() {
@@ -40,7 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setupChipGroupDynamically() {
-        viewModel.habits.observe(this) {
+        viewModel.habits.observe(viewLifecycleOwner) {
             binding.chipGroupHabit.removeAllViews()
             it?.let {
                 it.forEach { habit ->

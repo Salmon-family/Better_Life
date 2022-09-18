@@ -2,6 +2,8 @@ package com.karrar.betterlife.ui.home.addHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddHabitBinding
@@ -13,7 +15,8 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
     override val viewModelClass: Class<AddHabitViewModel> = AddHabitViewModel::class.java
     override val layoutIdFragment: Int = R.layout.dialog_add_habit
 
-    override fun setup() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setWidthPercent(90)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
