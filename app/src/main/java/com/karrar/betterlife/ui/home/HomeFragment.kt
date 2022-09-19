@@ -1,5 +1,6 @@
 package com.karrar.betterlife.ui.home
 
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.FragmentHomeBinding

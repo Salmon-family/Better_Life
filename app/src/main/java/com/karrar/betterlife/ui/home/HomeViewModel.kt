@@ -11,7 +11,6 @@ import java.util.*
 class HomeViewModel : ViewModel() {
 
     private val repository = BetterRepository()
-    private val todayHabitsList: MutableList<Long> by lazy { mutableListOf() }
 
     private val _navigateShowStatistics = MutableLiveData<Event<Boolean>>()
     val navigateShowStatistics: LiveData<Event<Boolean>>
@@ -23,6 +22,8 @@ class HomeViewModel : ViewModel() {
     val doneToday: LiveData<Boolean>
         get() = _doneToday
 
+    val todayHabitsList = MutableLiveData<List<Int>>()
+
     init {
         isDoneForToday()
     }
@@ -31,14 +32,6 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             val todayHabits = repository.isAnyHabitsInThisDay(Date().time)
             _doneToday.postValue(!todayHabits.isNullOrEmpty())
-        }
-    }
-
-    fun setTodayHabit(habitID: Long) {
-        if (!todayHabitsList.contains(habitID)) {
-            todayHabitsList.add(habitID)
-        } else {
-            todayHabitsList.remove(habitID)
         }
     }
 
@@ -52,10 +45,10 @@ class HomeViewModel : ViewModel() {
      * */
     private fun saveData() {
         viewModelScope.launch {
-            todayHabitsList.forEach { habitID ->
+            todayHabitsList.value?.forEach { habitID ->
                 repository.insertTodayHabit(
                     HabitResult(
-                        id_habit = habitID, point = 0, date = Date()
+                        id_habit = habitID.toLong(), point = 0, date = Date()
                     )
                 )
             }

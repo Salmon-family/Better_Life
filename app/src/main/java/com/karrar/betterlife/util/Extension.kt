@@ -38,14 +38,13 @@ fun Habit.asHabitWithType(): HabitWithType {
 fun View.getColorStateList(color: Int) = ContextCompat.getColorStateList(this.context, color)
 
 
-fun ChipGroup.createChip(item: Habit, viewModel: HomeViewModel): View {
+fun ChipGroup.createChip(item: Habit): View {
     val chipBinding: ItemHabitBinding = DataBindingUtil.inflate(
         LayoutInflater.from(context),
         R.layout.item_habit,
         this,
         false
     )
-    chipBinding.viewModel = viewModel
     chipBinding.item = item.asHabitWithType()
     return chipBinding.root
 }

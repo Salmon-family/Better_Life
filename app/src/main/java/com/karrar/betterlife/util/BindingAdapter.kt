@@ -1,7 +1,9 @@
 package com.karrar.betterlife.util
 
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -32,12 +34,11 @@ fun setChipsStyle(chip: Chip, good: Boolean) {
     }
 }
 
-//need to remove home vm
-@BindingAdapter(value = ["app:setHabits", "app:setViewModel"])
-fun setHabitsChips(chipGroup: ChipGroup, habits: List<Habit>?, viewModel: HomeViewModel) {
+@BindingAdapter("app:setHabits")
+fun setHabitsChips(chipGroup: ChipGroup, habits: List<Habit>?) {
     habits?.let {
         it.forEach { habit ->
-            chipGroup.addView(chipGroup.createChip(habit, viewModel))
+            chipGroup.addView(chipGroup.createChip(habit))
         }
     }
 }
@@ -57,5 +58,26 @@ fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
     dataCharts?.dataOfHabit?.let {
         val aaCharts = Charts(it.toTypedArray(), dataCharts.nameOfCategories.toTypedArray())
         view.aa_drawChartWithChartModel(aaCharts.drawCharts())
+    }
+}
+
+@BindingAdapter(value = ["checkedChipButtonId"])
+fun setCheckedChipId(view: ChipGroup?, ids: List<Int>?) {
+    ids?.let {
+        if (view?.checkedChipId != it.first()) {
+            view?.check(it.first())
+        }
+    }
+}
+
+@InverseBindingAdapter(attribute = "checkedChipButtonId", event = "checkedChipButtonId")
+fun getChipId(view: ChipGroup?): List<Int>? {
+    return view?.checkedChipIds
+}
+
+@BindingAdapter("checkedChipButtonId")
+fun setChipsListener(view: ChipGroup?, attChange: InverseBindingListener) {
+    view?.setOnCheckedStateChangeListener { group, checkedId ->
+        attChange.onChange()
     }
 }
