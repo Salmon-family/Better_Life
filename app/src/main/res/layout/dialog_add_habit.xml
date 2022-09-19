@@ -43,6 +43,7 @@
                 android:id="@+id/text_habit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:text="@={viewModel.habitName}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -71,19 +72,23 @@
             app:layout_constraintTop_toTopOf="@+id/text_point_part"
             tools:text="0" />
 
-        <SeekBar
+        <com.karrar.betterlife.util.CustomSeekBar
             android:id="@+id/seek_habit_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:max="100"
             android:min="-100"
+            android:paddingStart="@dimen/spacing_small"
+            android:paddingEnd="@dimen/spacing_small"
             android:progress="@={viewModel.habitPoints}"
-            android:progressTint="@color/green"
+            android:progressDrawable="@android:color/transparent"
             android:thumb="@drawable/seek_bar_custom_thumb"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_point_part" />
+            app:layout_constraintEnd_toEndOf="@+id/text_seek_bar_point"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="@+id/text_point_part"
+            app:layout_constraintTop_toBottomOf="@+id/text_point_part"
+            tools:targetApi="o" />
 
         <View
             android:id="@+id/line"
@@ -144,6 +149,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginLeft="@dimen/spacing_medium"
             android:text="@string/habit_hint"
             android:textColor="@color/black_60"
             android:textSize="12sp"
@@ -161,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:enabled="@{viewModel.addHabitValidation}"
-            android:onClick="@{() -> viewModel.addDialog()}"
+            android:onClick="@{() -> viewModel.onClickAddHabit()}"
             android:text="@string/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_habit_hint"

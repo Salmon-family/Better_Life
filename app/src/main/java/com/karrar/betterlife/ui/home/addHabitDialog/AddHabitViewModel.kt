@@ -34,7 +34,7 @@ class AddHabitViewModel : ViewModel() {
     }
 
 
-    fun addDialog() {
+    fun onClickAddHabit() {
         _isAddHabit.postValue(Event(true))
         addNewHabit()
     }

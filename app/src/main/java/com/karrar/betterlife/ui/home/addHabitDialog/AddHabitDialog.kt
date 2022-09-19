@@ -10,6 +10,7 @@ import com.karrar.betterlife.databinding.DialogAddHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
+import com.karrar.betterlife.util.showMessage
 
 class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewModel>() {
     override val viewModelClass: Class<AddHabitViewModel> = AddHabitViewModel::class.java
@@ -28,8 +29,7 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         viewModel.isAddHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
-                Toast.makeText(this.context, R.string.toast_success, Toast.LENGTH_SHORT).show()
-
+                context?.let { context -> Toast(context).showMessage(getString(R.string.toast_success), context) }
             }
         })
     }

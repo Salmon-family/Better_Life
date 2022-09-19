@@ -7,6 +7,8 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.core.content.ContextCompat
+import com.karrar.betterlife.R
 import kotlin.jvm.Synchronized
 
 class CustomSeekBar : AppCompatSeekBar {
@@ -14,7 +16,7 @@ class CustomSeekBar : AppCompatSeekBar {
     private var paint: Paint? = null
     private var seekbar_height = 0
 
-    constructor(context: Context?) : super(context!!) {}
+    constructor(context: Context?) : super(context!!)
     constructor(context: Context?, attrs: AttributeSet?) : super(
         context!!, attrs
     ) {
@@ -25,25 +27,33 @@ class CustomSeekBar : AppCompatSeekBar {
 
     constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(
         context!!, attrs, defStyle
-    ) {
-    }
+    )
 
     @Synchronized
     override fun onDraw(canvas: Canvas) {
-        rect!![0 + thumbOffset, height / 2 - seekbar_height / 2, width - thumbOffset] =
+        // for seek bar line
+        rect!![0, height / 2 - seekbar_height / 2, width] =
             height / 2 + seekbar_height / 2
-        paint!!.color = Color.GRAY
+        paint!!.color = ContextCompat.getColor(context,R.color.black_30)
         canvas.drawRect(rect!!, paint!!)
-        if (this.progress > 50) {
-            rect!![width / 2, height / 2 - seekbar_height / 2, width / 2 + width / 100 * (progress - 50)] =
+
+        //for right side
+        if (this.progress > 0) {
+
+            rect!![width / 2, height / 2 - seekbar_height / 2, width / 2 + width / 200 * (progress)] =
                 height / 2 + seekbar_height / 2
-            paint!!.color = Color.CYAN
+
+            paint!!.color = ContextCompat.getColor(context,R.color.green)
             canvas.drawRect(rect!!, paint!!)
         }
-        if (this.progress < 50) {
-            rect!![width / 2 - width / 100 * (50 - progress), height / 2 - seekbar_height / 2, width / 2] =
+
+        //for left side
+        if (this.progress < 0) {
+
+            rect!![width / 2 - width / 200 * (-progress), height / 2 - seekbar_height / 2, width / 2] =
                 height / 2 + seekbar_height / 2
-            paint!!.color = Color.CYAN
+
+            paint!!.color = ContextCompat.getColor(context,R.color.red)
             canvas.drawRect(rect!!, paint!!)
         }
         super.onDraw(canvas)
