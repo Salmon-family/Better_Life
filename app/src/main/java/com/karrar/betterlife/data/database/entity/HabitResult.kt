@@ -4,6 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+/**
+ * no need for point and ids
+ * */
 @Entity(tableName = "RESULT_TABLE")
 data class HabitResult(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
