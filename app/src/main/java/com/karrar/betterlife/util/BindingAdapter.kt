@@ -1,10 +1,6 @@
 package com.karrar.betterlife.util
 
-import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
@@ -16,7 +12,6 @@ import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.ui.Charts
-import com.karrar.betterlife.ui.home.HomeViewModel
 
 @BindingAdapter("app:chipColor")
 fun setChipsStyle(chip: Chip, good: Boolean) {
