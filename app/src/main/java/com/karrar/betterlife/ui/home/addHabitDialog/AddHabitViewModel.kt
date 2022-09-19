@@ -34,15 +34,17 @@ class AddHabitViewModel : ViewModel() {
     }
 
 
-    fun addNewHabit() {
+    fun addDialog() {
         _isAddHabit.postValue(Event(true))
-        viewModelScope.launch {
-            val point = habitPoints.value ?: 0
+        addNewHabit()
+    }
 
+    private fun addNewHabit() {
+        viewModelScope.launch {
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = point
+                    point = habitPoints.value ?: 0
                 )
             )
         }

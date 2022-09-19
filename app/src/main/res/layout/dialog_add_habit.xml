@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:enabled="@{viewModel.addHabitValidation}"
-            android:onClick="@{() -> viewModel.addNewHabit()}"
+            android:onClick="@{() -> viewModel.addDialog()}"
             android:text="@string/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_habit_hint"
