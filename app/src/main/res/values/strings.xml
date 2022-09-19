@@ -4,6 +4,7 @@
 
     <!-- home screen -->
     <string name="home_title">Today’s Habits</string>
+    <string name="home_text_done">Thank You!! \nAll done for today..</string>
     <string name="home_banner_text">Better Habits \nBetter Life</string>
 
     <!-- statistics screen -->

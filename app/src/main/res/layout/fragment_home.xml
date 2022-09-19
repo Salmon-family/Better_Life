@@ -98,7 +98,6 @@
                     app:layout_constraintStart_toEndOf="@+id/image_habit_banner"
                     app:layout_constraintTop_toTopOf="@+id/card_habit_home" />
 
-
                 <TextView
                     android:id="@+id/text_title"
                     android:layout_width="match_parent"
@@ -108,20 +107,54 @@
                     android:fontFamily="sans-serif-black"
                     android:text="@string/home_title"
                     android:textSize="@dimen/text_extra_large"
+                    app:isDoneToday="@{viewModel.doneToday}"
                     app:layout_constraintTop_toBottomOf="@+id/card_habit_home" />
-
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup_habit"
+                    checkedChipButtonId="@={viewModel.todayHabitsList}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
                     app:chipSpacingHorizontal="@dimen/spacing_medium"
                     app:chipSpacingVertical="0dp"
+                    app:isDoneToday="@{viewModel.doneToday}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_title"
+                    app:setHabits="@{viewModel.allHabits}"
                     app:singleSelection="false" />
+
+                <TextView
+                    android:id="@+id/text_doneForToday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:text="@string/home_text_done"
+                    android:textSize="@dimen/text_extra_large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_habit_home"
+                    app:layout_constraintVertical_bias="0.2"
+                    app:showDoneToday="@{viewModel.doneToday}" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_done_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_doneForToday"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/done"
+                    app:showDoneToday="@{viewModel.doneToday}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
@@ -132,11 +165,11 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.navigateToAddHabitDialog()}"
-            app:doneToday="@{viewModel.doneToday}"
+            android:onClick="@{() -> viewModel.setDoneToday()}"
+            app:isDoneToday="@{viewModel.doneToday}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_add_24"
+            app:srcCompat="@drawable/ic_done"
             app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

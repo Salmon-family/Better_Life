@@ -7,21 +7,13 @@
         <variable
             name="item"
             type="com.karrar.betterlife.data.HabitWithType" />
-
-        <variable
-            name="viewModel"
-            type="com.karrar.betterlife.ui.home.HomeViewModel" />
-
     </data>
 
     <com.google.android.material.chip.Chip
         style="@style/habitChip"
-        app:chipColor="@{item.type}"
-        app:doneToday="@{viewModel.doneToday}"
-        android:checked="@{viewModel.isHabitSelected(item.id)}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewModel.setTodayHabit(item.id)}"
-        android:text="@{item.name}" />
+        android:text="@{item.name}"
+        app:chipColor="@{item.type}" />
 
 </layout>
