@@ -59,7 +59,7 @@ fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
 @BindingAdapter(value = ["checkedChipButtonId"])
 fun setCheckedChipId(view: ChipGroup?, ids: List<Int>?) {
     ids?.let {
-        if (view?.checkedChipId != it.first()) {
+        if (!it.isNullOrEmpty() && view?.checkedChipId != it.first()) {
             view?.check(it.first())
         }
     }

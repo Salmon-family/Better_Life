@@ -40,17 +40,17 @@ class HomeViewModel : ViewModel() {
         _doneToday.postValue(true)
     }
 
-    /**
-     * points will remove
-     * */
     private fun saveData() {
         viewModelScope.launch {
-            todayHabitsList.value?.forEach { habitID ->
-                repository.insertTodayHabit(
-                    HabitResult(
-                        id_habit = habitID.toLong(), point = 0, date = Date()
+            todayHabitsList.value?.forEach { position ->
+                val habit = allHabits.value?.get(position - 1)
+                habit?.let {
+                    repository.insertTodayHabit(
+                        HabitResult(
+                            id_habit = habit.id, point = habit.point, date = Date()
+                        )
                     )
-                )
+                }
             }
         }
     }
