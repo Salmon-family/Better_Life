@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.karrar.betterlife.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_editFragment"
+            app:destination="@id/editFragment" />
+    </fragment>
     <dialog
         android:id="@+id/addHabitDialog"
         android:name="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitDialog"
@@ -32,6 +36,6 @@
         tools:layout="@layout/dialog_edit_habit" >
         <argument
             android:name="habitId"
-            app:argType="integer" />
+            app:argType="long" />
     </dialog>
 </navigation>

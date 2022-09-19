@@ -90,7 +90,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
+        <Button
+            android:id="@+id/nav_haitList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="go to habit list"
+            android:onClick="@{() -> viewModel.navigateToHabitList()}"
+            app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
+            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

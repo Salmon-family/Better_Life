@@ -2,6 +2,7 @@ package com.karrar.betterlife.ui.home
 
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.karrar.betterlife.R
@@ -9,6 +10,7 @@ import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.databinding.FragmentHomeBinding
 import com.karrar.betterlife.databinding.ItemCategoryBinding
 import com.karrar.betterlife.ui.base.BaseFragment
+import com.karrar.betterlife.util.EventObserve
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val layoutIdFragment = R.layout.fragment_home
@@ -17,12 +19,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun setup() {
         setupChipGroupDynamically()
         navigateToAddHabitDialog()
+        navigateToHabit()
     }
 
     private fun navigateToAddHabitDialog() {
         viewModel.navigateAddHabit.observe(viewLifecycleOwner) {
             findNavController().navigate(R.id.addHabitDialog)
         }
+    }
+
+    private fun navigateToHabit() {
+             viewModel.navigateHabit.observe(this, EventObserve {
+            if (it) {
+                Navigation.findNavController(binding.root)
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToEditFragment())
+            }
+        })
     }
 
     private fun setupChipGroupDynamically() {

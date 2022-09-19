@@ -19,6 +19,19 @@ class EditHabitDialogViewModel : ViewModel() {
     val isDialogClose: LiveData<Event<Boolean>>
         get() = _isDialogClose
 
+    private val _habit = MutableLiveData<Habit>()
+    val habit: LiveData<Habit>
+        get() = _habit
+
+
+
+//    fun getHabitById(habitId:Int){
+//        viewModelScope.launch {
+//            repository.getHabitByID(habitId)
+//
+//        }
+//
+//    }
      val editHabitValidation = MediatorLiveData<Boolean>().apply {
         addSource(name, this@EditHabitDialogViewModel::checkValidation)
         addSource(points, this@EditHabitDialogViewModel::checkValidation)
@@ -32,8 +45,19 @@ class EditHabitDialogViewModel : ViewModel() {
         }
     }
 
-    fun onApplyHabit() {
-        isEditHabit.postValue(Event(true))
+//    fun onApplyHabit() {
+//        isEditHabit.postValue(Event(true))
+//        viewModelScope.launch {
+//            repository.updateHabit(
+//                Habit(
+//                    name = name.value.toString(),
+//                    point = points.value.toString().toInt()
+//                )
+//            )
+//        }
+//    }
+    fun onClickApplyHabit(){
+          isEditHabit.postValue(Event(true))
         viewModelScope.launch {
             repository.updateHabit(
                 Habit(
@@ -43,6 +67,9 @@ class EditHabitDialogViewModel : ViewModel() {
             )
         }
     }
+
+
+
 
     fun cancelDialog(){
         _isDialogClose.postValue(Event(true))

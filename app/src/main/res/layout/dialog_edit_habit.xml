@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.onApplyHabit()}"
+            android:onClick="@{() -> viewModel.onClickApplyHabit()}"
             android:enabled="@{viewModel.editHabitValidation}"
             android:text="Apply"
             android:textColor="@color/white"

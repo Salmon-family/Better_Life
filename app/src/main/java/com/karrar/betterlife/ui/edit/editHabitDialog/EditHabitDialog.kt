@@ -11,8 +11,12 @@ import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
 
 class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDialogViewModel>() {
+
+    val args:EditHabitDialogArgs by navArgs()
+
     override val viewModelClass: Class<EditHabitDialogViewModel> = EditHabitDialogViewModel::class.java
     override val layoutIdFragment: Int = R.layout.dialog_edit_habit
+
 
     override fun setup() {
 
@@ -24,10 +28,6 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDial
     }
 
     private fun onEditHabitDone() {
-        val args:EditHabitDialogArgs by navArgs()
-        //binding.habitName.text = args.habitId
-
-
         viewModel.isEditHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
