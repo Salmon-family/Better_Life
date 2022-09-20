@@ -67,7 +67,7 @@ fun getChipId(view: ChipGroup?): List<String>? {
    val list = mutableListOf<String>()
     view?.children?.forEach {
         it as Chip
-        if (it.isChecked == true) {
+        if (it.isChecked) {
           list.add(it.text.toString())
         }
     }

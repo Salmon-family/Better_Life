@@ -27,10 +27,10 @@ class HomeViewModel : ViewModel() {
 
     init {
         //for test
-        viewModelScope.launch {
-            for (i in 0..10)
-                repository.insertNewHabit(Habit(name = "test$i", point = 10 + i))
-        }
+//        viewModelScope.launch {
+//            for (i in 0..10)
+//                repository.insertNewHabit(Habit(name = "test$i", point = 10 + i))
+//        }
         /////
 
         isDoneForToday()
@@ -52,6 +52,7 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             val day = Day(date = Date())
             repository.insertToday(day)
+            val dayToInsert = repository.getdayID(day.date.time)
             todayHabitsList.value?.forEach { name ->
                 val habit = allHabits.value?.first {
                     it.name == name
@@ -59,7 +60,7 @@ class HomeViewModel : ViewModel() {
                 habit?.let {
                     repository.insertTodayHabits(
                         DailyHabits(
-                            dayID = day.dayID,
+                            dayID = dayToInsert.dayID,
                             habitID = habit.habitID
                         )
                     )
