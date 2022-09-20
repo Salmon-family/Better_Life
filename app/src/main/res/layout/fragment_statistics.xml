@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.114"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:singleSelection="true">
@@ -35,19 +36,11 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_week"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Weekly"
-                app:layout_constraintBottom_toTopOf="@+id/card_view"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.google.android.material.chip.Chip
                 android:id="@+id/chip_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:onClick="@{() -> viewModel.chartsMonthly()}"
                 android:text="Monthly"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -76,5 +69,23 @@
 
         </androidx.cardview.widget.CardView>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_arrow_button_left"
+            android:onClick="@{() -> viewModel.chartsLastWeeks()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_arrow_button_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

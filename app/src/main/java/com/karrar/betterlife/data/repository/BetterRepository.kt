@@ -17,7 +17,11 @@ class BetterRepository {
 
     suspend fun getTotalPointsOfDay(day: Long) = dailyDao.getTotalPointsOfDay(day)
 
-    suspend fun getTotalHabitPointInResult(fromDate: Long, toDate: Long) = dailyDao.getTotalHabitPointInResult(fromDate, toDate)
+    suspend fun getTotalPointsOfMonth(fromDate: Long, toDate: Long) =
+        dailyDao.getTotalPointsOfHabitInMonth(fromDate, toDate)
+
+    suspend fun getTotalHabitPointInResult(fromDate: Long, toDate: Long) =
+        dailyDao.getTotalHabitPointInResult(fromDate, toDate)
 
     fun getAllHabit() = habitDao.getAllHabit()
 

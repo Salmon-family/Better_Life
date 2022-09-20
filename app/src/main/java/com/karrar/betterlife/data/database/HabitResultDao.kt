@@ -28,6 +28,10 @@ interface HabitResultDao {
     suspend fun getTotalPointsOfDay(date: Long): Int
 
 
+    @Query("SELECT COALESCE(SUM(point),0) FROM RESULT_TABLE WHERE date BETWEEN date(:fromDate / 1000,'unixepoch') AND date(:toDate / 1000,'unixepoch')")
+    suspend fun getTotalPointsOfHabitInMonth(fromDate: Long, toDate: Long): Int
+
+
     @Query("SELECT * FROM RESULT_TABLE WHERE date(date / 1000,'unixepoch') = date(:day / 1000,'unixepoch')")
     suspend fun isAnyHabitsByThisDay(day: Long): List<HabitResult>?
 
