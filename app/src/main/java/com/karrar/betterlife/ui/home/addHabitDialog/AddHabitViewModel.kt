@@ -3,9 +3,6 @@ package com.karrar.betterlife.ui.home.addHabitDialog
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
-import com.karrar.betterlife.util.Constants
-import com.karrar.betterlife.util.Constants.BAD
-import com.karrar.betterlife.util.Constants.GOOD
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
@@ -14,8 +11,14 @@ class AddHabitViewModel : ViewModel() {
 
     val habitName = MutableLiveData<String>()
     val habitPoints = MutableLiveData(0)
-    val isAddHabit = MutableLiveData(Event(false))
-    val isCancel = MutableLiveData(Event(false))
+
+    private val _isAddHabit = MutableLiveData(Event(false))
+    val isAddHabit: LiveData<Event<Boolean>>
+        get() = _isAddHabit
+
+    private val _isCancel = MutableLiveData(Event(false))
+    val isCancel: LiveData<Event<Boolean>>
+        get() = _isCancel
 
     val addHabitValidation = MediatorLiveData<Boolean>().apply {
         addSource(habitName, this@AddHabitViewModel::checkValidation)
@@ -31,22 +34,24 @@ class AddHabitViewModel : ViewModel() {
     }
 
 
-    fun addNewHabit() {
-        isAddHabit.postValue(Event(true))
-        viewModelScope.launch {
-            val point = habitPoints.value ?: 0
+    fun onClickAddHabit() {
+        _isAddHabit.postValue(Event(true))
+        addNewHabit()
+    }
 
+    private fun addNewHabit() {
+        viewModelScope.launch {
             repository.insertNewHabit(
                 Habit(
                     name = habitName.value.toString(),
-                    point = point
+                    point = habitPoints.value ?: 0
                 )
             )
         }
     }
 
     fun cancelDialog() {
-        isCancel.postValue(Event(true))
+        _isCancel.postValue(Event(true))
     }
 
 }

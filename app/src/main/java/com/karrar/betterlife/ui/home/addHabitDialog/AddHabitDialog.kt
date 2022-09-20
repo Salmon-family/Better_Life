@@ -4,12 +4,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
+import com.karrar.betterlife.util.showSnackMessage
 
 class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewModel>() {
     override val viewModelClass: Class<AddHabitViewModel> = AddHabitViewModel::class.java
@@ -28,8 +28,7 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         viewModel.isAddHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
-                Toast.makeText(this.context, R.string.toast_success, Toast.LENGTH_SHORT).show()
-
+                activity?.showSnackMessage(R.id.coordinate_layout,getString(R.string.toast_success))
             }
         })
     }

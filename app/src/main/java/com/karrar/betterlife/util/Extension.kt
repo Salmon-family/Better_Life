@@ -1,5 +1,6 @@
 package com.karrar.betterlife.util
 
+import android.app.Activity
 import android.content.res.Resources
 import android.graphics.Rect
 import android.view.LayoutInflater
@@ -8,13 +9,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
+import com.google.android.material.snackbar.Snackbar
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.HabitWithType
 import com.karrar.betterlife.databinding.ItemHabitBinding
-import com.karrar.betterlife.ui.home.HomeViewModel
 import com.karrar.betterlife.util.Constants.BAD
 import com.karrar.betterlife.util.Constants.GOOD
 
@@ -47,4 +47,7 @@ fun ChipGroup.createChip(item: Habit): View {
     )
     chipBinding.item = item.asHabitWithType()
     return chipBinding.root
+}
+fun Activity.showSnackMessage(idLayout: Int, message: String) {
+    Snackbar.make(this.findViewById(idLayout), message, Snackbar.LENGTH_LONG).show()
 }
