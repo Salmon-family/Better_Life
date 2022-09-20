@@ -24,7 +24,7 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDial
         setWidthPercent(90)
         onEditHabitDone()
         cancelDialog()
-
+        viewModel.getHabitById(args.sendHabitId)
     }
 
     private fun onEditHabitDone() {
@@ -35,6 +35,8 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDial
             }
         })
     }
+
+
 
     private fun cancelDialog() {
         viewModel.isDialogClose.observe(this,EventObserve{

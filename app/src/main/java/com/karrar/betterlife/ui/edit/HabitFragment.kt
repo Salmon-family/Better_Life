@@ -16,15 +16,14 @@ class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>(){
         showHabit()
         naveEditHabitDialog()
 
-
     }
 
     private fun naveEditHabitDialog() {
 
         viewModel.navigateTOEditHabitDialog.observe(this, EventObserve {id ->
-          id?.let {
+            id.let {
                 Navigation.findNavController(binding.root)
-                    .navigate(HabitFragmentDirections.actionEditFragmentToEditHabitDialog(id))
+                    .navigate(HabitFragmentDirections.actionEditFragmentToEditHabitDialog(it))
             }
         })
     }

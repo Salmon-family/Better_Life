@@ -10,8 +10,12 @@ class EditHabitDialogViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
-     val name = MutableLiveData<String>()
-     val points = MutableLiveData<String>()
+    var name = MutableLiveData<String>()
+    var points= MutableLiveData<String>()
+
+    private val _habit = MutableLiveData<Habit>()
+    val habit: LiveData<Habit>
+        get() = _habit
 
     val isEditHabit = MutableLiveData(Event(false))
 
@@ -19,20 +23,14 @@ class EditHabitDialogViewModel : ViewModel() {
     val isDialogClose: LiveData<Event<Boolean>>
         get() = _isDialogClose
 
-    private val _habit = MutableLiveData<Habit>()
-    val habit: LiveData<Habit>
-        get() = _habit
 
+    fun getHabitById(habitId:Long){
+        viewModelScope.launch {
+            _habit.postValue(repository.getHabitByID(habitId))
+        }
+    }
 
-
-//    fun getHabitById(habitId:Int){
-//        viewModelScope.launch {
-//            repository.getHabitByID(habitId)
-//
-//        }
-//
-//    }
-     val editHabitValidation = MediatorLiveData<Boolean>().apply {
+    val editHabitValidation = MediatorLiveData<Boolean>().apply {
         addSource(name, this@EditHabitDialogViewModel::checkValidation)
         addSource(points, this@EditHabitDialogViewModel::checkValidation)
     }
@@ -45,31 +43,14 @@ class EditHabitDialogViewModel : ViewModel() {
         }
     }
 
-//    fun onApplyHabit() {
-//        isEditHabit.postValue(Event(true))
-//        viewModelScope.launch {
-//            repository.updateHabit(
-//                Habit(
-//                    name = name.value.toString(),
-//                    point = points.value.toString().toInt()
-//                )
-//            )
-//        }
-//    }
-    fun onClickApplyHabit(){
-          isEditHabit.postValue(Event(true))
+    fun onClickApplyHabit(habit: Habit){
+        isEditHabit.postValue(Event(true))
         viewModelScope.launch {
             repository.updateHabit(
-                Habit(
-                    name = name.value.toString(),
-                    point = points.value.toString().toInt()
-                )
+                habit.copy(name = name.value!!, point = points.value?.toInt()!!)
             )
         }
     }
-
-
-
 
     fun cancelDialog(){
         _isDialogClose.postValue(Event(true))

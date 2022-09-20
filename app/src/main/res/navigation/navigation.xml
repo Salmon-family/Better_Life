@@ -35,7 +35,7 @@
         android:label="EditHabitDialog"
         tools:layout="@layout/dialog_edit_habit" >
         <argument
-            android:name="habitId"
+            android:name="sendHabitId"
             app:argType="long" />
     </dialog>
 </navigation>

@@ -43,7 +43,8 @@
                 android:id="@+id/habit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.name}" />
+                android:hint="@{String.valueOf(viewModel.habit.name)}"
+                android:text="@{String.valueOf(viewModel.habit.name)}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:text="@{viewModel.points}" />
+                android:hint="@{String.valueOf(viewModel.habit.point)}"
+                android:text="@{String.valueOf(viewModel.habit.point)}"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.onClickApplyHabit()}"
+            android:onClick="@{() -> viewModel.onClickApplyHabit(viewModel.habit)}"
             android:enabled="@{viewModel.editHabitValidation}"
             android:text="Apply"
             android:textColor="@color/white"

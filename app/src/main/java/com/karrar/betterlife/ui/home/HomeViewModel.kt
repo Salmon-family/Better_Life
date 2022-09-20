@@ -22,7 +22,6 @@ class HomeViewModel : ViewModel() {
     fun navigateToAddHabitDialog(){
         _navigateAddHabit.postValue(true)
     }
-/////////////////
 
     private val _navigateHabit = MutableLiveData(Event(false))
     val navigateHabit: LiveData<Event<Boolean>>
@@ -31,7 +30,7 @@ class HomeViewModel : ViewModel() {
     fun navigateToHabitList(){
         _navigateHabit.postValue(Event(true))
     }
-////////////////////
+
     fun setTodayHabit(habitID: Long) {
         viewModelScope.launch {
             val habit = repository.getHabitByID(habitID)

@@ -15,7 +15,7 @@ class HabitViewModel : ViewModel(), HabitInteractionListener {
     private val _navigateTOEditHabitDialog = MutableLiveData<Event<Long>>()
     val navigateTOEditHabitDialog: LiveData<Event<Long>>
         get() = _navigateTOEditHabitDialog
-    
+
 
     override fun onClickDeleteHabit(habit: Habit) {
         viewModelScope.launch {
@@ -23,8 +23,8 @@ class HabitViewModel : ViewModel(), HabitInteractionListener {
         }
     }
 
-    override fun onClickEditHabit(habitId: Long) {
-        _navigateTOEditHabitDialog.postValue(Event(habitId))
+    override fun onClickEditHabit(habit:Long) {
+        _navigateTOEditHabitDialog.postValue(Event(habit))
     }
 
 }
