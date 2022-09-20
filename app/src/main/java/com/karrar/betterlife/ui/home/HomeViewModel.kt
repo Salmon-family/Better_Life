@@ -12,10 +12,6 @@ class HomeViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
-    private val _navigateShowStatistics = MutableLiveData<Event<Boolean>>()
-    val navigateShowStatistics: LiveData<Event<Boolean>>
-        get() = _navigateShowStatistics
-
     val allHabits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
     private val _doneToday = MutableLiveData(false)
@@ -53,10 +49,6 @@ class HomeViewModel : ViewModel() {
                 )
             }
         }
-    }
-
-    fun navigateToAddHabitStatistics() {
-        _navigateShowStatistics.postValue(Event(true))
     }
 
 }

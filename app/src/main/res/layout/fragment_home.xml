@@ -32,18 +32,6 @@
             android:background="@color/black_8"
             app:layout_constraintTop_toBottomOf="@id/text_home_title" />
 
-        <ImageView
-            android:id="@+id/image_statistics"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/spacing_medium"
-            android:onClick="@{() -> viewModel.navigateToAddHabitStatistics()}"
-            android:src="@drawable/ic_statistics"
-            app:layout_constraintBottom_toBottomOf="@+id/text_home_title"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@+id/text_home_title"
-            app:layout_constraintTop_toTopOf="@+id/text_home_title" />
-
         <ScrollView
             android:id="@+id/scrollView_habit"
             android:layout_width="match_parent"
