@@ -11,66 +11,58 @@
 
         <variable
             name="listener"
-            type="com.karrar.betterlife.ui.toDo.TasksInteractionListener" />
+            type="com.karrar.betterlife.ui.tasks.TasksInteractionListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_medium"
-        android:layout_marginVertical="@dimen/spacing_small"
-        app:cardCornerRadius="@dimen/radius_small">
+        app:cardCornerRadius="@dimen/radius_small"
+        app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--            <ImageView-->
-            <!--                android:id="@+id/imageView"-->
-            <!--                android:layout_width="@dimen/icon_medium"-->
-            <!--                android:layout_height="@dimen/icon_medium"-->
-            <!--                android:layout_marginStart="@dimen/spacing_medium"-->
-            <!--                android:onClick="@{() -> listener.onClickCheck(item)}"-->
-            <!--                android:src="@drawable/ic_lamp"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
             <CheckBox
                 android:id="@+id/checkbox"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="4dp"
                 android:onClick="@{() -> listener.onClickCheck(item)}"
                 app:checkBasedOnState="@{item}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:chipColorBasedOnState="@{item}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/text_name" />
 
             <TextView
                 android:id="@+id/text_name"
-                style="@style/TextStyle.Large"
+                style="@style/TextStyle.Medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@android:color/transparent"
                 android:ellipsize="end"
+                android:maxLines="4"
+                android:paddingBottom="@dimen/spacing_small"
                 android:text="@{item.note}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:colorBasedOnState="@{item}"
                 app:layout_constraintEnd_toStartOf="@+id/delete"
                 app:layout_constraintStart_toEndOf="@+id/checkbox"
                 app:layout_constraintTop_toTopOf="parent"
-                app:colorBasedOnState="@{item}"
-                tools:text="Name" />
+                tools:text="Task" />
 
             <ImageView
                 android:id="@+id/delete"
                 android:layout_width="@dimen/icon_medium"
                 android:layout_height="@dimen/icon_medium"
-                android:layout_marginEnd="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
                 android:onClick="@{() -> listener.onClickDelete(item)}"
-                android:src="@drawable/ic_trash"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_x"
+                app:colorBasedOnState="@{item}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />

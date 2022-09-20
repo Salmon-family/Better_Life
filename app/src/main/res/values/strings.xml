@@ -47,5 +47,9 @@
     <string name="max_point">100</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_task">New Task</string>
+    <string name="your_task">your task</string>
+    <string name="task_hint">Your checked tasks will be automatically disappeared on the next day, while unchecked ones will be still shown</string>
+    <string name="to_do">To Do</string>
 
 </resources>

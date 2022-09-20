@@ -1,7 +1,9 @@
 package com.karrar.betterlife.util
 
+import android.graphics.Paint
 import android.view.View
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -12,7 +14,7 @@ import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.data.database.entity.Task
 import com.karrar.betterlife.ui.Charts
-import com.karrar.betterlife.ui.toDo.temp.BaseAdapter
+import com.karrar.betterlife.ui.tasks.temp.BaseAdapter
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
@@ -54,9 +56,33 @@ fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
 fun changeColorBasedOnState(view: TextView, task: Task?) {
     task?.isChecked?.let {
         if (it) {
-            view.setTextColor(view.getColor(R.color.red))
+            view.setTextColor(view.getColor(R.color.black_30))
+            view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             view.setTextColor(view.getColor(R.color.black))
+            view.paintFlags = view.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
+    }
+}
+
+@BindingAdapter("app:colorBasedOnState")
+fun changeImageColorBasedOnState(view: ImageView, task: Task?) {
+    task?.isChecked?.let {
+        if (it) {
+            view.setImageResource(R.drawable.ic_x_selected)
+        } else {
+            view.setImageResource(R.drawable.ic_x)
+        }
+    }
+}
+
+@BindingAdapter("app:chipColorBasedOnState")
+fun changeChipColorBasedOnState(view: CheckBox, task: Task?) {
+    task?.isChecked?.let {
+        if (it) {
+            view.buttonTintList = view.getColorStateList(R.color.black_30)
+        } else {
+            view.buttonTintList = view.getColorStateList(R.color.black)
         }
     }
 }
@@ -65,5 +91,3 @@ fun changeColorBasedOnState(view: TextView, task: Task?) {
 fun checkBasedOnState(view: CheckBox, task: Task?) {
     task?.isChecked?.let { view.isChecked = it }
 }
-
-fun View.getColor(color: Int) = ContextCompat.getColor(this.context, color)

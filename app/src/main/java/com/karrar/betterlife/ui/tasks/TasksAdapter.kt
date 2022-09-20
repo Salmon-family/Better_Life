@@ -1,8 +1,8 @@
-package com.karrar.betterlife.ui.toDo
+package com.karrar.betterlife.ui.tasks
 
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.entity.Task
-import com.karrar.betterlife.ui.toDo.temp.BaseAdapter
+import com.karrar.betterlife.ui.tasks.temp.BaseAdapter
 
 class TasksAdapter(var list: List<Task>, listener: TasksInteractionListener) :
     BaseAdapter<Task>(list, listener) {

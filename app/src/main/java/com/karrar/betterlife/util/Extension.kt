@@ -2,7 +2,9 @@ package com.karrar.betterlife.util
 
 import android.content.res.Resources
 import android.graphics.Rect
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.HabitWithType
@@ -17,7 +19,6 @@ fun DialogFragment.setWidthPercent(percentage: Int) {
     dialog?.window?.setLayout(percentWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
 }
 
-
 fun Habit.asHabitWithType(): HabitWithType {
     return HabitWithType(
             id = id,
@@ -25,3 +26,7 @@ fun Habit.asHabitWithType(): HabitWithType {
             type = if (point>0) GOOD else BAD
         )
 }
+
+fun View.getColor(color: Int) = ContextCompat.getColor(this.context, color)
+
+fun View.getColorStateList(color: Int) = ContextCompat.getColorStateList(this.context, color)

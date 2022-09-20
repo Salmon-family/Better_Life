@@ -7,7 +7,7 @@ import java.util.*
 @Entity(tableName = "TASK_TABLE")
 data class Task(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val note: String,
+    var note: String,
     val date: Date,
     var isChecked: Boolean
 )
