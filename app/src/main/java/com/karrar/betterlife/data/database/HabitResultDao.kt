@@ -9,6 +9,9 @@ interface HabitResultDao {
     @Insert
     suspend fun insert(habitResult: HabitResult)
 
+    @Insert
+    suspend fun insert(habitResult:List<HabitResult>)
+
     @Update
     suspend fun update(habitResult: HabitResult)
 
@@ -34,4 +37,5 @@ interface HabitResultDao {
 
     @Query("SELECT SUM(point) FROM RESULT_TABLE WHERE date BETWEEN :fromDate AND :toDate ")
     suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long): Int
+
 }

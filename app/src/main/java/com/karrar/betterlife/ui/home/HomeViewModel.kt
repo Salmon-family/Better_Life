@@ -22,7 +22,7 @@ class HomeViewModel : ViewModel() {
     val doneToday: LiveData<Boolean>
         get() = _doneToday
 
-    val todayHabitsList = MutableLiveData<List<Int>>()
+    val todayHabitsList = MutableLiveData<List<String>>()
 
     init {
         isDoneForToday()
@@ -42,16 +42,19 @@ class HomeViewModel : ViewModel() {
 
     private fun saveData() {
         viewModelScope.launch {
-            todayHabitsList.value?.forEach { position ->
-                val habit = allHabits.value?.get(position - 1)
+            val habitsPerDay = mutableListOf<HabitResult>()
+            todayHabitsList.value?.forEach { habitName ->
+                val habit = allHabits.value?.find { it.name == habitName }
+
                 habit?.let {
-                    repository.insertTodayHabit(
+                    habitsPerDay.add(
                         HabitResult(
                             id_habit = habit.id, point = habit.point, date = Date()
                         )
                     )
                 }
             }
+            repository.insertAllHabitsPerDay(habitsPerDay)
         }
     }
 

@@ -38,6 +38,8 @@ class BetterRepository {
 
     suspend fun isAnyHabitsInThisDay(day: Long) = dailyDao.isAnyHabitsByThisDay(day)
 
+    suspend fun insertAllHabitsPerDay(habitsPerDay:List<HabitResult>)= dailyDao.insert(habitsPerDay)
+
     suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long) =
         dailyDao.getTotalHabitPointsInRange(fromDate, toDate)
 }

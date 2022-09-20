@@ -1,6 +1,7 @@
 package com.karrar.betterlife.util
 
 import android.view.View
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
@@ -57,17 +58,24 @@ fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
 }
 
 @BindingAdapter(value = ["checkedChipButtonId"])
-fun setCheckedChipId(view: ChipGroup?, ids: List<Int>?) {
-    ids?.let {
-        if (!it.isNullOrEmpty() && view?.checkedChipId != it.first()) {
-            view?.check(it.first())
-        }
-    }
+fun setCheckedChipId(view: ChipGroup?, ids: List<String>?) {
+//    ids?.let {
+//        if (!it.isNullOrEmpty() && view?.checkedChipId != it.first()) {
+//            view?.check(it.first())
+//        }
+//    }
 }
 
 @InverseBindingAdapter(attribute = "checkedChipButtonId", event = "checkedChipButtonId")
-fun getChipId(view: ChipGroup?): List<Int>? {
-    return view?.checkedChipIds
+fun getChipId(view: ChipGroup?): List<String>? {
+    val list = mutableListOf<String>()
+    view?.children?.forEach {
+        it as Chip
+        if (it.isChecked) {
+            list.add(it.text.toString())
+        }
+    }
+    return list
 }
 
 @BindingAdapter("checkedChipButtonId")
