@@ -85,7 +85,6 @@
             android:progressDrawable="@android:color/transparent"
             android:thumb="@drawable/seek_bar_custom_thumb"
             app:layout_constraintEnd_toEndOf="@+id/text_seek_bar_point"
-            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="@+id/text_point_part"
             app:layout_constraintTop_toBottomOf="@+id/text_point_part"
             tools:targetApi="o" />
