@@ -2,6 +2,8 @@ package com.karrar.betterlife.ui.edit.editHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.karrar.betterlife.R
@@ -19,8 +21,8 @@ class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDial
     override val layoutIdFragment: Int = R.layout.dialog_edit_habit
 
 
-    override fun setup() {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setWidthPercent(90)
         onEditHabitDone()

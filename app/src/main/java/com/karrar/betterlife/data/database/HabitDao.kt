@@ -2,6 +2,7 @@ package com.karrar.betterlife.data.database
 
 import androidx.room.*
 import com.karrar.betterlife.data.database.entity.Habit
+import com.karrar.betterlife.data.database.entity.HabitResult
 import kotlinx.coroutines.flow.Flow
 
 @Dao

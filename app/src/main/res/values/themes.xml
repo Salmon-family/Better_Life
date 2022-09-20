@@ -79,7 +79,7 @@
     <style name="ThemeBottomNavigationBar" parent="Widget.Material3.BottomNavigationView">
         <item name="backgroundTint">@color/white</item>
         <item name="itemIconTint">@color/black_60</item>
-        <item name="labelVisibilityMode">unlabeled</item>
+        <item name="labelVisibilityMode">selected</item>
         <item name="itemActiveIndicatorStyle">@style/App.Custom.Indicator</item>
     </style>
 

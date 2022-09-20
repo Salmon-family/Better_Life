@@ -1,5 +1,7 @@
 package com.karrar.betterlife.ui.edit
 
+import android.os.Bundle
+import android.view.View
 import androidx.navigation.Navigation
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.FragmentEditHabitBinding
@@ -11,7 +13,8 @@ class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>() {
     override val layoutIdFragment = R.layout.fragment_edit_habit
     override val viewModelClass = HabitViewModel::class.java
 
-    override fun setup() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setHabitAdapter()
         observeEvents()
     }

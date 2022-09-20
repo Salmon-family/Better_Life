@@ -5,14 +5,15 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.recyclerview.widget.RecyclerView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.Chip
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.ui.Charts
+import com.karrar.betterlife.ui.base.BaseAdapter
 
 @BindingAdapter("app:chipColor")
 fun setChipsStyle(chip: Chip, good: Boolean) {
@@ -56,7 +57,6 @@ fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
         view.aa_drawChartWithChartModel(aaCharts.drawCharts())
     }
 }
-import com.karrar.betterlife.ui.base.BaseAdapter
 
 @BindingAdapter(value = ["checkedChipButtonId"])
 fun setCheckedChipId(view: ChipGroup?, ids: List<Int>?) {
@@ -80,9 +80,9 @@ fun setChipsListener(view: ChipGroup?, attChange: InverseBindingListener) {
 }
 
 @BindingAdapter(value = ["app:items"])
-fun <T> setRecyclerItems(view: RecyclerView, items:List<T>?) {
-    if (items != null){
+fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
+    if (items != null) {
         (view.adapter as BaseAdapter<T>?)?.setItems(items)
-    }else
+    } else
         (view.adapter as BaseAdapter<T>?)?.setItems((emptyList()))
 }
