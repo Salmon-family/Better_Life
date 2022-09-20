@@ -1,5 +1,6 @@
 package com.karrar.betterlife.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Rect
@@ -7,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.makeText
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.make
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.HabitWithType
 import com.karrar.betterlife.util.Constants.BAD
@@ -33,6 +32,14 @@ fun Habit.asHabitWithType(): HabitWithType {
     )
 }
 
-fun Toast.showMessage(message: String, context: Context) {
-    makeText(context, message, Toast.LENGTH_SHORT).show()
+//fun Toast.showMessage(message: String, context: Context) {
+//    makeText(context, message, Toast.LENGTH_SHORT).show()
+//}
+
+fun Context.showToast(message: String) {
+    makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Activity.showSnackMessage(idLayout: Int, message: String) {
+    Snackbar.make(this.findViewById(idLayout), message, Snackbar.LENGTH_LONG).show()
 }
