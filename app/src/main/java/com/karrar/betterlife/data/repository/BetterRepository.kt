@@ -3,13 +3,16 @@ package com.karrar.betterlife.data.repository
 import com.karrar.betterlife.data.database.BetterLiveDatabase
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
+import com.karrar.betterlife.data.database.entity.Task
 
 class BetterRepository {
-    private val habitDao =
-        BetterLiveDatabase.getInstanceByApplicationContext().habitDao()
 
-    private val dailyDao =
-        BetterLiveDatabase.getInstanceByApplicationContext().habitResultDao()
+    private val habitDao = BetterLiveDatabase.getInstanceByApplicationContext().habitDao()
+
+    private val dailyDao = BetterLiveDatabase.getInstanceByApplicationContext().habitResultDao()
+
+    private val taskDao = BetterLiveDatabase.getInstanceByApplicationContext().taskDao()
+
 
     suspend fun insertNewHabit(habit: Habit) = habitDao.insert(habit)
 
@@ -40,4 +43,17 @@ class BetterRepository {
 
     suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long) =
         dailyDao.getTotalHabitPointsInRange(fromDate, toDate)
+
+    /**
+     * Task
+     */
+
+    suspend fun insertNewTask(task: Task) = taskDao.insert(task)
+
+    suspend fun deleteTask(task: Task) = taskDao.delete(task)
+
+    suspend fun update(task: Task) = taskDao.update(task)
+
+    fun getAllTasks() = taskDao.getAllTasks()
+
 }

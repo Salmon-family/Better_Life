@@ -8,12 +8,15 @@ import androidx.room.TypeConverters
 import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.database.entity.HabitResult
+import com.karrar.betterlife.data.database.entity.Task
 
-@Database(entities = [Habit::class, HabitResult::class], version = 1)
+@Database(entities = [Habit::class, HabitResult::class, Task::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class BetterLiveDatabase : RoomDatabase() {
+
     abstract fun habitDao(): HabitDao
     abstract fun habitResultDao(): HabitResultDao
+    abstract fun taskDao(): TaskDao
 
     companion object {
         private const val DATABASE_NAME = "BetterLiveDatabase"
@@ -46,7 +49,7 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
                 .addTypeConverter(dateConverter)
-                .createFromAsset(DEFAULT_DATABASE_NAME)
+//                .createFromAsset(DEFAULT_DATABASE_NAME)
                 .build()
         }
     }
