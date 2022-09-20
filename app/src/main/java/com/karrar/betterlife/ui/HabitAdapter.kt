@@ -10,6 +10,6 @@ class HabitAdapter(items:List<Habit>,listener:HabitInteractionListener):BaseAdap
 }
 
 interface HabitInteractionListener:BaseInteractionListener {
-    fun onClickDeleteHabit(habit: Habit)
+    fun onClickDeleteHabit(habitId: Long)
     fun onClickEditHabit(habitId: Long)
 }

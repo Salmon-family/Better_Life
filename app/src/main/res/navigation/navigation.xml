@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_editFragment_to_editHabitDialog"
             app:destination="@id/editHabitDialog" />
+        <action
+            android:id="@+id/action_editFragment_to_deleteHabitDialog"
+            app:destination="@id/deleteHabitDialog" />
     </fragment>
     <dialog
         android:id="@+id/editHabitDialog"
@@ -36,6 +39,13 @@
         tools:layout="@layout/dialog_edit_habit" >
         <argument
             android:name="sendHabitId"
+            app:argType="long" />
+    </dialog>
+    <dialog
+        android:id="@+id/deleteHabitDialog"
+        android:name="com.karrar.betterlife.ui.edit.deleteHabitDialog.DeleteHabitDialog"
+        android:label="DeleteHabitDialog" >
+        <argument android:name="deleteHabitId"
             app:argType="long" />
     </dialog>
 </navigation>

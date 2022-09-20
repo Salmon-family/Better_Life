@@ -41,6 +41,7 @@
     <!-- other strings -->
     <string name="toast_success">Add habit is successfully</string>
     <string name="toast_update">update habit is successfully</string>
+    <string name="toast_delete">delete habit is successfully</string>
     <string name="habit_points">Habit Points</string>
 
 </resources>

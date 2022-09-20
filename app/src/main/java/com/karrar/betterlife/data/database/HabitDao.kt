@@ -22,8 +22,8 @@ interface HabitDao {
     @Query("SELECT * FROM HABIT_TABLE ORDER BY id")
     fun getAllHabit(): Flow<List<Habit>>
 
-//you can use this too, for delete note by id.
-@Query("DELETE FROM HABIT_TABLE WHERE id = :id")
-suspend fun deleteNoteById(id: Int)
+    //you can use this too, for delete note by id.
+    @Query("DELETE FROM HABIT_TABLE WHERE id = :id")
+    suspend fun deleteNoteById(id: Long)
 
 }

@@ -23,4 +23,6 @@ class BetterRepository {
     fun getAllHabit() = habitDao.getAllHabit()
 
     suspend fun getHabitByID(habitID: Long) = habitDao.getHabitByID(id = habitID)
+    suspend fun deleteHabitByID(habitID: Long) = habitDao.deleteNoteById(id = habitID)
+
 }
