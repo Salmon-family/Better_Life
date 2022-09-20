@@ -2,7 +2,6 @@ package com.karrar.betterlife.data.database
 
 import androidx.room.*
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.entity.HabitResult
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,8 +19,12 @@ interface HabitDao {
     @Query("SELECT * FROM HABIT_TABLE WHERE id=:id ")
     suspend fun getHabitByID(id: Long): Habit?
 
-    @Query("SELECT * FROM HABIT_TABLE")
+    @Query("SELECT * FROM HABIT_TABLE ORDER BY id")
     fun getAllHabit(): Flow<List<Habit>>
+
+    //you can use this too, for delete note by id.
+    @Query("DELETE FROM HABIT_TABLE WHERE id = :id")
+    suspend fun deleteNoteById(id: Long)
 
     @Query("SELECT * FROM HABIT_TABLE WHERE id IN (:habitIds)")
     suspend fun getAllHabitByIDs(habitIds: List<Long>): List<Habit>

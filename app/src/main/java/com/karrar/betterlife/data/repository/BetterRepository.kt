@@ -19,6 +19,8 @@ class BetterRepository {
 
     suspend fun getTotalHabitPointInResult(fromDate: Long, toDate: Long) = dailyDao.getTotalHabitPointInResult(fromDate, toDate)
 
+    suspend fun deleteHabit(habit: Habit) = habitDao.delete(habit)
+
     fun getAllHabit() = habitDao.getAllHabit()
 
     fun getAllResultHabit() = habitDao.getAllResultHabit()
@@ -40,4 +42,7 @@ class BetterRepository {
 
     suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long) =
         dailyDao.getTotalHabitPointsInRange(fromDate, toDate)
+
+    suspend fun deleteHabitByID(habitID: Long) = habitDao.deleteNoteById(id = habitID)
+
 }

@@ -7,6 +7,7 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.Chip
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.database.DataCharts
@@ -55,6 +56,7 @@ fun showCharts(view: AAChartView, dataCharts: DataCharts?) {
         view.aa_drawChartWithChartModel(aaCharts.drawCharts())
     }
 }
+import com.karrar.betterlife.ui.base.BaseAdapter
 
 @BindingAdapter(value = ["checkedChipButtonId"])
 fun setCheckedChipId(view: ChipGroup?, ids: List<Int>?) {
@@ -75,4 +77,12 @@ fun setChipsListener(view: ChipGroup?, attChange: InverseBindingListener) {
     view?.setOnCheckedStateChangeListener { group, checkedId ->
         attChange.onChange()
     }
+}
+
+@BindingAdapter(value = ["app:items"])
+fun <T> setRecyclerItems(view: RecyclerView, items:List<T>?) {
+    if (items != null){
+        (view.adapter as BaseAdapter<T>?)?.setItems(items)
+    }else
+        (view.adapter as BaseAdapter<T>?)?.setItems((emptyList()))
 }

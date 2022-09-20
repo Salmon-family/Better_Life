@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.karrar.betterlife.BR
 
@@ -31,14 +32,22 @@ abstract class BaseAdapter<T>(
         val currentItem = items[position]
         when (holder) {
             is ItemViewHolder -> {
-//                holder.binding.setVariable(BR.viewModel, currentItem)
-//                holder.binding.setVariable(BR.listener, listener)
+                holder.binding.setVariable(BR.item, currentItem)
+                holder.binding.setVariable(BR.listener, listener)
             }
         }
     }
 
     fun setItems(newItems: List<T>) {
+        val diffResult = DiffUtil.calculateDiff(SimpleDiffUtil(items, newItems){oldItem, newItem ->
+            areItemsSame(oldItem,newItem)
+        })
         items = newItems
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    open fun areItemsSame(oldItem: T, newItem: T): Boolean{
+        return oldItem?.equals(newItem) == true
     }
 
     override fun getItemCount() = items.size
