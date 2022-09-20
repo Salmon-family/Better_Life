@@ -1,13 +1,9 @@
 package com.karrar.betterlife.util
 
 import android.app.Activity
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Rect
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.makeText
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.karrar.betterlife.data.database.entity.Habit
@@ -30,14 +26,6 @@ fun Habit.asHabitWithType(): HabitWithType {
         name = name,
         type = if (point > 0) GOOD else BAD
     )
-}
-
-//fun Toast.showMessage(message: String, context: Context) {
-//    makeText(context, message, Toast.LENGTH_SHORT).show()
-//}
-
-fun Context.showToast(message: String) {
-    makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
 fun Activity.showSnackMessage(idLayout: Int, message: String) {

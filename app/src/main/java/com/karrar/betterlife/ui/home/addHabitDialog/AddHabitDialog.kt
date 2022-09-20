@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
@@ -29,9 +28,6 @@ class AddHabitDialog : BaseDialogFragment<DialogAddHabitBinding, AddHabitViewMod
         viewModel.isAddHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
-//                context?.let { context -> Toast(context).showMessage(getString(R.string.toast_success), context) }
-
-//                context?.showToast(getString(R.string.toast_success))
                 activity?.showSnackMessage(R.id.coordinate_layout,getString(R.string.toast_success))
             }
         })
