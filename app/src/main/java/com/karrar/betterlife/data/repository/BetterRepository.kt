@@ -31,9 +31,12 @@ class BetterRepository {
 
     suspend fun insertTodayHabits(todayHabits: DailyHabits) = habitDao.insert(todayHabits)
 
-    suspend fun isAnyHabitsInThisDay(today: Long): List<DayWithHabits> {
+    suspend fun isAnyHabitsInThisDay(today: Long): List<DayWithHabits>? {
         val day = getdayID(today)
-        return getHabitsByDay(day.dayID)
+        day?.let {
+            return getHabitsByDay(day.dayID)
+        }
+        return null
     }
 
 }

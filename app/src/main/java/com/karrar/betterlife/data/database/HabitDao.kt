@@ -37,6 +37,6 @@ interface HabitDao {
     suspend fun getHabitsByRangOfDays(first: Long, second: Long): List<DayWithHabits>
 
     @Query("SELECT * FROM Day WHERE date(date / 1000,'unixepoch') = date(:day / 1000,'unixepoch')")
-    suspend fun getDay(day: Long): Day
+    suspend fun getDay(day: Long): Day?
 
 }

@@ -60,7 +60,7 @@ class HomeViewModel : ViewModel() {
                 habit?.let {
                     repository.insertTodayHabits(
                         DailyHabits(
-                            dayID = dayToInsert.dayID,
+                            dayID = dayToInsert!!.dayID,
                             habitID = habit.habitID
                         )
                     )
