@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/spacing_large"
-            android:hint="@string/habit_name"
+            tools:hint="@string/habit_name"
             app:layout_constraintEnd_toEndOf="@+id/materialTextView"
             app:layout_constraintStart_toStartOf="@+id/materialTextView"
             app:layout_constraintTop_toBottomOf="@+id/materialTextView">
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@{String.valueOf(viewModel.habit.name)}"
-                android:text="@{String.valueOf(viewModel.habit.name)}"/>
+                android:text="@={viewModel.name}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/spacing_large"
-            android:hint="@string/habit_points"
+            tools:hint="@string/habit_points"
             app:layout_constraintEnd_toEndOf="@+id/habit_name_layout"
             app:layout_constraintStart_toStartOf="@+id/habit_name_layout"
             app:layout_constraintTop_toBottomOf="@+id/habit_name_layout">
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="@{String.valueOf(viewModel.habit.point)}"
-                android:text="@{String.valueOf(viewModel.habit.point)}"
+                android:text="@={viewModel.points}"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +79,6 @@
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/habit_name_layout"
             app:layout_constraintTop_toBottomOf="@+id/habit_points_layout" />
-
 
         <ImageView
             android:id="@+id/idea"

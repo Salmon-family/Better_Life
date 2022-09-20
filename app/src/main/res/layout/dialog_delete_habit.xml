@@ -90,7 +90,7 @@ This process cannot be undone."
             android:textSize="@dimen/spacing_medium"
             app:cornerRadius="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/habit_hint"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/habit_hint"
             tools:ignore="SpUsage" />
 
@@ -108,7 +108,7 @@ This process cannot be undone."
             app:cornerRadius="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/add"
-            app:layout_constraintStart_toStartOf="@+id/habit_hint"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/habit_hint"
             tools:ignore="SpUsage" />
 

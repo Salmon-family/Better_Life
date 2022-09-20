@@ -10,8 +10,8 @@ class EditHabitDialogViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
-    var name = MutableLiveData<String>()
-    var points= MutableLiveData<String>()
+    var name = MutableLiveData<String>("")
+    var points= MutableLiveData<String>("")
 
     private val _habit = MutableLiveData<Habit>()
     val habit: LiveData<Habit>
@@ -51,6 +51,7 @@ class EditHabitDialogViewModel : ViewModel() {
             )
         }
     }
+
 
     fun cancelDialog(){
         _isDialogClose.postValue(Event(true))
