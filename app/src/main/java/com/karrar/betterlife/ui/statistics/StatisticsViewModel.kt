@@ -29,10 +29,10 @@ class StatisticsViewModel : ViewModel() {
 
             //get Date
             val firstDayOfWeek = repository.getdayID(Date().time)
-            val lastDayOfWeek = repository.getdayID(Date().time - 604800000L)
+            val lastDayOfWeek = repository.getdayID(Date().time - 604800000L*30)
 
             val points = if (lastDayOfWeek != null) {
-                repository.getHabitsByRangOfDays(firstDayOfWeek.dayID, lastDayOfWeek.dayID)
+                repository.getHabitsByRangOfDays(firstDayOfWeek!!.dayID, lastDayOfWeek.dayID)
             } else {
                 repository.getHabitsByDay(Long.MAX_VALUE)
             }
@@ -40,7 +40,6 @@ class StatisticsViewModel : ViewModel() {
             for (i in 0..points.lastIndex) {
                 dailyList.add(points[i].sumPoints())
                 daysName.add(DAYS_OF_THE_WEEK[i])
-                date.time -= ONE_DAY_IN_MILLISECOND
             }
             _charts.postValue(DataCharts(dailyList, daysName))
         }

@@ -53,19 +53,18 @@ class HomeViewModel : ViewModel() {
             val day = Day(date = Date())
             repository.insertToday(day)
             val dayToInsert = repository.getdayID(day.date.time)
+            val habitsPerDay = mutableListOf<DailyHabits>()
             todayHabitsList.value?.forEach { name ->
                 val habit = allHabits.value?.first {
                     it.name == name
                 }
                 habit?.let {
-                    repository.insertTodayHabits(
-                        DailyHabits(
-                            dayID = dayToInsert!!.dayID,
-                            habitID = habit.habitID
-                        )
+                    habitsPerDay.add(
+                        DailyHabits(dayID = dayToInsert!!.dayID, habitID = habit.habitID)
                     )
                 }
             }
+            repository.insertAllHabitsPerDay(habitsPerDay)
         }
     }
 

@@ -19,6 +19,10 @@ interface HabitDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(todayHabits: DailyHabits)
 
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(todayHabits: List<DailyHabits>)
+
     @Update
     suspend fun update(habit: Habit)
 

@@ -25,6 +25,8 @@ class BetterRepository {
     /**
      * Daily ..
      * */
+    suspend fun insertAllHabitsPerDay(todayHabits: List<DailyHabits>)= habitDao.insert(todayHabits)
+
     suspend fun getdayID(today: Long) = habitDao.getDay(today)
 
     suspend fun insertToday(today: Day) = habitDao.insert(today)
