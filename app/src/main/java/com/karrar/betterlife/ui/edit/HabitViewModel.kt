@@ -5,7 +5,6 @@ import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
 import com.karrar.betterlife.ui.HabitInteractionListener
 import com.karrar.betterlife.util.Event
-import kotlinx.coroutines.launch
 
 class HabitViewModel : ViewModel(), HabitInteractionListener {
     private val repository = BetterRepository()
@@ -21,12 +20,12 @@ class HabitViewModel : ViewModel(), HabitInteractionListener {
         get() = _navigateTODeleteHabitDialog
 
 
-    override fun onClickDeleteHabit(habit: Long) {
-        _navigateTODeleteHabitDialog.postValue(Event((habit)))
+    override fun onClickDeleteHabit(habitId: Long) {
+        _navigateTODeleteHabitDialog.postValue(Event((habitId)))
     }
 
-    override fun onClickEditHabit(habit: Long) {
-        _navigateTOEditHabitDialog.postValue(Event(habit))
+    override fun onClickEditHabit(habitId: Long) {
+        _navigateTOEditHabitDialog.postValue(Event(habitId))
     }
 
 }

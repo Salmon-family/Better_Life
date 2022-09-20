@@ -14,7 +14,7 @@ import com.karrar.betterlife.util.setWidthPercent
 class DeleteHabitDialog :
     BaseDialogFragment<DialogDeleteHabitBinding, DeleteHabitDialogViewModel>() {
 
-    val args: DeleteHabitDialogArgs by navArgs()
+    private val args: DeleteHabitDialogArgs by navArgs()
 
     override val viewModelClass: Class<DeleteHabitDialogViewModel> =
         DeleteHabitDialogViewModel::class.java

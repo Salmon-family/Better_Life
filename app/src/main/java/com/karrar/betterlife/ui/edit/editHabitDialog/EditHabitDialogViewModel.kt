@@ -10,11 +10,11 @@ class EditHabitDialogViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
-    var name = MutableLiveData<String>("")
-    var points= MutableLiveData<String>("")
+    var name = MutableLiveData<String>()
+    var points= MutableLiveData<String>()
 
-    private val _habit = MutableLiveData<Habit>()
-    val habit: LiveData<Habit>
+    private val _habit = MutableLiveData<Habit?>()
+    val habit: LiveData<Habit?>
         get() = _habit
 
     val isEditHabit = MutableLiveData(Event(false))
@@ -26,7 +26,11 @@ class EditHabitDialogViewModel : ViewModel() {
 
     fun getHabitById(habitId:Long){
         viewModelScope.launch {
-            _habit.postValue(repository.getHabitByID(habitId))
+            val habit = repository.getHabitByID(habitId)
+            _habit.postValue(habit)
+            name.postValue(habit?.name)
+            points.postValue(habit?.point.toString())
+
         }
     }
 
@@ -43,12 +47,14 @@ class EditHabitDialogViewModel : ViewModel() {
         }
     }
 
-    fun onClickApplyHabit(habit: Habit){
+    fun onClickApplyHabit(){
         isEditHabit.postValue(Event(true))
         viewModelScope.launch {
-            repository.updateHabit(
-                habit.copy(name = name.value!!, point = points.value?.toInt()!!)
-            )
+            habit.value?.let {
+                repository.updateHabit(
+                    it.copy(name = name.value.toString(), point = points.value?.toInt() ?: 0)
+                )
+            }
         }
     }
 

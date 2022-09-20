@@ -22,7 +22,7 @@
             android:id="@+id/materialTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="edit habit"
+            android:text="@string/edit_habit"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,6 @@
                 android:id="@+id/habit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@{String.valueOf(viewModel.habit.name)}"
                 android:text="@={viewModel.name}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,30 +62,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@{String.valueOf(viewModel.habit.point)}"
                 android:text="@={viewModel.points}"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/point_part"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:text="@string/points"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/habit_name_layout"
-            app:layout_constraintTop_toBottomOf="@+id/habit_points_layout" />
-
         <ImageView
             android:id="@+id/idea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
             android:src="@drawable/ic_lamp"
-            app:layout_constraintStart_toStartOf="@+id/point_part"
-            app:layout_constraintTop_toBottomOf="@+id/point_part" />
+            app:layout_constraintStart_toStartOf="@+id/habit_points_layout"
+            app:layout_constraintTop_toBottomOf="@+id/habit_points_layout" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/habit_hint"
@@ -109,9 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.onClickApplyHabit(viewModel.habit)}"
+            android:onClick="@{() -> viewModel.onClickApplyHabit()}"
             android:enabled="@{viewModel.editHabitValidation}"
-            android:text="Apply"
+            android:text="@string/apply"
             android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"
             app:cornerRadius="@dimen/spacing_small"
@@ -126,15 +114,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:backgroundTint="@color/black_30"
             android:onClick="@{() -> viewModel.cancelDialog()}"
             android:text="@string/cancel"
             android:textColor="@color/white"
             android:textSize="@dimen/spacing_medium"
             app:cornerRadius="@dimen/spacing_small"
-            android:backgroundTint="@color/black_30"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/add"
-            app:layout_constraintStart_toEndOf="@+id/idea"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/habit_hint"
             tools:ignore="SpUsage" />
 

@@ -12,7 +12,7 @@ import com.karrar.betterlife.util.setWidthPercent
 
 class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDialogViewModel>() {
 
-    val args: EditHabitDialogArgs by navArgs()
+    private val args: EditHabitDialogArgs by navArgs()
 
     override val viewModelClass: Class<EditHabitDialogViewModel> =
         EditHabitDialogViewModel::class.java

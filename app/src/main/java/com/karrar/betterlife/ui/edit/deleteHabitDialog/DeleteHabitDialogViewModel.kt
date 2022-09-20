@@ -10,9 +10,6 @@ class DeleteHabitDialogViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
-    var name = MutableLiveData<String>()
-    var points = MutableLiveData<String>()
-
     private val _habit = MutableLiveData<Habit>()
     val habit: LiveData<Habit>
         get() = _habit

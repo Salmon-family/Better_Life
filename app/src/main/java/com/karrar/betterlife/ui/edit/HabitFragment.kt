@@ -1,6 +1,5 @@
 package com.karrar.betterlife.ui.edit
 
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.FragmentEditHabitBinding
@@ -13,13 +12,22 @@ class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>() {
     override val viewModelClass = HabitViewModel::class.java
 
     override fun setup() {
-        showHabit()
-        naveEditHabitDialog()
-        naveDeleteHabitDialog()
+        setHabitAdapter()
+        observeEvents()
+    }
+
+    private fun observeEvents() {
+        openEditHabitDialog()
+        openDeleteHabitDialog()
+    }
+
+    private fun setHabitAdapter() {
+        val adapter = HabitAdapter(mutableListOf(), viewModel)
+        binding.recyclerHabitList.adapter = adapter
 
     }
 
-    private fun naveEditHabitDialog() {
+    private fun openEditHabitDialog() {
         viewModel.navigateTOEditHabitDialog.observe(this, EventObserve { id ->
             id.let {
                 Navigation.findNavController(binding.root)
@@ -28,18 +36,12 @@ class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>() {
         })
     }
 
-    private fun naveDeleteHabitDialog() {
+    private fun openDeleteHabitDialog() {
         viewModel.navigateTODeleteHabitDialog.observe(this, EventObserve { id ->
             id.let {
                 Navigation.findNavController(binding.root)
                     .navigate(HabitFragmentDirections.actionEditFragmentToDeleteHabitDialog(it))
             }
         })
-    }
-
-    private fun showHabit() {
-        val adapter = HabitAdapter(mutableListOf(), viewModel)
-        binding.recyclerHabitList.adapter = adapter
-
     }
 }

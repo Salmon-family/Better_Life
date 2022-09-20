@@ -43,5 +43,6 @@
     <string name="toast_update">update habit is successfully</string>
     <string name="toast_delete">delete habit is successfully</string>
     <string name="habit_points">Habit Points</string>
+    <string name="do_you_really_want_to_delete_this_habit_this_process_cannot_be_undone">Do you really want to delete this habit? This process cannot be undone.</string>
 
 </resources>

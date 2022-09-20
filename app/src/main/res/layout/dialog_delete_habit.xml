@@ -22,7 +22,7 @@
             android:id="@+id/materialTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete Habit"
+            android:text="@string/delete_habit"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +33,7 @@
             android:id="@+id/imageView"
             android:layout_width="104dp"
             android:layout_height="104dp"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:src="@drawable/shape_circle_background"
             app:layout_constraintBottom_toTopOf="@+id/text_sure"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,25 +44,23 @@
             android:id="@+id/idea"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="32dp"
             android:src="@drawable/ic_delete"
-            app:layout_constraintBottom_toTopOf="@id/text_sure"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView"
-            app:layout_constraintWidth_percent="0.50" />
+            app:layout_constraintTop_toTopOf="@id/imageView" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_sure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Are you sure ?"
+            android:layout_marginTop="32dp"
+            android:text="@string/are_you_sure"
             android:textColor="@color/black"
             android:textSize="@dimen/text_large"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="@+id/idea"
-            app:layout_constraintStart_toStartOf="@+id/idea"
-            app:layout_constraintTop_toBottomOf="@+id/idea" />
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/habit_hint"
@@ -70,8 +69,7 @@
             app:layout_constraintWidth_percent="0.75"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:text="Do you really want to delete this habit?
-This process cannot be undone."
+            android:text="@string/do_you_really_want_to_delete_this_habit_this_process_cannot_be_undone"
             android:textColor="@color/black_60"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,14 +83,14 @@ This process cannot be undone."
             android:layout_marginTop="@dimen/spacing_large"
             android:backgroundTint="@color/red"
             android:onClick="@{() -> viewModel.onClickDeleteHabit(viewModel.habit)}"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textColor="@color/white"
-            android:textSize="@dimen/spacing_medium"
+            android:textSize="@dimen/text_medium"
             app:cornerRadius="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/habit_hint"
-            tools:ignore="SpUsage" />
+            app:layout_constraintStart_toEndOf="@+id/close"
+            app:layout_constraintTop_toBottomOf="@+id/habit_hint" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/close"
