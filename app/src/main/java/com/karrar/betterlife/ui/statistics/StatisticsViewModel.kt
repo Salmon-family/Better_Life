@@ -1,8 +1,10 @@
 package com.karrar.betterlife.ui.statistics
 
-import android.util.Log
-import androidx.lifecycle.*
-import com.karrar.betterlife.data.database.DataCharts
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.karrar.betterlife.data.DataCharts
 import com.karrar.betterlife.data.repository.BetterRepository
 import kotlinx.coroutines.launch
 import java.util.*
@@ -24,11 +26,20 @@ class StatisticsViewModel : ViewModel() {
         val daysName = mutableListOf<String>()
         val date = Date()
         viewModelScope.launch {
-            for (i in 0..6) {
-                Log.i("test time", date.time.toString())
-                val points = repository.getTotalPointsOfDay(date.time)
-                dailyList.add(points)
-                daysName.add(DAYS_OF_THE_WEEK[date.day])
+
+            //get Date
+            val firstDayOfWeek = repository.getdayID(Date().time)
+            val lastDayOfWeek = repository.getdayID(Date().time - 604800000L)
+
+            val points = if (lastDayOfWeek != null) {
+                repository.getHabitsByRangOfDays(firstDayOfWeek.dayID, lastDayOfWeek.dayID)
+            } else {
+                repository.getHabitsByDay(Long.MAX_VALUE)
+            }
+
+            for (i in 0..points.lastIndex) {
+                dailyList.add(points[i].sumPoints())
+                daysName.add(DAYS_OF_THE_WEEK[i])
                 date.time -= ONE_DAY_IN_MILLISECOND
             }
             _charts.postValue(DataCharts(dailyList, daysName))
@@ -38,7 +49,7 @@ class StatisticsViewModel : ViewModel() {
     companion object {
         const val DEFAULT_END_DATE_DAYS = 7
         const val ONE_DAY_IN_MILLISECOND = 86400000
-        val DAYS_OF_THE_WEEK = mutableListOf("S", "M", "T", "W", "T", "F","S")
+        val DAYS_OF_THE_WEEK = mutableListOf("S", "M", "T", "W", "T", "F", "S")
         val WEEKS_OF_THE_MONTH =
             mutableListOf("First Week", "Second Week", "Third Week", "Forth Week")
         val MONTHS_OF_THE_YEAR =

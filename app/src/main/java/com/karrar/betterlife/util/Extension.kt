@@ -29,7 +29,7 @@ fun DialogFragment.setWidthPercent(percentage: Int) {
 
 fun Habit.asHabitWithType(): HabitWithType {
     return HabitWithType(
-        id = id,
+        id = habitID,
         name = name,
         type = if (point > 0) GOOD else BAD
     )

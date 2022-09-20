@@ -1,8 +1,9 @@
 package com.karrar.betterlife.ui.home
 
 import androidx.lifecycle.*
+import com.karrar.betterlife.data.database.entity.DailyHabits
+import com.karrar.betterlife.data.database.entity.Day
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.entity.HabitResult
 import com.karrar.betterlife.data.repository.BetterRepository
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
@@ -22,9 +23,16 @@ class HomeViewModel : ViewModel() {
     val doneToday: LiveData<Boolean>
         get() = _doneToday
 
-    val todayHabitsList = MutableLiveData<List<Int>>()
+    val todayHabitsList = MutableLiveData<List<String>>()
 
     init {
+        //for test
+        viewModelScope.launch {
+            for (i in 0..10)
+                repository.insertNewHabit(Habit(name = "test$i", point = 10 + i))
+        }
+        /////
+
         isDoneForToday()
     }
 
@@ -42,12 +50,17 @@ class HomeViewModel : ViewModel() {
 
     private fun saveData() {
         viewModelScope.launch {
-            todayHabitsList.value?.forEach { position ->
-                val habit = allHabits.value?.get(position - 1)
+            val day = Day(date = Date())
+            repository.insertToday(day)
+            todayHabitsList.value?.forEach { name ->
+                val habit = allHabits.value?.first {
+                    it.name == name
+                }
                 habit?.let {
-                    repository.insertTodayHabit(
-                        HabitResult(
-                            id_habit = habit.id, point = habit.point, date = Date()
+                    repository.insertTodayHabits(
+                        DailyHabits(
+                            dayID = day.dayID,
+                            habitID = habit.habitID
                         )
                     )
                 }
