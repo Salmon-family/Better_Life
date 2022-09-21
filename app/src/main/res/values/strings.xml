@@ -55,4 +55,8 @@
     <string name="do_you_really_want_to_delete_this_habit_this_process_cannot_be_undone">Do you really want to delete this habit? This process cannot be undone.</string>
     <string name="habits">Habits</string>
 
+    <!-- notifications strings -->
+    <string name="notification_title">Reminder</string>
+    <string name="notification_subtitle">I would like to remind you to evaluate your habit</string>
+
 </resources>
