@@ -3,8 +3,10 @@ package com.karrar.betterlife.ui.home.dialog
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
+import com.karrar.betterlife.util.DialogCancelClickEvent
 import com.karrar.betterlife.util.DialogState
-import com.karrar.betterlife.util.Event
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class AddEditHabitViewModel : ViewModel() {
@@ -24,18 +26,20 @@ class AddEditHabitViewModel : ViewModel() {
 
     private val _clickEvent = MutableLiveData<DialogState>()
 
+    private val _cancelClickEvent = Channel<DialogCancelClickEvent>()
+    val cancelClickEvent = _cancelClickEvent.receiveAsFlow()
 
-    private val _isDialogCancel = MutableLiveData(Event(false))
-    val isDialogCancel: LiveData<Event<Boolean>>
-        get() = _isDialogCancel
-
-    private val _isHabitAdd = MutableLiveData(Event(false))
-    val isHabitAdd: LiveData<Event<Boolean>>
-        get() = _isHabitAdd
-
-    private val _isHabitUpdate = MutableLiveData(Event(false))
-    val isHabitUpdate: LiveData<Event<Boolean>>
-        get() = _isHabitUpdate
+//    private val _isDialogCancel = MutableLiveData(Event(false))
+//    val isDialogCancel: LiveData<Event<Boolean>>
+//        get() = _isDialogCancel
+//
+//    private val _isHabitAdd = MutableLiveData(Event(false))
+//    val isHabitAdd: LiveData<Event<Boolean>>
+//        get() = _isHabitAdd
+//
+//    private val _isHabitUpdate = MutableLiveData(Event(false))
+//    val isHabitUpdate: LiveData<Event<Boolean>>
+//        get() = _isHabitUpdate
 
     private val _habit = MutableLiveData<Habit?>()
     val habit: LiveData<Habit?>
@@ -54,35 +58,41 @@ class AddEditHabitViewModel : ViewModel() {
         }
     }
 
-    fun getHabitById(habitId: String) {
-        if (habitId.isEmpty()) {
-            _clickEvent.postValue(DialogState.ADD)
-            habitName.postValue("")
-            habitPoints.postValue(0)
-            _dialogTitle.postValue("New Habit")
-            _dialogButtonText.postValue("Add")
+    fun initializeDialogDependOnValueFromNavigationArgs(habitId: Long?) {
+        if (habitId == -1L) {
+            initializeDialogToAddHabit()
         } else {
-            _clickEvent.postValue(DialogState.UPDATE)
-            viewModelScope.launch {
-                val habit = repository.getHabitByID(habitId.toLong())
-                _habit.postValue(habit)
-                habitName.postValue(habit?.name)
-                habitPoints.postValue(habit?.point)
-                _dialogTitle.postValue("Update Habit")
-                _dialogButtonText.postValue("Update")
-            }
+            initializeDialogToUpdateHabit(habitId!!)
         }
     }
 
-     fun applyButtonClick() {
+    private fun initializeDialogToAddHabit() {
+        _clickEvent.postValue(DialogState.ADD)
+        habitName.postValue("")
+        habitPoints.postValue(0)
+        _dialogTitle.postValue("New Habit")
+        _dialogButtonText.postValue("Add")
+    }
+
+    private fun initializeDialogToUpdateHabit(habitId: Long) {
+        _clickEvent.postValue(DialogState.UPDATE)
+        viewModelScope.launch {
+            val habit = repository.getHabitByID(habitId)
+            _habit.postValue(habit)
+            habitName.postValue(habit?.name)
+            habitPoints.postValue(habit?.point)
+            _dialogTitle.postValue("Update Habit")
+            _dialogButtonText.postValue("Update")
+        }
+    }
+
+    fun applyButtonClick() {
         when (_clickEvent.value) {
             DialogState.UPDATE -> {
                 updateHabit()
-                _isHabitUpdate.postValue(Event(true))
             }
             DialogState.ADD -> {
                 addNewHabit()
-                _isHabitAdd.postValue(Event(true))
             }
             else -> {}
         }
@@ -96,6 +106,7 @@ class AddEditHabitViewModel : ViewModel() {
                     point = habitPoints.value ?: 0
                 )
             )
+            _cancelClickEvent.send(DialogCancelClickEvent.OnHabitAddClick)
         }
     }
 
@@ -109,10 +120,13 @@ class AddEditHabitViewModel : ViewModel() {
                     )
                 )
             }
+            _cancelClickEvent.send(DialogCancelClickEvent.OnHabitUpdateClick)
         }
     }
 
     fun cancelDialog() {
-        _isDialogCancel.postValue(Event(true))
+        viewModelScope.launch {
+            _cancelClickEvent.send(DialogCancelClickEvent.OnDialogCancelClick)
+        }
     }
 }

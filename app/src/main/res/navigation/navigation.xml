@@ -45,6 +45,6 @@
         android:label="AddEditHabitDialog" >
         <argument
             android:name="add_edit_habit"
-            app:argType="string" />
+            app:argType="long" />
     </dialog>
 </navigation>
