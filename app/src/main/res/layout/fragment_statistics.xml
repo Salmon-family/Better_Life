@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:onClick="@{() -> viewModel.chartsDaily()}"
+                android:onClick="@{()-> viewModel.chartsForPreviousAndNextDay()}"
                 android:text="Daily"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -82,9 +82,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.previousDays()}"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.previousDays()}"
             android:src="@drawable/ic_arrow_button_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_view" />
@@ -92,9 +92,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.nextDays()}"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
+            android:onClick="@{() -> viewModel.nextDays()}"
             android:src="@drawable/ic_arrow_button_right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_view" />
