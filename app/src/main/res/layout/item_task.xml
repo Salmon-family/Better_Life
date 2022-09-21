@@ -40,7 +40,6 @@
             <EditText
                 android:id="@+id/text_name"
                 style="@style/TextStyle.Medium"
-                app:doOnTextChanged="@{() -> listener.onTextChangedListener(item)}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -48,15 +47,16 @@
                 android:layout_marginTop="@dimen/spacing_small"
                 android:background="@android:color/transparent"
                 android:ellipsize="end"
+                android:inputType="text"
                 android:paddingBottom="@dimen/spacing_small"
                 android:text="@={item.note}"
                 app:colorBasedOnState="@{item}"
+                app:doOnTextChanged="@{() -> listener.onTextChangedListener(item)}"
                 app:layout_constraintEnd_toStartOf="@+id/delete"
                 app:layout_constraintStart_toEndOf="@+id/checkbox"
                 app:layout_constraintTop_toTopOf="parent"
                 app:maxNumberOfLines="@{4}"
-                tools:text="Task"
-                android:inputType="text" />
+                tools:text="Task" />
 
             <ImageView
                 android:id="@+id/delete"

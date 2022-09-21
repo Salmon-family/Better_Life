@@ -4,8 +4,6 @@
 
     <data>
 
-        <import type="android.text.Html" />
-
         <variable
             name="viewModel"
             type="com.karrar.betterlife.ui.tasks.TasksViewModel" />
@@ -40,14 +38,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_habit_name"
+                style="@style/TextStyle.Medium"
                 android:layout_width="match_parent"
-                android:maxLines="4"
                 android:layout_height="wrap_content"
+                android:maxLines="4"
                 android:text="@={viewModel.taskText}"
-                app:maxNumberOfLines="@{4}"/>
+                app:maxNumberOfLines="@{4}" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <ImageView
             android:id="@+id/image_idea"

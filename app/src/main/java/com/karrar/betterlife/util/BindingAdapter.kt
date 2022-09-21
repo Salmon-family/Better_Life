@@ -1,6 +1,7 @@
 package com.karrar.betterlife.util
 
 import android.graphics.Paint
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
@@ -75,9 +76,9 @@ fun changeColorBasedOnState(view: TextView, task: Task?) {
 fun changeImageColorBasedOnState(view: ImageView, task: Task?) {
     task?.isChecked?.let {
         if (it) {
-            view.setImageResource(R.drawable.ic_x_selected)
+            view.imageTintList = view.getColorStateList(R.color.black_30)
         } else {
-            view.setImageResource(R.drawable.ic_x)
+            view.imageTintList = view.getColorStateList(R.color.gray)
         }
     }
 }
@@ -109,8 +110,8 @@ fun setMaxNumberOfLines(view: EditText, numOfLines: Int) {
     view.isSingleLine = false
 
     view.addTextChangedListener(object : TextWatcher {
-        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
-        override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun afterTextChanged(editable: Editable) {
             if (null != view.layout && view.layout.lineCount > numOfLines) {

@@ -19,5 +19,4 @@ interface TaskDao {
     @Query("SELECT * FROM TASK_TABLE ORDER BY isChecked ASC")
     fun getAllTasks(): Flow<List<Task>>
 
-
 }
