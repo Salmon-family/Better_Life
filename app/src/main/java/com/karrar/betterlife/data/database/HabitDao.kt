@@ -45,6 +45,14 @@ interface HabitDao {
     @Query("SELECT SUM(HABIT.point) AS pointsResult , DailyHabits.dayID AS dateResult FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID GROUP BY strftime('%Y-%m', dayID / 1000, 'unixepoch')")
     suspend fun getPointsMonthlyWithDate(): List<PointsResult>
 
+
+    @Query("SELECT SUM(HABIT.point) AS pointsResult , " +
+            "DailyHabits.dayID AS dateResult " +
+            "FROM HABIT, DailyHabits " +
+            "WHERE HABIT.habitID == dailyhabits.habitID " +
+            "GROUP BY strftime('%w', dayID / 1000, 'unixepoch')")
+    suspend fun getPointsWeekly(): List<PointsResult>
+
     /**
      * given max year return all months
      * */

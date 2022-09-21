@@ -62,5 +62,20 @@ class StatisticsViewModel : ViewModel() {
         }
     }
 
+    fun chartsWeekly() {
+        val dailyList = mutableListOf<Any>()
+        val daysName = mutableListOf<String>()
+
+        viewModelScope.launch {
+            val points = repository.getPointsWeekly()
+            for (point in points) {
+                dailyList.add(point.pointsResult)
+                val monthname =
+                    android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
+                daysName.add(monthname)
+            }
+            _charts.postValue(DataCharts(dailyList, daysName))
+        }
+    }
 
 }
