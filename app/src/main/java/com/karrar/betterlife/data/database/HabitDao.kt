@@ -39,7 +39,7 @@ interface HabitDao {
     @Query("SELECT SUM(HABIT.point) FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID GROUP BY dailyhabits.dayID")
     suspend fun getAllDaysPoints(): List<Int>
 
-    @Query("SELECT SUM(HABIT.point) AS pointsResult, DailyHabits.dayID AS dateResult  FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :startDay AND :endDay GROUP BY dailyhabits.dayID")
+    @Query("SELECT SUM(HABIT.point) AS pointsResult, DailyHabits.dayID AS dateResult  FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :startDay AND :endDay GROUP BY date(dailyhabits.dayID / 1000,'unixepoch')")
     suspend fun getPointsInRange(startDay: Long, endDay: Long): List<PointsResult>
 
     @Query("SELECT SUM(HABIT.point) AS pointsResult , DailyHabits.dayID AS dateResult FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID GROUP BY strftime('%Y-%m', dayID / 1000, 'unixepoch')")
