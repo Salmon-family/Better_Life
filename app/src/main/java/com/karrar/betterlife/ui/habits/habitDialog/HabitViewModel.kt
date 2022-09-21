@@ -1,14 +1,14 @@
-package com.karrar.betterlife.ui.home.dialog
+package com.karrar.betterlife.ui.habits.habitDialog
 
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
-import com.karrar.betterlife.util.DialogCancelClickEvent
+import com.karrar.betterlife.util.DialogClickEvent
 import com.karrar.betterlife.util.DialogState
 import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 
-class AddEditHabitViewModel : ViewModel() {
+class HabitViewModel : ViewModel() {
 
     private val repository = BetterRepository()
 
@@ -26,17 +26,17 @@ class AddEditHabitViewModel : ViewModel() {
     val dialogButtonText: LiveData<String>
         get() = _dialogButtonText
 
-    private val _cancelClickEvent = MutableLiveData<Event<DialogCancelClickEvent>>()
-    val cancelClickEvent: LiveData<Event<DialogCancelClickEvent>>
-        get() = _cancelClickEvent
+    private val _dialogClickEvent = MutableLiveData<Event<DialogClickEvent>>()
+    val dialogClickEvent: LiveData<Event<DialogClickEvent>>
+        get() = _dialogClickEvent
 
     private val _habit = MutableLiveData<Habit?>()
     val habit: LiveData<Habit?>
         get() = _habit
 
     val addHabitValidation = MediatorLiveData<Boolean>().apply {
-        addSource(habitName, this@AddEditHabitViewModel::checkValidation)
-        addSource(habitPoints, this@AddEditHabitViewModel::checkValidation)
+        addSource(habitName, this@HabitViewModel::checkValidation)
+        addSource(habitPoints, this@HabitViewModel::checkValidation)
     }
 
     private fun checkValidation(value: Any) {
@@ -96,7 +96,7 @@ class AddEditHabitViewModel : ViewModel() {
                     point = habitPoints.value ?: 0
                 )
             )
-            _cancelClickEvent.postValue(Event(DialogCancelClickEvent.OnHabitAddClick))
+            _dialogClickEvent.postValue(Event(DialogClickEvent.OnHabitAddClick))
         }
     }
 
@@ -110,12 +110,12 @@ class AddEditHabitViewModel : ViewModel() {
                     )
                 )
             }
-            _cancelClickEvent.postValue(Event(DialogCancelClickEvent.OnHabitUpdateClick))
+            _dialogClickEvent.postValue(Event(DialogClickEvent.OnHabitUpdateClick))
         }
     }
 
     fun cancelDialog() {
-        _cancelClickEvent.postValue(Event(DialogCancelClickEvent.OnDialogCancelClick))
+        _dialogClickEvent.postValue(Event(DialogClickEvent.OnDialogClick))
 
     }
 }

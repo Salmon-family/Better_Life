@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.edit.deleteHabitDialog.DeleteHabitDialogViewModel" />
+            type="com.karrar.betterlife.ui.habits.deleteHabitDialog.DeleteHabitDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

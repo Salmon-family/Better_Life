@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.edit.HabitViewModel" />
+            type="com.karrar.betterlife.ui.habits.HabitViewModel" />
 
     </data>
 
@@ -23,7 +23,7 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             app:items="@{viewModel.habits}"
-            tools:listitem="@layout/item_edit_habit"
+            tools:listitem="@layout/item_habit"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

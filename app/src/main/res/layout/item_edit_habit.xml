@@ -15,7 +15,7 @@
             type="com.karrar.betterlife.ui.HabitInteractionListener" />
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.edit.HabitViewModel" />
+            type="com.karrar.betterlife.ui.habits.HabitViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView

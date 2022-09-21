@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.edit.deleteHabitDialog
+package com.karrar.betterlife.ui.habits.deleteHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

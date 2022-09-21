@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.edit
+package com.karrar.betterlife.ui.habits
 
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit

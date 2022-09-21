@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.home.dialog.AddEditHabitViewModel" />
+            type="com.karrar.betterlife.ui.habits.habitDialog.HabitViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rounded_dialog"
         android:padding="@dimen/spacing_large"
-        tools:context=".ui.home.dialog.AddEditHabitDialog">
+        tools:context=".ui.habits.habitDialog.HabitDialog">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_new_habit"
