@@ -51,4 +51,8 @@
     <string name="home">Home</string>
     <string name="chart">Chart</string>
 
+    <!-- notifications strings -->
+    <string name="notification_title">Reminder</string>
+    <string name="notification_subtitle">I would like to remind you to evaluate your habit</string>
+
 </resources>
