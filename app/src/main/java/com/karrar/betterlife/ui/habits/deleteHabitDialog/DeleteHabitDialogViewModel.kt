@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.edit.deleteHabitDialog
+package com.karrar.betterlife.ui.habits.deleteHabitDialog
 
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.Habit

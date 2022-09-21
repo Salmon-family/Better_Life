@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.edit.editHabitDialog
+package com.karrar.betterlife.ui.habits.deleteHabitDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -7,34 +7,35 @@ import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.karrar.betterlife.R
-import com.karrar.betterlife.databinding.DialogEditHabitBinding
+import com.karrar.betterlife.databinding.DialogDeleteHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
 
-class EditHabitDialog : BaseDialogFragment<DialogEditHabitBinding, EditHabitDialogViewModel>() {
+class DeleteHabitDialog :
+    BaseDialogFragment<DialogDeleteHabitBinding, DeleteHabitDialogViewModel>() {
 
-    private val args: EditHabitDialogArgs by navArgs()
+    private val args: DeleteHabitDialogArgs by navArgs()
 
-    override val viewModelClass: Class<EditHabitDialogViewModel> =
-        EditHabitDialogViewModel::class.java
-    override val layoutIdFragment: Int = R.layout.dialog_edit_habit
+    override val viewModelClass: Class<DeleteHabitDialogViewModel> =
+        DeleteHabitDialogViewModel::class.java
+    override val layoutIdFragment: Int = R.layout.dialog_delete_habit
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setWidthPercent(90)
-        onEditHabitDone()
+        onDeleteHabitDone()
         cancelDialog()
-        viewModel.getHabitById(args.sendHabitId)
+        viewModel.getHabitById(args.deleteHabitId)
     }
 
-    private fun onEditHabitDone() {
-        viewModel.isEditHabit.observe(this, EventObserve {
+    private fun onDeleteHabitDone() {
+        viewModel.isDeleteHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
-                Toast.makeText(this.context, R.string.toast_update, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, R.string.delete, Toast.LENGTH_SHORT).show()
             }
         })
     }

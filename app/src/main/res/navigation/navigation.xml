@@ -11,9 +11,6 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_addHabitDialog"
-            app:destination="@id/addHabitDialog" />
-        <action
             android:id="@+id/action_homeFragment_to_statisticsFragment"
             app:destination="@id/statisticsFragment" />
     </fragment>
@@ -22,38 +19,32 @@
         android:name="com.karrar.betterlife.ui.statistics.StatisticsFragment"
         android:label="StatisticsFragment"
         tools:layout="@layout/fragment_statistics"/>
-    <dialog
-        android:id="@+id/addHabitDialog"
-        android:name="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitDialog"
-        android:label="AddHabitDialog"
-        tools:layout="@layout/dialog_add_habit" />
 
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.karrar.betterlife.ui.edit.HabitFragment"
+        android:name="com.karrar.betterlife.ui.habits.HabitFragment"
         android:label="EditFragment"
-        tools:layout="@layout/fragment_edit_habit">
-        <action
-            android:id="@+id/action_editFragment_to_editHabitDialog"
-            app:destination="@id/editHabitDialog" />
+        tools:layout="@layout/fragment_habit">
         <action
             android:id="@+id/action_editFragment_to_deleteHabitDialog"
             app:destination="@id/deleteHabitDialog" />
+        <action
+            android:id="@+id/action_editFragment_to_addEditHabitDialog"
+            app:destination="@id/addEditHabitDialog" />
     </fragment>
     <dialog
-        android:id="@+id/editHabitDialog"
-        android:name="com.karrar.betterlife.ui.edit.editHabitDialog.EditHabitDialog"
-        android:label="EditHabitDialog"
-        tools:layout="@layout/dialog_edit_habit" >
-        <argument
-            android:name="sendHabitId"
+        android:id="@+id/deleteHabitDialog"
+        android:name="com.karrar.betterlife.ui.habits.deleteHabitDialog.DeleteHabitDialog"
+        android:label="DeleteHabitDialog" >
+        <argument android:name="deleteHabitId"
             app:argType="long" />
     </dialog>
     <dialog
-        android:id="@+id/deleteHabitDialog"
-        android:name="com.karrar.betterlife.ui.edit.deleteHabitDialog.DeleteHabitDialog"
-        android:label="DeleteHabitDialog" >
-        <argument android:name="deleteHabitId"
+        android:id="@+id/addEditHabitDialog"
+        android:name="com.karrar.betterlife.ui.habits.habitDialog.HabitDialog"
+        android:label="AddEditHabitDialog" >
+        <argument
+            android:name="add_edit_habit"
             app:argType="long" />
     </dialog>
 </navigation>
