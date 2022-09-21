@@ -18,10 +18,11 @@ abstract class BaseAdapter<T>(
     abstract val layoutID: Int
 
     fun setItems(newItems: List<T>) {
-        val diffResult = DiffUtil.calculateDiff(BaseDiffUtil(items, newItems) { oldItem, newItem ->
-            notifyItemChanged(newItems.indexOf(newItem))
-            areItemsSame(oldItem, newItem)
-        })
+        val diffResult = DiffUtil.calculateDiff(
+            BaseDiffUtil(items, newItems,
+                { oldItem, newItem -> areItemsSame(oldItem, newItem) },
+                { oldItem, newItem -> areItemsSame(oldItem, newItem) })
+        )
         items = newItems
         diffResult.dispatchUpdatesTo(this)
     }
@@ -30,6 +31,7 @@ abstract class BaseAdapter<T>(
         return oldItem?.equals(newItem) == true
     }
 
+    abstract fun areContentsSame(oldItem: T, newItem: T): Boolean
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
         ItemViewHolder(
