@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.karrar.betterlife.ui.statistics.StatisticsViewModel" />
@@ -29,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:onClick="@{() -> viewModel.chartsDaily()}"
+                android:onClick="@{()-> viewModel.chartsForPreviousAndNextDay()}"
                 android:text="Daily"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -39,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:onClick="@{() -> viewModel.chartsWeekly()}"
                 android:text="Weekly"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -48,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:onClick="@{() -> viewModel.chartsForPreviousAndNextMonth()}"
                 android:text="Monthly"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -75,6 +78,27 @@
                 tools:ignore="MissingClass" />
 
         </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.previousDays()}"
+            android:src="@drawable/ic_arrow_button_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:onClick="@{() -> viewModel.nextDays()}"
+            android:src="@drawable/ic_arrow_button_right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
