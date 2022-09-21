@@ -57,7 +57,11 @@ class StatisticsViewModel : ViewModel() {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
         val cal = Calendar.getInstance()
+
+        var counter = _count.value?:1
+        cal.add(Calendar.DAY_OF_YEAR, -6 * counter--)
         val endOfWeek = cal.time.time
+
         cal.add(Calendar.DAY_OF_YEAR, -6 * _count.value!!)
         val startOfWeek = cal.time.time
 
