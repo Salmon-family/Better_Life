@@ -67,6 +67,13 @@ class TasksViewModel : ViewModel(), TasksInteractionListener {
     }
 
 
+    override fun onTextChangedListener(task: Task) {
+        viewModelScope.launch {
+            repository.update(task)
+        }
+    }
+
+
     fun onClickFloatingButton() {
         _onCLickFloatingButtonEvent.postValue(Event(true))
     }

@@ -130,3 +130,25 @@ fun showWhenEmptyTaskList(view: LottieAnimationView, isEmptyList: Boolean?) {
 fun showWhenNotEmptyTaskList(view: View, isEmptyList: Boolean?) {
     view.isVisible = isEmptyList == false
 }
+
+@BindingAdapter("app:doOnTextChanged")
+fun doOnTextChanged(view: EditText, function: () -> Unit) {
+    view.addTextChangedListener(object : TextWatcher {
+        var timer: CountDownTimer? = null
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            view.setSelection(view.length())
+        }
+
+        override fun afterTextChanged(editable: Editable?) {
+            timer?.cancel()
+            timer = object : CountDownTimer(1000, 1500) {
+                override fun onTick(millisUntilFinished: Long) {}
+                override fun onFinish() {
+                    function()
+                }
+            }.start()
+        }
+    })
+}
