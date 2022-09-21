@@ -2,7 +2,6 @@ package com.karrar.betterlife.ui.home
 
 import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.DailyHabits
-import com.karrar.betterlife.data.database.entity.Day
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
 import com.karrar.betterlife.util.Event
@@ -26,20 +25,30 @@ class HomeViewModel : ViewModel() {
     val todayHabitsList = MutableLiveData<List<String>>()
 
     init {
-        //for test
-//        viewModelScope.launch {
-//            for (i in 0..10)
-//                repository.insertNewHabit(Habit(name = "test$i", point = 10 + i))
-//        }
-        /////
-
         isDoneForToday()
+        setDefaultHabits()
     }
 
     private fun isDoneForToday() {
         viewModelScope.launch {
             val todayHabits = repository.isAnyHabitsInThisDay(Date().time)
             _doneToday.postValue(!todayHabits.isNullOrEmpty())
+        }
+    }
+
+    private fun setDefaultHabits() {
+        viewModelScope.launch {
+            if (allHabits.value.isNullOrEmpty()) {
+                val habits = mutableListOf<Habit>()
+                for (i in 0..10) {
+                    if (i % 2 == 0) {
+                        habits.add(Habit(name = "test$i", point = 10 + i))
+                    } else {
+                        habits.add(Habit(name = "test$i", point = (10 + i) * -1))
+                    }
+                }
+                repository.insertHabits(habits)
+            }
         }
     }
 
@@ -50,9 +59,6 @@ class HomeViewModel : ViewModel() {
 
     private fun saveData() {
         viewModelScope.launch {
-            val day = Day(date = Date())
-            repository.insertToday(day)
-            val dayToInsert = repository.getdayID(day.date.time)
             val habitsPerDay = mutableListOf<DailyHabits>()
             todayHabitsList.value?.forEach { name ->
                 val habit = allHabits.value?.first {
@@ -60,7 +66,7 @@ class HomeViewModel : ViewModel() {
                 }
                 habit?.let {
                     habitsPerDay.add(
-                        DailyHabits(dayID = dayToInsert!!.dayID, habitID = habit.habitID)
+                        DailyHabits(dayID = Date(), habitID = habit.habitID)
                     )
                 }
             }
