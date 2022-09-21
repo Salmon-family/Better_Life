@@ -1,5 +1,6 @@
 package com.karrar.betterlife.ui.statistics
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +17,10 @@ class StatisticsViewModel : ViewModel() {
     private val _charts = MutableLiveData<DataCharts>()
     val charts: LiveData<DataCharts>
         get() = _charts
+
+    private val _count = MutableLiveData<Int>(1)
+    val count: LiveData<Int>
+        get() = _count
 
     init {
         chartsDaily()
@@ -43,6 +48,36 @@ class StatisticsViewModel : ViewModel() {
         }
     }
 
+    fun dailyCount() {
+        _count.postValue(_count.value?.plus(1))
+        chartsLastDaily()
+    }
+
+    fun chartsLastDaily() {
+        val dailyList = mutableListOf<Any>()
+        val daysName = mutableListOf<String>()
+        val cal = Calendar.getInstance()
+        val endOfWeek = cal.time.time
+        cal.add(Calendar.DAY_OF_YEAR, -6 * _count.value!!)
+        val startOfWeek = cal.time.time
+
+        Log.i("TAG", "chartsLastDaily: $endOfWeek $startOfWeek count: ${_count.value!!}")
+
+        viewModelScope.launch {
+            val points = repository.getPointsInRange(startOfWeek, endOfWeek)
+            for (point in points) {
+                Log.i("test points result", "chartsLastDaily: ${point.dateResult}")
+                dailyList.add(point.pointsResult)
+                val dayName =
+                    android.text.format.DateFormat.format("EEEE", point.dateResult).toString()
+                daysName.add(dayName)
+            }
+            _charts.postValue(DataCharts(dailyList, daysName))
+        }
+    }
+
+
+
     fun chartsMonthly() {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
@@ -52,6 +87,26 @@ class StatisticsViewModel : ViewModel() {
 
         viewModelScope.launch {
             val points = repository.getPointDuringYearWithDate(nextYear)
+            for (point in points) {
+                dailyList.add(point.pointsResult)
+                val monthname =
+                    android.text.format.DateFormat.format("MMMM", point.dateResult).toString()
+                daysName.add(monthname)
+            }
+            _charts.postValue(DataCharts(dailyList, daysName))
+        }
+    }
+
+    fun chartsYearly() {
+        val dailyList = mutableListOf<Any>()
+        val daysName = mutableListOf<String>()
+
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.YEAR, -1)
+        val lastYear = cal.time.time
+
+        viewModelScope.launch {
+            val points = repository.getPointDuringYearWithDate(lastYear)
             for (point in points) {
                 dailyList.add(point.pointsResult)
                 val monthname =
@@ -77,5 +132,6 @@ class StatisticsViewModel : ViewModel() {
             _charts.postValue(DataCharts(dailyList, daysName))
         }
     }
+
 
 }

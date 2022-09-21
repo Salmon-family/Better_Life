@@ -9,7 +9,8 @@ import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.entity.DailyHabits
 import com.karrar.betterlife.data.database.entity.Habit
 
-@Database(entities = [Habit::class, DailyHabits::class], version = 1)
+
+@Database(entities = [Habit::class, DailyHabits::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class BetterLiveDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
@@ -32,11 +33,12 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(
-            context: Context, dateConverter: DateConverter
+            context: Context, dateConverter: DateConverter,
         ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
                 .addTypeConverter(dateConverter)
 //                .createFromAsset(DEFAULT_DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }
