@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogAddEditHabitBinding
@@ -13,8 +12,6 @@ import com.karrar.betterlife.util.DialogCancelClickEvent
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
 import com.karrar.betterlife.util.showSnackMessage
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 class AddEditHabitDialog : BaseDialogFragment<DialogAddEditHabitBinding, AddEditHabitViewModel>() {
 
@@ -33,11 +30,9 @@ class AddEditHabitDialog : BaseDialogFragment<DialogAddEditHabitBinding, AddEdit
     }
 
     private fun dialogEventCancelClick() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.cancelClickEvent.collectLatest { event ->
-                dialogCancelEvent(event)
-            }
-        }
+        viewModel.cancelClickEvent.observe(this, EventObserve {
+            dialogCancelEvent(it)
+        })
     }
 
     private fun dialogCancelEvent(event: DialogCancelClickEvent) {
@@ -47,44 +42,19 @@ class AddEditHabitDialog : BaseDialogFragment<DialogAddEditHabitBinding, AddEdit
             }
             is DialogCancelClickEvent.OnHabitUpdateClick -> {
                 dismiss()
-                activity?.showSnackMessage(R.id.constraint_habit_list_layout, getString(R.string.toast_update))
+                activity?.showSnackMessage(
+                    R.id.constraint_habit_list_layout,
+                    getString(R.string.toast_update)
+                )
             }
             is DialogCancelClickEvent.OnHabitAddClick -> {
                 dismiss()
-                activity?.showSnackMessage(R.id.constraint_habit_list_layout, getString(R.string.toast_success))
+                activity?.showSnackMessage(
+                    R.id.constraint_habit_list_layout,
+                    getString(R.string.toast_success)
+                )
             }
         }
     }
 
-//    private fun dialogEvent(){
-//        onCancelDialog()
-//        onUpdateDialog()
-//        onAddDialog()
-//    }
-
-//    private fun onCancelDialog() {
-//        viewModel.isDialogCancel.observe(this, EventObserve {
-//            if (it) {
-//                dismiss()
-//            }
-//        })
-//    }
-//
-//    private fun onUpdateDialog() {
-//        viewModel.isHabitUpdate.observe(this, EventObserve {
-//            if (it) {
-//                dismiss()
-//                activity?.showSnackMessage(R.id.constraint_habit_list_layout,getString(R.string.toast_update))
-//            }
-//        })
-//    }
-//
-//    private fun onAddDialog() {
-//        viewModel.isHabitAdd.observe(this, EventObserve {
-//            if (it) {
-//                dismiss()
-//                activity?.showSnackMessage(R.id.constraint_habit_list_layout,getString(R.string.toast_success))
-//            }
-//        })
-//    }
 }
