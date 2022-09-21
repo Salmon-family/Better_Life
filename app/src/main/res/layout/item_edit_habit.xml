@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:onClick="@{ () ->listener.onClickDeleteHabit(item.id)}"
+                android:onClick="@{ () ->listener.onClickDeleteHabit(item.habitID)}"
                 android:src="@drawable/ic_delete"
                 android:backgroundTint="@android:color/transparent"
                 app:layout_constraintBottom_toTopOf="@+id/view"
@@ -94,7 +94,7 @@
                 android:layout_marginEnd="@dimen/spacing_small"
                 android:src="@drawable/ic_edit"
                 android:backgroundTint="@android:color/transparent"
-                android:onClick="@{ () ->listener.onClickEditHabit(item.id)}"
+                android:onClick="@{ () ->listener.onClickEditHabit(item.habitID)}"
                 app:layout_constraintEnd_toStartOf="@+id/delete_button"
                 app:layout_constraintTop_toTopOf="@+id/delete_button" />
 

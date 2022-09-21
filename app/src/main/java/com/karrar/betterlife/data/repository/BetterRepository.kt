@@ -14,12 +14,14 @@ class BetterRepository {
 
     suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
 
+    suspend fun deleteHabit(habit: Habit) {
+        habitDao.delete(habit)
+        habitDao.deleteHabitIdFromDailyHabit(habit.habitID)
+    }
+
     fun getAllHabit() = habitDao.getAllHabit()
 
-
-    /**
-     * Daily ..
-     * */
+    suspend fun getHabitById(habitId: Long) = habitDao.getHabitById(habitId)
 
     suspend fun isAnyHabitsInThisDay(day: Long)= habitDao.isAnyHabitsInThisDay(day)
 

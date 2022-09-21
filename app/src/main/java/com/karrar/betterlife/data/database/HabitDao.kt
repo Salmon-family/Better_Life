@@ -27,11 +27,17 @@ interface HabitDao {
     @Delete
     suspend fun delete(habit: Habit)
 
+    @Query("delete from dailyhabits where habitID  == :habitId")
+    suspend fun deleteHabitIdFromDailyHabit(habitId: Long)
+
     @Query("SELECT * FROM habit")
     fun getAllHabit(): Flow<List<Habit>>
 
+    @Query("SELECT * FROM habit WHERE habitID == :id")
+    suspend fun getHabitById(id: Long): Habit?
+
     @Query(" SELECT * FROM dailyhabits WHERE date(dayID / 1000,'unixepoch')  ==  date(:day / 1000,'unixepoch')")
-    suspend fun isAnyHabitsInThisDay(day: Long): List<DailyHabits>
+    suspend fun isAnyHabitsInThisDay(day: Long): List<DailyHabits>?
 
     @Query("SELECT SUM(HABIT.point) FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID AND(dailyhabits.dayID == :day)")
     suspend fun getAllHabitPerDay(day: Long): Int

@@ -66,7 +66,7 @@ class HabitViewModel : ViewModel() {
     private fun initializeDialogToUpdateHabit(habitId: Long) {
         _clickEvent.postValue(DialogState.UPDATE)
         viewModelScope.launch {
-            val habit = repository.getHabitByID(habitId)
+            val habit = repository.getHabitById(habitId)
             _habit.postValue(habit)
             habitName.postValue(habit?.name)
             habitPoints.postValue(habit?.point)
