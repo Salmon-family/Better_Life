@@ -10,8 +10,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.Chip
 import com.karrar.betterlife.R
@@ -116,4 +118,15 @@ fun setMaxNumberOfLines(view: EditText, numOfLines: Int) {
             }
         }
     })
+}
+
+@BindingAdapter("app:showWhenEmptyTaskList")
+fun showWhenEmptyTaskList(view: LottieAnimationView, isEmptyList: Boolean?) {
+    view.isVisible = isEmptyList != false
+    view.playAnimation()
+}
+
+@BindingAdapter("app:showWhenNotEmptyTaskList")
+fun showWhenNotEmptyTaskList(view: View, isEmptyList: Boolean?) {
+    view.isVisible = isEmptyList == false
 }

@@ -12,14 +12,18 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
 
     override fun onStart() {
         super.onStart()
+
         setTasksAdapter()
         observeEvents()
+        observeTasks()
     }
+
 
     private fun setTasksAdapter() {
         val adapter = TasksAdapter(mutableListOf(), viewModel)
         binding.recyclerToDo.adapter = adapter
     }
+
 
     private fun observeEvents() {
         viewModel.onCLickFloatingButtonEvent.observe(viewLifecycleOwner, EventObserve {
@@ -31,6 +35,11 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
         findNavController().navigate(
             TasksFragmentDirections.actionToDoFragmentToTaskAdditionDialog()
         )
+    }
+
+
+    private fun observeTasks() {
+        viewModel.tasks.observe(this) { viewModel.checkIfEmptyList() }
     }
 
 }

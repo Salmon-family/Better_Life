@@ -28,11 +28,25 @@ class TasksViewModel : ViewModel(), TasksInteractionListener {
         get() = _onCLickAddEvent
 
 
+    private val _isEmptyList = MutableLiveData(false)
+    val isEmptyList: LiveData<Boolean> = _isEmptyList
+
+
+    fun checkIfEmptyList() {
+        viewModelScope.launch {
+            if (tasks.value?.isEmpty() == true) {
+                _isEmptyList.postValue(true)
+            } else {
+                _isEmptyList.postValue(false)
+            }
+        }
+    }
+
+
     private fun addTask() {
         viewModelScope.launch {
             taskText.value?.let { text ->
                 repository.insertNewTask(Task(0, text, Date(), false))
-                taskText.postValue("")
             }
         }
     }
