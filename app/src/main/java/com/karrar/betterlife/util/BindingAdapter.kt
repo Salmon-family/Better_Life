@@ -1,8 +1,12 @@
 package com.karrar.betterlife.util
 
 import android.graphics.Paint
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.view.View
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -90,4 +94,26 @@ fun changeChipColorBasedOnState(view: CheckBox, task: Task?) {
 @BindingAdapter("app:checkBasedOnState")
 fun checkBasedOnState(view: CheckBox, task: Task?) {
     task?.isChecked?.let { view.isChecked = it }
+}
+
+@BindingAdapter("app:maxNumberOfLines")
+fun setMaxNumberOfLines(view: EditText, numOfLines: Int) {
+    if (numOfLines > 1) {
+        view.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
+    } else {
+        view.inputType = InputType.TYPE_CLASS_TEXT
+    }
+
+    view.isSingleLine = false
+
+    view.addTextChangedListener(object : TextWatcher {
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {}
+
+        override fun afterTextChanged(editable: Editable) {
+            if (null != view.layout && view.layout.lineCount > numOfLines) {
+                view.text?.let { it.delete(it.length - 1, it.length) }
+            }
+        }
+    })
 }

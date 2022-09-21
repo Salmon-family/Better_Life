@@ -31,7 +31,7 @@
         tools:layout="@layout/dialog_add_habit" />
 
     <fragment
-        android:id="@+id/toDoFragment"
+        android:id="@+id/tasksFragment"
         android:name="com.karrar.betterlife.ui.tasks.TasksFragment"
         android:label="ToDoFragment"
         tools:layout="@layout/fragment_tasks">

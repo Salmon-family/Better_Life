@@ -43,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:maxLines="4"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.taskText}" />
+                android:text="@={viewModel.taskText}"
+                app:maxNumberOfLines="@{4}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

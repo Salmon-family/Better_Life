@@ -17,7 +17,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_medium"
+        android:backgroundTint="@android:color/transparent"
         app:cardCornerRadius="@dimen/radius_small"
         app:strokeWidth="0dp">
 
@@ -29,6 +29,7 @@
                 android:id="@+id/checkbox"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
+                android:layout_marginStart="@dimen/spacing_medium"
                 android:layout_marginTop="4dp"
                 android:onClick="@{() -> listener.onClickCheck(item)}"
                 app:checkBasedOnState="@{item}"
@@ -43,10 +44,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/spacing_medium"
-                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:background="@android:color/transparent"
                 android:ellipsize="end"
-                android:maxLines="4"
                 android:paddingBottom="@dimen/spacing_small"
                 android:text="@{item.note}"
                 app:colorBasedOnState="@{item}"
@@ -57,14 +57,14 @@
 
             <ImageView
                 android:id="@+id/delete"
-                android:layout_width="@dimen/icon_medium"
-                android:layout_height="@dimen/icon_medium"
-                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="@dimen/spacing_medium"
                 android:onClick="@{() -> listener.onClickDelete(item)}"
                 android:src="@drawable/ic_x"
                 app:colorBasedOnState="@{item}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_name"
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
