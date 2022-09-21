@@ -19,16 +19,16 @@ class StatisticsViewModel : ViewModel() {
     val charts: LiveData<DataCharts>
         get() = _charts
 
-    private val _count = MutableLiveData<Int>(1)
+    private val _counter = MutableLiveData<Int>(0)
     val count: LiveData<Int>
-        get() = _count
+        get() = _counter
 
-    private val _statisticsCases = MutableLiveData<StatisticsCases>(StatisticsCases.DAILY)
+    private val _statisticsCases = MutableLiveData<StatisticsCases>()
     val statisticsCases: LiveData<StatisticsCases>
         get() = _statisticsCases
 
     init {
-        chartsDaily()
+        chartsForPreviousAndNextDay(6)
     }
 
     fun chartsDaily() {
@@ -36,14 +36,14 @@ class StatisticsViewModel : ViewModel() {
         val daysName = mutableListOf<String>()
 
         _statisticsCases.postValue(StatisticsCases.DAILY)
-        _count.postValue(0)
+        _counter.postValue(0)
 
         val cal = Calendar.getInstance()
         val endOfWeek = cal.time.time
         cal.add(Calendar.DAY_OF_YEAR, -6)
         val startOfWeek = cal.time.time
 
-        Log.i("TAG DAILY", "startOfWeek: $startOfWeek endOfWeek: $endOfWeek count: ${_count.value}")
+        Log.i("TAG DAILY", "startOfWeek: $startOfWeek endOfWeek: $endOfWeek count: ${_counter.value}")
 
         viewModelScope.launch {
             val points = repository.getPointsInRange(startOfWeek, endOfWeek)
@@ -63,7 +63,7 @@ class StatisticsViewModel : ViewModel() {
         val daysName = mutableListOf<String>()
 
         _statisticsCases.postValue(StatisticsCases.WEEKLY)
-        _count.postValue(0)
+        _counter.postValue(0)
 
         viewModelScope.launch {
             val points = repository.getPointsWeekly()
@@ -82,14 +82,14 @@ class StatisticsViewModel : ViewModel() {
         val daysName = mutableListOf<String>()
 
         _statisticsCases.postValue(StatisticsCases.MONTHLY)
-        _count.postValue(0)
+        _counter.postValue(0)
 
 
         val cal = Calendar.getInstance()
         cal.add(Calendar.YEAR, +1)
         val nextYear = cal.time.time
 
-        Log.i("TAG YEAR", "nextYear: $nextYear count: ${_count.value}")
+        Log.i("TAG YEAR", "nextYear: $nextYear count: ${_counter.value}")
 
         viewModelScope.launch {
             val points = repository.getPointDuringYearWithDate(nextYear)
@@ -105,8 +105,8 @@ class StatisticsViewModel : ViewModel() {
 
 
     fun nextDays() {
-        var increaseCounter = _count.value ?: 0
-        _count.postValue(++increaseCounter)
+        var increaseCounter = _counter.value ?: 0
+        _counter.postValue(++increaseCounter)
         when (_statisticsCases.value) {
             StatisticsCases.DAILY -> chartsForPreviousAndNextDay(6)
             StatisticsCases.WEEKLY -> chartsForPreviousAndNextWeek()
@@ -116,8 +116,8 @@ class StatisticsViewModel : ViewModel() {
     }
 
     fun previousDays() {
-        var decreaseCounter = _count.value ?: 0
-        _count.postValue(--decreaseCounter)
+        var decreaseCounter = _counter.value ?: 0
+        _counter.postValue(--decreaseCounter)
         when (_statisticsCases.value) {
             StatisticsCases.DAILY -> chartsForPreviousAndNextDay(6)
             StatisticsCases.WEEKLY -> chartsForPreviousAndNextWeek()
@@ -126,7 +126,6 @@ class StatisticsViewModel : ViewModel() {
         }
     }
 
-
     private fun chartsForPreviousAndNextDay(count: Int) {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
@@ -134,14 +133,15 @@ class StatisticsViewModel : ViewModel() {
         _statisticsCases.postValue(StatisticsCases.DAILY)
 
         val cal = Calendar.getInstance()
-        var counter = _count.value ?: 1
-        cal.add(Calendar.DAY_OF_YEAR, count * counter--)
-        val endOfWeek = cal.time.time
-
-        cal.add(Calendar.DAY_OF_YEAR, count * _count.value!!)
+        var counter = _counter.value ?: 0
+        cal.add(Calendar.DAY_OF_YEAR, count * _counter.value!!)
         val startOfWeek = cal.time.time
 
-        Log.i("TAG DAILY", "startOfWeek: $startOfWeek endOfWeek: $endOfWeek count: ${_count.value}")
+        cal.add(Calendar.DAY_OF_YEAR, count * --counter)
+        val endOfWeek = cal.time.time
+
+
+        Log.i("TAG DAILY", "startOfWeek: $startOfWeek endOfWeek: $endOfWeek count: ${_counter.value}")
 
         viewModelScope.launch {
             val points = repository.getPointsInRange(startOfWeek, endOfWeek)
@@ -167,11 +167,11 @@ class StatisticsViewModel : ViewModel() {
         _statisticsCases.postValue(StatisticsCases.MONTHLY)
 
         val cal = Calendar.getInstance()
-        var counter = _count.value ?: 1
-        cal.add(Calendar.YEAR, count * counter)
+        var counter = _counter.value ?: 1
+        cal.add(Calendar.YEAR, count * --counter)
         val nextYear = cal.time.time
 
-        Log.i("TAG YEAR", "nextYear: $nextYear count: ${_count.value}")
+        Log.i("TAG YEAR", "nextYear: $nextYear count: ${_counter.value}")
 
         viewModelScope.launch {
             val points = repository.getPointDuringYearWithDate(nextYear)
