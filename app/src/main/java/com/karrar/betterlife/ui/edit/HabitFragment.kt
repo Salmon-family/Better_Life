@@ -7,7 +7,7 @@ import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.FragmentEditHabitBinding
 import com.karrar.betterlife.ui.HabitAdapter
 import com.karrar.betterlife.ui.base.BaseFragment
-import com.karrar.betterlife.util.EventObserve
+import com.karrar.betterlife.util.HabitFragmentClickEvent
 
 class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>() {
     override val layoutIdFragment = R.layout.fragment_edit_habit
@@ -16,12 +16,7 @@ class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHabitAdapter()
-        observeEvents()
-    }
-
-    private fun observeEvents() {
-        openEditHabitDialog()
-        openDeleteHabitDialog()
+        clickEvent()
     }
 
     private fun setHabitAdapter() {
@@ -30,21 +25,19 @@ class HabitFragment : BaseFragment<FragmentEditHabitBinding, HabitViewModel>() {
 
     }
 
-    private fun openEditHabitDialog() {
-        viewModel.navigateTOEditHabitDialog.observe(this, EventObserve { id ->
-            id.let {
-                Navigation.findNavController(binding.root)
-                    .navigate(HabitFragmentDirections.actionEditFragmentToEditHabitDialog(it))
-            }
-        })
-    }
+    private fun clickEvent(){
+        val navigate = Navigation.findNavController(binding.root)
+        viewModel.onClickEvent.observe(viewLifecycleOwner){ event->
+            when(event){
+                is HabitFragmentClickEvent.OnAddHabit-> navigate.navigate(
+                    HabitFragmentDirections.actionEditFragmentToAddEditHabitDialog(""))
 
-    private fun openDeleteHabitDialog() {
-        viewModel.navigateTODeleteHabitDialog.observe(this, EventObserve { id ->
-            id.let {
-                Navigation.findNavController(binding.root)
-                    .navigate(HabitFragmentDirections.actionEditFragmentToDeleteHabitDialog(it))
+                is HabitFragmentClickEvent.OnEditHabit-> navigate.navigate(
+                    HabitFragmentDirections.actionEditFragmentToAddEditHabitDialog("${event.long}"))
+
+                is HabitFragmentClickEvent.OnDeleteHabit-> navigate.navigate(
+                    HabitFragmentDirections.actionEditFragmentToDeleteHabitDialog(event.long))
             }
-        })
+        }
     }
 }

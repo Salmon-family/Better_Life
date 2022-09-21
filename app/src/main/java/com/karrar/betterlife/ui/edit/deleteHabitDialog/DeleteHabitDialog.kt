@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogDeleteHabitBinding
-import com.karrar.betterlife.databinding.DialogEditHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent

@@ -9,20 +9,21 @@
 
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitViewModel" />
+            type="com.karrar.betterlife.ui.home.dialog.AddEditHabitViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rounded_dialog"
-        android:padding="@dimen/spacing_large">
+        android:padding="@dimen/spacing_large"
+        tools:context=".ui.home.dialog.AddEditHabitDialog">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_new_habit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_habit"
+            android:text="@{viewModel.dialogTitle}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -166,11 +167,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:enabled="@{viewModel.addHabitValidation}"
-            android:onClick="@{() -> viewModel.onClickAddHabit()}"
-            android:text="@string/add"
+            android:onClick="@{() -> viewModel.applyButtonClick()}"
+            android:text="@{viewModel.dialogButtonText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_habit_hint"
             app:layout_constraintTop_toBottomOf="@+id/text_habit_hint" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_close"
@@ -186,10 +188,3 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-
-
-
-
-
-
