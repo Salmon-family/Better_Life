@@ -3,6 +3,7 @@ package com.karrar.betterlife.ui.tasks
 import androidx.navigation.fragment.findNavController
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.FragmentTasksBinding
+import com.karrar.betterlife.ui.TasksAdapter
 import com.karrar.betterlife.ui.base.BaseFragment
 import com.karrar.betterlife.util.EventObserve
 
@@ -21,7 +22,7 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
 
     private fun setTasksAdapter() {
         val adapter = TasksAdapter(mutableListOf(), viewModel)
-        binding.recyclerToDo.adapter = adapter
+        binding.recyclerTasks.adapter = adapter
     }
 
 

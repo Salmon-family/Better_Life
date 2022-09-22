@@ -60,7 +60,7 @@
 
     <dialog
         android:id="@+id/taskAdditionDialog"
-        android:name="com.karrar.betterlife.ui.tasks.dialog.TaskAdditionDialog"
+        android:name="com.karrar.betterlife.ui.tasks.tasksDialog.TaskAdditionDialog"
         android:label="TaskAdditionDialog"
         tools:layout="@layout/dialog_task_addition" />
 </navigation>
