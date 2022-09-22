@@ -76,7 +76,7 @@ class HabitViewModel : ViewModel() {
     }
 
     fun applyButtonClick() {
-        _clickEvent.value?.let {
+        _clickEvent.value?.let { it ->
             when (it) {
                 DialogState.UPDATE -> {
                     updateHabit()
@@ -90,13 +90,18 @@ class HabitViewModel : ViewModel() {
 
     private fun addNewHabit() {
         viewModelScope.launch {
-            repository.insertNewHabit(
-                Habit(
-                    name = habitName.value.toString(),
-                    point = habitPoints.value ?: 0
+            val alreadyFound = repository.isHabitAdded(habitName.value.toString())
+            if (alreadyFound == null) {
+                repository.insertNewHabit(
+                    Habit(
+                        name = habitName.value.toString(),
+                        point = habitPoints.value ?: 0
+                    )
                 )
-            )
-            _dialogClickEvent.postValue(Event(DialogClickEvent.OnHabitAddClick))
+                _dialogClickEvent.postValue(Event(DialogClickEvent.OnHabitAddClick))
+            } else {
+                _dialogClickEvent.postValue(Event(DialogClickEvent.OnDialogFailedAddHabit))
+            }
         }
     }
 
@@ -116,6 +121,6 @@ class HabitViewModel : ViewModel() {
 
     fun cancelDialog() {
         _dialogClickEvent.postValue(Event(DialogClickEvent.OnDialogClick))
-
     }
+
 }

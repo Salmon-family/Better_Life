@@ -30,8 +30,11 @@ interface HabitDao {
     @Query("delete from dailyhabits where habitID  == :habitId")
     suspend fun deleteHabitIdFromDailyHabit(habitId: Long)
 
-    @Query("SELECT * FROM habit")
+    @Query("SELECT * FROM Habit")
     fun getAllHabit(): Flow<List<Habit>>
+
+    @Query("SELECT * FROM Habit WHERE name == :name")
+    suspend fun isHabitAdded(name: String): Habit?
 
     @Query("SELECT * FROM habit WHERE habitID == :id")
     suspend fun getHabitById(id: Long): Habit?
@@ -52,11 +55,13 @@ interface HabitDao {
     suspend fun getPointsMonthlyWithDate(): List<PointsResult>
 
 
-    @Query("SELECT SUM(HABIT.point) AS pointsResult , " +
-            "DailyHabits.dayID AS dateResult " +
-            "FROM HABIT, DailyHabits " +
-            "WHERE HABIT.habitID == dailyhabits.habitID " +
-            "GROUP BY strftime('%w', dayID / 1000, 'unixepoch')")
+    @Query(
+        "SELECT SUM(HABIT.point) AS pointsResult , " +
+                "DailyHabits.dayID AS dateResult " +
+                "FROM HABIT, DailyHabits " +
+                "WHERE HABIT.habitID == dailyhabits.habitID " +
+                "GROUP BY strftime('%w', dayID / 1000, 'unixepoch')"
+    )
     suspend fun getPointsWeekly(): List<PointsResult>
 
     /**

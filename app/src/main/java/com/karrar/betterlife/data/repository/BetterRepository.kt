@@ -21,6 +21,8 @@ class BetterRepository {
 
     fun getAllHabit() = habitDao.getAllHabit()
 
+    suspend fun isHabitAdded(name:String) = habitDao.isHabitAdded(name)
+
     suspend fun getHabitById(habitId: Long) = habitDao.getHabitById(habitId)
 
     suspend fun isAnyHabitsInThisDay(day: Long)= habitDao.isAnyHabitsInThisDay(day)
