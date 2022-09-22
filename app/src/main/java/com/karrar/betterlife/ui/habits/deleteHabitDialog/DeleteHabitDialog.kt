@@ -4,13 +4,13 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.karrar.betterlife.R
 import com.karrar.betterlife.databinding.DialogDeleteHabitBinding
 import com.karrar.betterlife.ui.base.BaseDialogFragment
 import com.karrar.betterlife.util.EventObserve
 import com.karrar.betterlife.util.setWidthPercent
+import com.karrar.betterlife.util.showSnackMessage
 
 class DeleteHabitDialog :
     BaseDialogFragment<DialogDeleteHabitBinding, DeleteHabitDialogViewModel>() {
@@ -35,7 +35,10 @@ class DeleteHabitDialog :
         viewModel.isDeleteHabit.observe(this, EventObserve {
             if (it) {
                 dismiss()
-                Toast.makeText(this.context, R.string.delete, Toast.LENGTH_SHORT).show()
+                activity?.showSnackMessage(
+                    R.id.constraint_habit_list_layout,
+                    getString(R.string.toast_delete)
+                )
             }
         })
     }

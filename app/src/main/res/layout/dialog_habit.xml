@@ -21,11 +21,10 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_new_habit"
+            style="@style/TextStyle.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.dialogTitle}"
-            android:textColor="@color/black"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +43,9 @@
                 android:id="@+id/text_habit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
+                android:fontFamily="@font/poppins_regular"
+                android:maxLength="60"
                 android:maxLines="1"
                 android:text="@={viewModel.habitName}" />
 
@@ -54,12 +56,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/points"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/layout_habit_name"
             app:layout_constraintTop_toBottomOf="@+id/layout_habit_name" />
-
 
         <TextView
             android:id="@+id/text_seek_bar_point"
@@ -146,13 +148,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_habit_hint"
+            style="@style/TextStyle.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
-            android:layout_marginLeft="@dimen/spacing_medium"
             android:text="@string/habit_hint"
             android:textColor="@color/black_60"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/layout_habit_name"
             app:layout_constraintStart_toEndOf="@+id/image_idea"
@@ -168,6 +169,7 @@
             android:layout_marginTop="@dimen/spacing_large"
             android:enabled="@{viewModel.addHabitValidation}"
             android:onClick="@{() -> viewModel.applyButtonClick()}"
+            android:fontFamily="@font/poppins_medium"
             android:text="@{viewModel.dialogButtonText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_habit_hint"
@@ -180,6 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_medium"
             android:onClick="@{() -> viewModel.cancelDialog()}"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
