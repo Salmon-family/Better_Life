@@ -12,13 +12,13 @@
         android:title="@string/habits" />
 
     <item
-        android:id="@+id/statisticsFragment"
-        android:icon="@drawable/ic_statistics_nav"
-        android:title="@string/chart" />
-
-    <item
         android:id="@+id/tasksFragment"
         android:icon="@drawable/ic_tasks_nav"
         android:title="@string/tasks" />
+
+    <item
+        android:id="@+id/statisticsFragment"
+        android:icon="@drawable/ic_chart_nav"
+        android:title="@string/chart" />
 
 </menu>
