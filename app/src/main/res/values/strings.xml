@@ -1,68 +1,68 @@
 <resources>
 
-    <string name="app_name">Better Life</string>
+    <string name="app_name" translatable="false">Better Life</string>
 
     <!-- home screen -->
-    <string name="home_title">Today’s Habits</string>
-    <string name="home_text_done">Great job!\nAll done for today</string>
-    <string name="home_banner_text">Better Habits \nBetter Life</string>
+    <string name="home_title" translatable="false">Today’s Habits</string>
+    <string name="home_text_done" translatable="false">Great job!\nAll done for today</string>
+    <string name="home_banner_text" translatable="false">Better Habits \nBetter Life</string>
 
     <!-- statistics screen -->
-    <string name="you_are_almost_there">You are almost there!</string>
-    <string name="build_a_new_habit">Build a new habit!</string>
-    <string name="good_habits_goals_completed">good habits goals completed</string>
-    <string name="daily">Daily</string>
-    <string name="weekly">Weekly</string>
-    <string name="monthly">Monthly</string>
-    <string name="this_week">This Week</string>
-    <string name="statistics">Statistics</string>
+    <string name="you_are_almost_there" translatable="false">You are almost there!</string>
+    <string name="build_a_new_habit" translatable="false">Build a new habit!</string>
+    <string name="good_habits_goals_completed" translatable="false">good habits goals completed</string>
+    <string name="daily" translatable="false">Daily</string>
+    <string name="weekly" translatable="false">Weekly</string>
+    <string name="monthly" translatable="false">Monthly</string>
+    <string name="this_week" translatable="false">This Week</string>
+    <string name="statistics" translatable="false">Statistics</string>
 
     <!-- habits list screen -->
-    <string name="habits_list">Habits List</string>
-    <string name="points">Points</string>
+    <string name="habits_list" translatable="false">Habits List</string>
+    <string name="points" translatable="false">Points</string>
 
     <!-- to do screen -->
 
     <!-- add dialog -->
-    <string name="new_habit">New Habit</string>
-    <string name="habit_name">Habit Name</string>
-    <string name="habit_hint">Give positive numbers for good habits, and negative numbers for bad ones.</string>
-    <string name="cancel">Cancel</string>
-    <string name="add">Add</string>
+    <string name="new_habit" translatable="false">New Habit</string>
+    <string name="habit_name" translatable="false">Habit Name</string>
+    <string name="habit_hint" translatable="false">Give positive numbers for good habits, and negative numbers for bad ones.</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="add" translatable="false">Add</string>
 
     <!-- edit dialog -->
-    <string name="edit_habit">Edit Habit</string>
-    <string name="apply">Apply</string>
+    <string name="edit_habit" translatable="false">Edit Habit</string>
+    <string name="apply" translatable="false">Apply</string>
 
     <!-- delete dialog -->
-    <string name="delete_habit">Delete Habit</string>
-    <string name="are_you_sure">Are you sure?</string>
-    <string name="delete_caption">Do you really want to delete this habit?\nThis process cannot be undone.</string>
-    <string name="delete">Delete</string>
+    <string name="delete_habit" translatable="false">Delete Habit</string>
+    <string name="are_you_sure" translatable="false">Are you sure?</string>
+    <string name="delete_caption" translatable="false">Do you really want to delete this habit?\nThis process cannot be undone.</string>
+    <string name="delete" translatable="false">Delete</string>
 
     <!-- other strings -->
-    <string name="toast_success">Add habit is successfully</string>
-    <string name="toast_failed">Sorry, this habit already found, you can delete it or update it. </string>
-    <string name="toast_update">update habit is successfully</string>
-    <string name="toast_delete">delete habit is successfully</string>
-    <string name="habit_points">Habit Points</string>
-    <string name="zero">0</string>
-    <string name="min_point">-100</string>
-    <string name="max_point">100</string>
+    <string name="toast_success" translatable="false">Add habit is successfully</string>
+    <string name="toast_failed" translatable="false">Sorry, this habit already found, you can delete it or update it. </string>
+    <string name="toast_update" translatable="false">update habit is successfully</string>
+    <string name="toast_delete" translatable="false">delete habit is successfully</string>
+    <string name="habit_points" translatable="false">Habit Points</string>
+    <string name="zero" translatable="false">0</string>
+    <string name="min_point" translatable="false">-100</string>
+    <string name="max_point" translatable="false">100</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home">Home</string>
-    <string name="chart">Chart</string>
-    <string name="habits">Habits</string>
-    <string name="you_didn_t_add_habits_yet">You didn\'t add habits yet</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="chart" translatable="false">Chart</string>
+    <string name="habits" translatable="false">Habits</string>
+    <string name="you_didn_t_add_habits_yet" translatable="false">You didn\'t add habits yet</string>
 
     <!-- notifications strings -->
-    <string name="notification_title">Reminder</string>
-    <string name="notification_subtitle">I would like to remind you to evaluate your habit</string>
-    <string name="new_task">New Task</string>
-    <string name="your_task">your task</string>
-    <string name="task_hint">Your checked tasks will be automatically disappeared on the next day, while unchecked ones will be still shown</string>
-    <string name="to_do">To Do</string>
-    <string name="tasks">Tasks</string>
+    <string name="notification_title" translatable="false">Reminder</string>
+    <string name="notification_subtitle" translatable="false">I would like to remind you to evaluate your habit</string>
+    <string name="new_task" translatable="false">New Task</string>
+    <string name="your_task" translatable="false">your task</string>
+    <string name="task_hint" translatable="false">Your checked tasks will be automatically disappeared on the next day, while unchecked ones will be still shown</string>
+    <string name="to_do" translatable="false">To Do</string>
+    <string name="tasks" translatable="false">Tasks</string>
 
 </resources>
