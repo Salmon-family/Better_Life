@@ -10,7 +10,7 @@ class BetterRepository {
 
     suspend fun insertNewHabit(habit: Habit) = habitDao.insert(habit)
 
-    suspend fun insertHabits(habits:List<Habit>) = habitDao.insertHabits(habits)
+    suspend fun insertHabits(habits: List<Habit>) = habitDao.insertHabits(habits)
 
     suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
 
@@ -21,21 +21,24 @@ class BetterRepository {
 
     fun getAllHabit() = habitDao.getAllHabit()
 
-    suspend fun isHabitAdded(name:String) = habitDao.isHabitAdded(name)
+    suspend fun isHabitAdded(name: String) = habitDao.isHabitAdded(name)
 
     suspend fun getHabitById(habitId: Long) = habitDao.getHabitById(habitId)
 
-    suspend fun isAnyHabitsInThisDay(day: Long)= habitDao.isAnyHabitsInThisDay(day)
+    suspend fun isAnyHabitsInThisDay(day: Long) = habitDao.isAnyHabitsInThisDay(day)
 
     suspend fun insertAllHabitsPerDay(todayHabits: List<DailyHabits>) = habitDao.insert(todayHabits)
 
     suspend fun getAllHabitPerDay(day: Long) = habitDao.getAllHabitPerDay(day)
 
-    suspend fun getPointsWeekly()= habitDao.getPointsWeekly()
+    suspend fun getPointsWeekly(endWeek: Long, startWeek: Long) =
+        habitDao.getPointsWeekly(endWeek, startWeek)
 
-    suspend fun getPointsInRange(startDate: Long, endDate: Long) = habitDao.getPointsInRange(startDate, endDate)
+    suspend fun getPointsInRange(startDate: Long, endDate: Long) =
+        habitDao.getPointsInRange(startDate, endDate)
 
-    suspend fun getPointDuringYearWithDate(maxYear:Long) = habitDao.getPointDuringYearWithDate(maxYear)
+    suspend fun getPointDuringYearWithDate(maxYear: Long) =
+        habitDao.getPointDuringYearWithDate(maxYear)
 
     suspend fun insertTodayHabits(todayHabits: DailyHabits) = habitDao.insert(todayHabits)
 
