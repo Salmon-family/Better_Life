@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:visibility="gone"
                 android:onClick="@{() -> viewModel.chartDaily(2)}"
                 android:text="Weekly"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"

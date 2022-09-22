@@ -65,7 +65,19 @@ interface HabitDao {
     )
     suspend fun getPointsWeekly(
         first: Long,
-        end: Long,
+        end: Long
+    ): List<PointsResult>
+
+    @Query("SELECT SUM(HABIT.point) AS pointsResult , DailyHabits.dayID AS dateResult FROM HABIT, DailyHabits " +
+            "WHERE HABIT.habitID == dailyhabits.habitID AND " +
+            "dailyhabits.dayID BETWEEN :first AND :secand ")
+
+    suspend fun getPointsWeekly2(
+        first: Long,
+        secand: Long//,
+//        third:Long,
+//        forth:Long,
+//        fifth:Long
     ): List<PointsResult>
 
     /**

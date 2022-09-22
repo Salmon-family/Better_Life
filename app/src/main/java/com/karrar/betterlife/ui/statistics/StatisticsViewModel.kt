@@ -31,7 +31,7 @@ class StatisticsViewModel : ViewModel() {
     private val _statisticsCases = MutableLiveData(StatisticsCases.DAILY)
 
     init {
-        chartsForPreviousAndNextDay()
+        chartDaily(1)
     }
 
     fun nextDays() {
@@ -40,7 +40,7 @@ class StatisticsViewModel : ViewModel() {
         weekCounter.value = weekCounter.value?.plus(1)
         when (_statisticsCases.value) {
             StatisticsCases.DAILY -> chartsForPreviousAndNextDay()
-            StatisticsCases.WEEKLY -> chartsWeekly()
+            StatisticsCases.WEEKLY -> chartsWeekly2()
             StatisticsCases.MONTHLY -> chartsForPreviousAndNextMonth()
             else -> {}
         }
@@ -52,7 +52,7 @@ class StatisticsViewModel : ViewModel() {
         _count.value = _count.value?.minus(1)
         when (_statisticsCases.value) {
             StatisticsCases.DAILY -> chartsForPreviousAndNextDay()
-            StatisticsCases.WEEKLY -> chartsWeekly()
+            StatisticsCases.WEEKLY -> chartsWeekly2()
             StatisticsCases.MONTHLY -> chartsForPreviousAndNextMonth()
             else -> {}
         }
@@ -64,7 +64,7 @@ class StatisticsViewModel : ViewModel() {
         _count.value = 0
         when (state) {
             1 -> chartsForPreviousAndNextDay()
-            2 -> chartsWeekly()
+            2 -> chartsWeekly2()
             3 -> chartsForPreviousAndNextMonth()
         }
     }
@@ -109,26 +109,61 @@ class StatisticsViewModel : ViewModel() {
         }
     }
 
-    private fun chartsWeekly() {
+//    private fun chartsWeekly() {
+//        val dailyList = mutableListOf<Any>()
+//        val daysName = mutableListOf<String>()
+//
+//        _statisticsCases.postValue(StatisticsCases.WEEKLY)
+//        val cal = Calendar.getInstance()
+//        if (weekCounter.value!! <= 0) {
+//            cal.add(Calendar.MONTH, 1 * weekCounter.value!!)
+//            val firstofMonth = cal.time.time
+//
+//            val monthName = android.text.format.DateFormat.format("MMMM", firstofMonth).toString()
+//
+//            cal.add(Calendar.MONTH, 1)
+//            val endofMonth = cal.time.time
+//
+//            Log.e("TAG", "$firstofMonth , $endofMonth")
+//
+//            viewModelScope.launch {
+//                val points =
+//                    repository.getPointsWeekly(firstofMonth, endofMonth)
+//                for (point in points) {
+//                    dailyList.add(point.pointsResult)
+//                    val monthName =
+//                        android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
+//                    daysName.add(monthName)
+//                }
+//                if (points.isNotEmpty()) {
+//                    _charts.postValue(DataCharts(dailyList, daysName))
+//                    _habit.postValue(monthName)
+//                }
+//            }
+//
+//        } else {
+//            weekCounter.value = 0
+//        }
+//    }
+
+    private fun chartsWeekly2() {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
 
         _statisticsCases.postValue(StatisticsCases.WEEKLY)
         val cal = Calendar.getInstance()
         if (weekCounter.value!! <= 0) {
-            cal.add(Calendar.MONTH, 1 * weekCounter.value!!)
+            cal.add(Calendar.DAY_OF_YEAR, 6 * weekCounter.value!!)
             val firstofMonth = cal.time.time
 
-            val monthName = android.text.format.DateFormat.format("MMMM", firstofMonth).toString()
-
-            cal.add(Calendar.MONTH, 1)
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
             val endofMonth = cal.time.time
 
             Log.e("TAG", "$firstofMonth , $endofMonth")
 
             viewModelScope.launch {
                 val points =
-                    repository.getPointsWeekly(firstofMonth, endofMonth)
+                    repository.getPointsWeekly2(endofMonth, firstofMonth)
                 for (point in points) {
                     dailyList.add(point.pointsResult)
                     val monthName =
@@ -137,7 +172,7 @@ class StatisticsViewModel : ViewModel() {
                 }
                 if (points.isNotEmpty()) {
                     _charts.postValue(DataCharts(dailyList, daysName))
-                    _habit.postValue(monthName)
+//                    _habit.postValue(monthName)
                 }
             }
 

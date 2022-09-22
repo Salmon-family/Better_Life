@@ -33,9 +33,13 @@ class BetterRepository {
 
     suspend fun getPointsWeekly(first: Long, end: Long) = habitDao.getPointsWeekly(first, end)
 
-    suspend fun getPointsInRange(startDate: Long, endDate: Long) = habitDao.getPointsInRange(startDate, endDate)
+    suspend fun getPointsWeekly2(first: Long, second: Long) = habitDao.getPointsWeekly2(first, second)
 
-    suspend fun getPointDuringYearWithDate(maxYear: Long) = habitDao.getPointDuringYearWithDate(maxYear)
+    suspend fun getPointsInRange(startDate: Long, endDate: Long) =
+        habitDao.getPointsInRange(startDate, endDate)
+
+    suspend fun getPointDuringYearWithDate(maxYear: Long) =
+        habitDao.getPointDuringYearWithDate(maxYear)
 
     suspend fun insertTodayHabits(todayHabits: DailyHabits) = habitDao.insert(todayHabits)
 
