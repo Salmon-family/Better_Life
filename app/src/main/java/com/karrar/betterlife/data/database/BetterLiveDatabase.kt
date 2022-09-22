@@ -6,11 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.karrar.betterlife.BetterLifeApp
+import com.karrar.betterlife.data.database.entity.DailyHabits
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.entity.HabitResult
-import com.karrar.betterlife.data.database.entity.Task
 
-@Database(entities = [Habit::class, HabitResult::class, Task::class], version = 1)
+
+@Database(entities = [Habit::class, DailyHabits::class, Task::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class BetterLiveDatabase : RoomDatabase() {
 
@@ -25,15 +25,6 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         @Volatile
         private var instance: BetterLiveDatabase? = null
 
-        fun getInstance(context: Context): BetterLiveDatabase {
-            return instance ?: synchronized(this) {
-                buildDatabase(
-                    context,
-                    DateConverter()
-                ).also { instance = it }
-            }
-        }
-
         fun getInstanceByApplicationContext(): BetterLiveDatabase {
             return instance ?: synchronized(this) {
                 buildDatabase(
@@ -45,11 +36,12 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(
-            context: Context, dateConverter: DateConverter
+            context: Context, dateConverter: DateConverter,
         ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
                 .addTypeConverter(dateConverter)
 //                .createFromAsset(DEFAULT_DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

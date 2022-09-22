@@ -1,4 +1,4 @@
-package com.karrar.betterlife.data.database
+package com.karrar.betterlife.data
 
 data class DataCharts(
     val dataOfHabit: MutableList<Any>,
