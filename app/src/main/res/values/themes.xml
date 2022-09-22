@@ -40,6 +40,12 @@
         <item name="chipStrokeColor">@color/green</item>
         <item name="chipSurfaceColor">@color/white</item>
         <item name="chipStrokeWidth">@dimen/stroke_small</item>
+
+    </style>
+
+    <style name="Chip.State" parent="habitChip">
+        <item name="chipBackgroundColor">@color/color_chip_state</item>
+        <item name="android:textColor">@color/color_chip_text_state</item>
     </style>
 
     <style name="goodHabit">

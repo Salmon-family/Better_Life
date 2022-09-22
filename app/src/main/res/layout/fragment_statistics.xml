@@ -34,6 +34,7 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
+style="@style/Chip.State"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -44,6 +45,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Day"
+                style="@style/Chip.State"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="@{()-> viewModel.chartDaily(1)}"
@@ -53,6 +55,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_week"
+                style="@style/Chip.State"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -63,6 +66,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_month"
+                style="@style/Chip.State"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
