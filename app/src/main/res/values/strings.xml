@@ -54,5 +54,6 @@
     <string name="chart">Chart</string>
     <string name="do_you_really_want_to_delete_this_habit_this_process_cannot_be_undone">Do you really want to delete this habit? This process cannot be undone.</string>
     <string name="habits">Habits</string>
+    <string name="you_didn_t_add_habits_yet">You didn\'t add habits yet</string>
 
 </resources>

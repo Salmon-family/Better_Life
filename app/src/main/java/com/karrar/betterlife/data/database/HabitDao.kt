@@ -20,7 +20,7 @@ interface HabitDao {
     @Query("SELECT * FROM HABIT_TABLE WHERE id=:id ")
     suspend fun getHabitByID(id: Long): Habit?
 
-    @Query("SELECT * FROM HABIT_TABLE ORDER BY id")
+    @Query("SELECT * FROM HABIT_TABLE ORDER BY point DESC")
     fun getAllHabit(): Flow<List<Habit>>
 
     //you can use this too, for delete note by id.
