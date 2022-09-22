@@ -153,7 +153,7 @@ class StatisticsViewModel : ViewModel() {
         _statisticsCases.postValue(StatisticsCases.WEEKLY)
         val cal = Calendar.getInstance(Locale.US)
         if (weekCounter.value!! <= 0) {
-            cal.add(Calendar.DAY_OF_YEAR, 7 * weekCounter.value!!)
+            cal.add(Calendar.DAY_OF_YEAR, 28 * weekCounter.value!!)
             val firstofMonth = cal.time.time
 
             cal.add(Calendar.DAY_OF_YEAR, 7 * -1)
@@ -181,7 +181,8 @@ class StatisticsViewModel : ViewModel() {
                 }
                 if (points.isNotEmpty()) {
                     _charts.postValue(DataCharts(dailyList, daysName))
-//                    _habit.postValue(monthName)
+                    _habit.postValue( android.text.format.DateFormat.format("d MMMM", fifthfMonth).toString()
+                    +" - "+android.text.format.DateFormat.format("d MMMM", endofMonth).toString())
                 }
             }
 
