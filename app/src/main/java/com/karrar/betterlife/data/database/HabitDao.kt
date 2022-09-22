@@ -68,14 +68,22 @@ interface HabitDao {
         end: Long
     ): List<PointsResult>
 
-    @Query("SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, DailyHabits.dayID AS dateResult  FROM HABIT, DailyHabits " +
-            "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :first AND :secand ")
+    @Query(
+        "SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, :first AS dateResult  FROM HABIT, DailyHabits " +
+                "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :first AND :secand " +
+                "Union SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, :secand AS dateResult  FROM HABIT, DailyHabits " +
+                "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :secand AND :third " +
+                "Union SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, :third AS dateResult  FROM HABIT, DailyHabits " +
+                "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :third AND :forth " +
+                "Union SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, :forth AS dateResult  FROM HABIT, DailyHabits " +
+                "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :forth AND :fifth  ORDER by dateResult ASC"
+    )
     suspend fun getPointsWeekly2(
         first: Long,
-        secand: Long//,
-//        third:Long,
-//        forth:Long,
-//        fifth:Long
+        secand: Long,
+        third: Long,
+        forth: Long,
+        fifth: Long
     ): List<PointsResult>
 
     /**
