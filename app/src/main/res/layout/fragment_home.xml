@@ -150,6 +150,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:backgroundTint="@color/green"
+            app:enableDone="@{viewModel.todayHabitsList}"
             android:onClick="@{() -> viewModel.setDoneToday()}"
             app:isDoneToday="@{viewModel.doneToday}"
             app:layout_constraintBottom_toBottomOf="parent"

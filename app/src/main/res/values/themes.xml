@@ -79,12 +79,12 @@
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/green_light</item>
+        <item name="android:color">@color/green_8</item>
     </style>
 
     <style name="ThemeBottomNavigationBar" parent="Widget.Material3.BottomNavigationView">
         <item name="backgroundTint">@color/white</item>
-        <item name="itemIconTint">@color/black_60</item>
+        <item name="itemIconTint">@color/green_dark</item>
         <item name="labelVisibilityMode">selected</item>
         <item name="itemActiveIndicatorStyle">@style/App.Custom.Indicator</item>
     </style>

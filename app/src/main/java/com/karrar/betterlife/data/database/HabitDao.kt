@@ -92,4 +92,6 @@ interface HabitDao {
     @Query("SELECT SUM(HABIT.point) AS pointsResult, DailyHabits.dayID AS dateResult FROM HABIT, DailyHabits WHERE HABIT.habitID == dailyhabits.habitID AND DailyHabits.dayID <= :maxYear GROUP BY strftime('%Y-%m', dayID / 1000, 'unixepoch')")
     suspend fun getPointDuringYearWithDate(maxYear: Long): List<PointsResult>
 
+    @Query("SELECT * FROM dailyhabits ORDER BY dayID ASC LIMIT 1")
+    suspend fun getOldestDate(): DailyHabits?
 }
