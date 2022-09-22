@@ -93,8 +93,16 @@ class StatisticsViewModel : ViewModel() {
                         android.text.format.DateFormat.format("EEEE", point.dateResult).toString()
                     daysName.add(dayName)
                 }
-                _charts.postValue(DataCharts(dailyList, daysName))
-                _habit.postValue("${endOfWeek.toStringDate("MMM dd")} - ${startOfWeek.toStringDate("MMM dd yyyy")}")
+                if (points.isNotEmpty()) {
+                    _charts.postValue(DataCharts(dailyList, daysName))
+                    _habit.postValue(
+                        "${endOfWeek.toStringDate("MMM dd")} - ${
+                            startOfWeek.toStringDate(
+                                "MMM dd yyyy"
+                            )
+                        }"
+                    )
+                }
             }
         } else {
             daysCounter.value = 0
@@ -111,7 +119,7 @@ class StatisticsViewModel : ViewModel() {
             cal.add(Calendar.MONTH, 1 * weekCounter.value!!)
             val firstofMonth = cal.time.time
 
-            val monthName =  android.text.format.DateFormat.format("MMMM", firstofMonth).toString()
+            val monthName = android.text.format.DateFormat.format("MMMM", firstofMonth).toString()
 
             cal.add(Calendar.MONTH, 1)
             val endofMonth = cal.time.time
@@ -127,9 +135,11 @@ class StatisticsViewModel : ViewModel() {
                         android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
                     daysName.add(monthName)
                 }
-                _charts.postValue(DataCharts(dailyList, daysName))
+                if (points.isNotEmpty()) {
+                    _charts.postValue(DataCharts(dailyList, daysName))
+                    _habit.postValue(monthName)
+                }
             }
-            _habit.postValue(monthName)
 
         } else {
             weekCounter.value = 0
@@ -158,8 +168,10 @@ class StatisticsViewModel : ViewModel() {
                         android.text.format.DateFormat.format("MMMM", point.dateResult).toString()
                     daysName.add(monthName)
                 }
-                _charts.postValue(DataCharts(dailyList, daysName))
-                _habit.postValue(nextYear.toStringDate("yyyy"))
+                if (points.isNotEmpty()) {
+                    _charts.postValue(DataCharts(dailyList, daysName))
+                    _habit.postValue(nextYear.toStringDate("yyyy"))
+                }
             }
         } else {
             _count.value = 0
