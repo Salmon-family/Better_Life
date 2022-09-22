@@ -41,9 +41,10 @@
     <string name="delete">Delete</string>
 
     <!-- other strings -->
-    <string name="toast_success">New habit was added</string>
-    <string name="toast_update">Habit was updated</string>
-    <string name="toast_delete">Habit was deleted</string>
+    <string name="toast_success">Add habit is successfully</string>
+    <string name="toast_failed">Sorry, this habit already found, you can delete it or update it. </string>
+    <string name="toast_update">update habit is successfully</string>
+    <string name="toast_delete">delete habit is successfully</string>
     <string name="habit_points">Habit Points</string>
     <string name="zero">0</string>
     <string name="min_point">-100</string>

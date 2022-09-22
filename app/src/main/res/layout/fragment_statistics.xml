@@ -42,7 +42,7 @@
                 android:id="@+id/chip_Day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{()-> viewModel.chartsForPreviousAndNextDay()}"
+                android:onClick="@{()-> viewModel.chartDaily(1)}"
                 android:text="Daily"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:onClick="@{() -> viewModel.chartsWeekly()}"
+                android:onClick="@{() -> viewModel.chartDaily(2)}"
                 android:text="Weekly"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:onClick="@{() -> viewModel.chartsForPreviousAndNextMonth()}"
+                android:onClick="@{() -> viewModel.chartDaily(3)}"
                 android:text="Monthly"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
                 app:layout_constraintStart_toStartOf="parent" />

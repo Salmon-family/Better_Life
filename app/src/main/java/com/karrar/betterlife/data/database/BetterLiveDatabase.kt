@@ -32,7 +32,6 @@ abstract class BetterLiveDatabase : RoomDatabase() {
                     DateConverter()
                 ).also { instance = it }
             }
-
         }
 
         private fun buildDatabase(
@@ -40,7 +39,7 @@ abstract class BetterLiveDatabase : RoomDatabase() {
         ): BetterLiveDatabase {
             return Room.databaseBuilder(context, BetterLiveDatabase::class.java, DATABASE_NAME)
                 .addTypeConverter(dateConverter)
-//                .createFromAsset(DEFAULT_DATABASE_NAME)
+                .createFromAsset(DEFAULT_DATABASE_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
         }

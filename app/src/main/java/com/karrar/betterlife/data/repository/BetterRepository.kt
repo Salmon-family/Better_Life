@@ -25,6 +25,8 @@ class BetterRepository {
 
     fun getAllHabit() = habitDao.getAllHabit()
 
+    suspend fun isHabitAdded(name: String) = habitDao.isHabitAdded(name)
+
     suspend fun getHabitById(habitId: Long) = habitDao.getHabitById(habitId)
 
     suspend fun isAnyHabitsInThisDay(day: Long) = habitDao.isAnyHabitsInThisDay(day)
@@ -33,7 +35,10 @@ class BetterRepository {
 
     suspend fun getAllHabitPerDay(day: Long) = habitDao.getAllHabitPerDay(day)
 
-    suspend fun getPointsWeekly() = habitDao.getPointsWeekly()
+    suspend fun getPointsWeekly(first: Long, end: Long) = habitDao.getPointsWeekly(first, end)
+
+    suspend fun getPointsWeekly2(first: Long, second: Long, third: Long, forth: Long, fifth: Long) =
+        habitDao.getPointsWeekly2(first, second, third, forth, fifth)
 
     suspend fun getPointsInRange(startDate: Long, endDate: Long) =
         habitDao.getPointsInRange(startDate, endDate)

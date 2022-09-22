@@ -22,29 +22,12 @@ class HomeViewModel : ViewModel() {
 
     init {
         isDoneForToday()
-        setDefaultHabits()
     }
 
     private fun isDoneForToday() {
         viewModelScope.launch {
             val todayHabits = repository.isAnyHabitsInThisDay(Date().time)
             _doneToday.postValue(!todayHabits.isNullOrEmpty())
-        }
-    }
-
-    private fun setDefaultHabits() {
-        viewModelScope.launch {
-            if (allHabits.value.isNullOrEmpty()) {
-                val habits = mutableListOf<Habit>()
-                for (i in 0..10) {
-                    if (i % 2 == 0) {
-                        habits.add(Habit(name = "test$i", point = 10 + i))
-                    } else {
-                        habits.add(Habit(name = "test$i", point = (10 + i) * -1))
-                    }
-                }
-                repository.insertHabits(habits)
-            }
         }
     }
 
