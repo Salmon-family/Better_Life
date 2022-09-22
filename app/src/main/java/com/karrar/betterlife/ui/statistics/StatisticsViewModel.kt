@@ -151,28 +151,28 @@ class StatisticsViewModel : ViewModel() {
         val daysName = mutableListOf<String>()
 
         _statisticsCases.postValue(StatisticsCases.WEEKLY)
-        val cal = Calendar.getInstance()
+        val cal = Calendar.getInstance(Locale.US)
         if (weekCounter.value!! <= 0) {
-            cal.add(Calendar.DAY_OF_YEAR, 6 * weekCounter.value!!)
+            cal.add(Calendar.DAY_OF_YEAR, 28 * weekCounter.value!!)
             val firstofMonth = cal.time.time
 
-            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            cal.add(Calendar.DAY_OF_YEAR, 7 * -1)
             val endofMonth = cal.time.time
 
-            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            cal.add(Calendar.DAY_OF_YEAR, 7 * -1)
             val thirdofMonth = cal.time.time
 
-            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            cal.add(Calendar.DAY_OF_YEAR, 7 * -1)
             val forthofMonth = cal.time.time
 
-            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            cal.add(Calendar.DAY_OF_YEAR, 7 * -1)
             val fifthfMonth = cal.time.time
 
-            Log.e("TAG", "$firstofMonth , $endofMonth")
+            Log.e("TAGDATE", "$firstofMonth , $endofMonth $thirdofMonth $forthofMonth $fifthfMonth")
 
             viewModelScope.launch {
                 val points =
-                    repository.getPointsWeekly2(endofMonth, firstofMonth )
+                    repository.getPointsWeekly2(fifthfMonth, forthofMonth,thirdofMonth,endofMonth, firstofMonth )
                 for (point in points) {
                     dailyList.add(point.pointsResult)
                     val monthName =
@@ -181,7 +181,8 @@ class StatisticsViewModel : ViewModel() {
                 }
                 if (points.isNotEmpty()) {
                     _charts.postValue(DataCharts(dailyList, daysName))
-//                    _habit.postValue(monthName)
+                    _habit.postValue( android.text.format.DateFormat.format("d MMMM", fifthfMonth).toString()
+                    +" - "+android.text.format.DateFormat.format("d MMMM", endofMonth).toString())
                 }
             }
 
