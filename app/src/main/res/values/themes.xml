@@ -83,4 +83,12 @@
         <item name="itemActiveIndicatorStyle">@style/App.Custom.Indicator</item>
     </style>
 
+    <style name="Theme.Button.IconButton.small" parent="Widget.Material3.Button.IconButton">
+        <item name="backgroundTint">@color/green</item>
+        <item name="iconTint">@color/white</item>
+        <item name="android:padding">@dimen/zero</item>
+        <item name="iconGravity">textTop</item>
+
+    </style>
+
 </resources>

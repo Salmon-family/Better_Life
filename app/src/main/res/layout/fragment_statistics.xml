@@ -103,37 +103,40 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+        <Button
+            android:id="@+id/button_back"
+            app:icon="@drawable/ic_back"
+            style="@style/Theme.Button.IconButton.small"
+            android:layout_marginTop="@dimen/spacing_large"
             android:onClick="@{() -> viewModel.previousDays()}"
-            android:src="@drawable/ic_arrow_button_left"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+            android:layout_width="@dimen/button_small_circle_size"
+            android:layout_height="@dimen/button_small_circle_size"
+            app:layout_constraintStart_toStartOf="@+id/card_view"
+            app:layout_constraintTop_toBottomOf="@+id/card_view"
+             />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
+        <Button
+            android:id="@+id/button_next"
+            style="@style/Theme.Button.IconButton.small"
+            android:layout_width="@dimen/button_small_circle_size"
+            android:layout_height="@dimen/button_small_circle_size"
             android:onClick="@{() -> viewModel.nextDays()}"
-            android:src="@drawable/ic_arrow_button_right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+            app:icon="@drawable/ic_next"
+            app:layout_constraintBottom_toBottomOf="@+id/button_back"
+            app:layout_constraintEnd_toEndOf="@+id/card_view"
+            app:layout_constraintTop_toTopOf="@+id/button_back" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
             android:text="@{viewModel.habit}"
             android:textSize="16dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/button_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_view"
+            app:layout_constraintTop_toTopOf="@+id/button_back"
             tools:text="Sep 16 - Sep 22 2022" />
 
 
