@@ -23,7 +23,7 @@ class DeleteHabitDialogViewModel : ViewModel() {
 
     fun getHabitById(habitId: Long) {
         viewModelScope.launch {
-            _habit.postValue(repository.getHabitByID(habitId))
+            _habit.postValue(repository.getHabitById(habitId))
         }
     }
 

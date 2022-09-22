@@ -77,6 +77,8 @@
                 style="@style/TextStyle.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:onClick="@{ () ->listener.onClickDeleteHabit(item.habitID)}"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginBottom="@dimen/spacing_medium"
                 app:colorBasedOnPointsValue="@{item.point}"
@@ -103,10 +105,10 @@
                 android:layout_height="24dp"
                 android:layout_marginEnd="@dimen/spacing_medium"
                 android:backgroundTint="@android:color/transparent"
-                android:onClick="@{ () ->listener.onClickEditHabit(item.id)}"
-                android:src="@drawable/ic_edit"
-                app:layout_constraintBottom_toBottomOf="@+id/delete_button"
-                app:layout_constraintEnd_toStartOf="@+id/delete_button" />
+                android:onClick="@{ () ->listener.onClickEditHabit(item.habitID)}"
+                app:layout_constraintEnd_toStartOf="@+id/delete_button"
+                app:layout_constraintTop_toTopOf="@+id/delete_button"
+                app:layout_constraintBottom_toBottomOf="@+id/delete_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
