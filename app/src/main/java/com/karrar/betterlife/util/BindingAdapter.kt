@@ -129,6 +129,7 @@ fun changeColorBasedOnState(view: TextView, task: Task?) {
     task?.isChecked?.let {
         if (it) {
             view.setTextColor(view.getColor(R.color.black_30))
+            view.isEnabled = false
             view.paintFlags = view.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             view.setTextColor(view.getColor(R.color.black))
@@ -153,6 +154,7 @@ fun changeChipColorBasedOnState(view: CheckBox, task: Task?) {
     task?.isChecked?.let {
         if (it) {
             view.buttonTintList = view.getColorStateList(R.color.black_30)
+            view.isEnabled = false
         } else {
             view.buttonTintList = view.getColorStateList(R.color.black)
         }
@@ -161,7 +163,9 @@ fun changeChipColorBasedOnState(view: CheckBox, task: Task?) {
 
 @BindingAdapter("app:checkBasedOnState")
 fun checkBasedOnState(view: CheckBox, task: Task?) {
-    task?.isChecked?.let { view.isChecked = it }
+    task?.isChecked?.let {
+        view.isChecked = it
+    }
 }
 
 @BindingAdapter("app:maxNumberOfLines")
