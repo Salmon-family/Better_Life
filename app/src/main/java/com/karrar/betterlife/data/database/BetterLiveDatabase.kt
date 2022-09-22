@@ -29,7 +29,6 @@ abstract class BetterLiveDatabase : RoomDatabase() {
                     DateConverter()
                 ).also { instance = it }
             }
-
         }
 
         private fun buildDatabase(
