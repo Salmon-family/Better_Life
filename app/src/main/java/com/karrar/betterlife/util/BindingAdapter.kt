@@ -193,9 +193,9 @@ fun setMaxNumberOfLines(view: EditText, numOfLines: Int) {
 }
 
 @BindingAdapter("app:showWhenEmptyTaskList")
-fun showWhenEmptyTaskList(view: LottieAnimationView, isEmptyList: Boolean?) {
+fun showWhenEmptyTaskList(view: View, isEmptyList: Boolean?) {
     view.isVisible = isEmptyList != false
-    view.playAnimation()
+    if (view is LottieAnimationView) view.playAnimation()
 }
 
 @BindingAdapter("app:showWhenNotEmptyTaskList")
