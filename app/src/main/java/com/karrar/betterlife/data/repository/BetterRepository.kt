@@ -48,6 +48,7 @@ class BetterRepository {
 
     suspend fun insertTodayHabits(todayHabits: DailyHabits) = habitDao.insert(todayHabits)
 
+    suspend fun getOldestDate() = habitDao.getOldestDate()
 
     suspend fun insertNewTask(task: Task) = taskDao.insert(task)
 
