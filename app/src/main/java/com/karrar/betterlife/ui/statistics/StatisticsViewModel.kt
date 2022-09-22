@@ -82,7 +82,6 @@ class StatisticsViewModel : ViewModel() {
 
         _statisticsCases.postValue(StatisticsCases.DAILY)
 
-
         val cal = Calendar.getInstance()
         if (daysCounter.value!! <= 0) {
             cal.add(Calendar.DAY_OF_YEAR, 6 * daysCounter.value!!)
@@ -94,7 +93,7 @@ class StatisticsViewModel : ViewModel() {
 
 
             viewModelScope.launch {
-                val points = repository.getPointsInRange(startOfWeek, endOfWeek)
+                val points = repository.getPointsInRange(endOfWeek,startOfWeek)
                 for (point in points) {
                     dailyList.add(point.pointsResult)
                     val dayName =
