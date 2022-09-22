@@ -46,6 +46,7 @@
             tools:listitem="@layout/item_task" />
 
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
             android:layout_width="300dp"
             android:layout_height="300dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +56,20 @@
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/lottie_empty"
             app:showWhenEmptyTaskList="@{viewModel.isEmptyList}"
+            tools:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/text_no_habit"
+            style="@style/TextStyle.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/black_30"
+            app:showWhenEmptyTaskList="@{viewModel.isEmptyList}"
+            android:text="@string/you_didn_t_add_habits_yet"
+            app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
+            app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView"
             tools:visibility="gone"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

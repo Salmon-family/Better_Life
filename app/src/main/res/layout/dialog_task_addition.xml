@@ -38,7 +38,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_habit_name"
-                style="@style/TextStyle.Medium"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="4"
