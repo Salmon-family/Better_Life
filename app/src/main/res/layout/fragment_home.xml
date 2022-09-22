@@ -78,6 +78,7 @@
                     android:id="@+id/text_habit_card_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/playball_regular"
                     android:gravity="center"
                     android:text="@string/home_banner_text"
