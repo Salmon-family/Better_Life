@@ -26,40 +26,21 @@ class StatisticsViewModel : ViewModel() {
 
     private val _count = MutableLiveData<Int>(0)
     private val daysCounter = MutableLiveData(0)
+    private val weekCounter = MutableLiveData(0)
 
-    private val _statisticsCases = MutableLiveData<StatisticsCases>(StatisticsCases.DAILY)
-    val statisticsCases: LiveData<StatisticsCases>
-        get() = _statisticsCases
+    private val _statisticsCases = MutableLiveData(StatisticsCases.DAILY)
 
     init {
-        chartsForPreviousAndNextDay()
-    }
-
-    fun chartsWeekly() {
-        val dailyList = mutableListOf<Any>()
-        val daysName = mutableListOf<String>()
-
-        _statisticsCases.postValue(StatisticsCases.WEEKLY)
-        _count.postValue(0)
-
-        viewModelScope.launch {
-            val points = repository.getPointsWeekly()
-            for (point in points) {
-                dailyList.add(point.pointsResult)
-                val monthName =
-                    android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
-                daysName.add(monthName)
-            }
-            _charts.postValue(DataCharts(dailyList, daysName))
-        }
+        chartDaily(1)
     }
 
     fun nextDays() {
         daysCounter.value = daysCounter.value?.plus(1)
         _count.value = _count.value?.plus(1)
+        weekCounter.value = weekCounter.value?.plus(1)
         when (_statisticsCases.value) {
             StatisticsCases.DAILY -> chartsForPreviousAndNextDay()
-            StatisticsCases.WEEKLY -> chartsForPreviousAndNextWeek()
+            StatisticsCases.WEEKLY -> chartsWeekly2()
             StatisticsCases.MONTHLY -> chartsForPreviousAndNextMonth()
             else -> {}
         }
@@ -67,16 +48,28 @@ class StatisticsViewModel : ViewModel() {
 
     fun previousDays() {
         daysCounter.value = daysCounter.value?.minus(1)
+        weekCounter.value = weekCounter.value?.minus(1)
         _count.value = _count.value?.minus(1)
         when (_statisticsCases.value) {
             StatisticsCases.DAILY -> chartsForPreviousAndNextDay()
-            StatisticsCases.WEEKLY -> chartsForPreviousAndNextWeek()
+            StatisticsCases.WEEKLY -> chartsWeekly2()
             StatisticsCases.MONTHLY -> chartsForPreviousAndNextMonth()
             else -> {}
         }
     }
 
-    fun chartsForPreviousAndNextDay() {
+    fun chartDaily(state: Int) {
+        daysCounter.value = 0
+        weekCounter.value = 0
+        _count.value = 0
+        when (state) {
+            1 -> chartsForPreviousAndNextDay()
+            2 -> chartsWeekly2()
+            3 -> chartsForPreviousAndNextMonth()
+        }
+    }
+
+    private fun chartsForPreviousAndNextDay() {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
 
@@ -93,26 +86,111 @@ class StatisticsViewModel : ViewModel() {
 
 
             viewModelScope.launch {
-                val points = repository.getPointsInRange(endOfWeek,startOfWeek)
+                val points = repository.getPointsInRange(endOfWeek, startOfWeek)
                 for (point in points) {
                     dailyList.add(point.pointsResult)
                     val dayName =
                         android.text.format.DateFormat.format("EEEE", point.dateResult).toString()
                     daysName.add(dayName)
                 }
-                _charts.postValue(DataCharts(dailyList, daysName))
-                _habit.postValue("${endOfWeek.toStringDate("MMM dd")} - ${startOfWeek.toStringDate("MMM dd yyyy")}")
+                if (points.isNotEmpty()) {
+                    _charts.postValue(DataCharts(dailyList, daysName))
+                    _habit.postValue(
+                        "${endOfWeek.toStringDate("MMM dd")} - ${
+                            startOfWeek.toStringDate(
+                                "MMM dd yyyy"
+                            )
+                        }"
+                    )
+                }
             }
         } else {
             daysCounter.value = 0
         }
     }
 
-    private fun chartsForPreviousAndNextWeek() {
+//    private fun chartsWeekly() {
+//        val dailyList = mutableListOf<Any>()
+//        val daysName = mutableListOf<String>()
+//
+//        _statisticsCases.postValue(StatisticsCases.WEEKLY)
+//        val cal = Calendar.getInstance()
+//        if (weekCounter.value!! <= 0) {
+//            cal.add(Calendar.MONTH, 1 * weekCounter.value!!)
+//            val firstofMonth = cal.time.time
+//
+//            val monthName = android.text.format.DateFormat.format("MMMM", firstofMonth).toString()
+//
+//            cal.add(Calendar.MONTH, 1)
+//            val endofMonth = cal.time.time
+//
+//            Log.e("TAG", "$firstofMonth , $endofMonth")
+//
+//            viewModelScope.launch {
+//                val points =
+//                    repository.getPointsWeekly(firstofMonth, endofMonth)
+//                for (point in points) {
+//                    dailyList.add(point.pointsResult)
+//                    val monthName =
+//                        android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
+//                    daysName.add(monthName)
+//                }
+//                if (points.isNotEmpty()) {
+//                    _charts.postValue(DataCharts(dailyList, daysName))
+//                    _habit.postValue(monthName)
+//                }
+//            }
+//
+//        } else {
+//            weekCounter.value = 0
+//        }
+//    }
+
+    private fun chartsWeekly2() {
+        val dailyList = mutableListOf<Any>()
+        val daysName = mutableListOf<String>()
+
         _statisticsCases.postValue(StatisticsCases.WEEKLY)
+        val cal = Calendar.getInstance()
+        if (weekCounter.value!! <= 0) {
+            cal.add(Calendar.DAY_OF_YEAR, 6 * weekCounter.value!!)
+            val firstofMonth = cal.time.time
+
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val endofMonth = cal.time.time
+
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val thirdofMonth = cal.time.time
+
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val forthofMonth = cal.time.time
+
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val fifthfMonth = cal.time.time
+
+            Log.e("TAG", "$firstofMonth , $endofMonth")
+
+            viewModelScope.launch {
+                val points =
+                    repository.getPointsWeekly2(endofMonth, firstofMonth )
+                for (point in points) {
+                    dailyList.add(point.pointsResult)
+                    val monthName =
+                        android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
+                    daysName.add(monthName)
+                }
+                if (points.isNotEmpty()) {
+                    _charts.postValue(DataCharts(dailyList, daysName))
+//                    _habit.postValue(monthName)
+                }
+            }
+
+        } else {
+            weekCounter.value = 0
+        }
     }
 
-    fun chartsForPreviousAndNextMonth() {
+    private fun chartsForPreviousAndNextMonth() {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
 
@@ -134,8 +212,10 @@ class StatisticsViewModel : ViewModel() {
                         android.text.format.DateFormat.format("MMMM", point.dateResult).toString()
                     daysName.add(monthName)
                 }
-                _charts.postValue(DataCharts(dailyList, daysName))
-                _habit.postValue(nextYear.toStringDate("MMM yyyy"))
+                if (points.isNotEmpty()) {
+                    _charts.postValue(DataCharts(dailyList, daysName))
+                    _habit.postValue(nextYear.toStringDate("yyyy"))
+                }
             }
         } else {
             _count.value = 0

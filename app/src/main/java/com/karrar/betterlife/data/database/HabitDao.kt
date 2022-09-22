@@ -33,6 +33,9 @@ interface HabitDao {
     @Query("SELECT * FROM habit ORDER BY point DESC")
     fun getAllHabit(): Flow<List<Habit>>
 
+    @Query("SELECT * FROM Habit WHERE name == :name")
+    suspend fun isHabitAdded(name: String): Habit?
+
     @Query("SELECT * FROM habit WHERE habitID == :id")
     suspend fun getHabitById(id: Long): Habit?
 
@@ -52,12 +55,28 @@ interface HabitDao {
     suspend fun getPointsMonthlyWithDate(): List<PointsResult>
 
 
-    @Query("SELECT SUM(HABIT.point) AS pointsResult , " +
-            "DailyHabits.dayID AS dateResult " +
-            "FROM HABIT, DailyHabits " +
-            "WHERE HABIT.habitID == dailyhabits.habitID " +
-            "GROUP BY strftime('%w', dayID / 1000, 'unixepoch')")
-    suspend fun getPointsWeekly(): List<PointsResult>
+    @Query(
+        "SELECT SUM(HABIT.point) AS pointsResult , " +
+                "DailyHabits.dayID AS dateResult " +
+                "FROM HABIT, DailyHabits " +
+                "WHERE HABIT.habitID == dailyhabits.habitID " +
+                "AND date(DailyHabits.dayID / 1000, 'unixepoch') BETWEEN date(:first / 1000, 'unixepoch') AND date(:end  / 1000, 'unixepoch')" +
+                "GROUP BY strftime('%m-%w', dayID / 1000, 'unixepoch') Order by dayID ASC LIMIT 4"
+    )
+    suspend fun getPointsWeekly(
+        first: Long,
+        end: Long
+    ): List<PointsResult>
+
+    @Query("SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, DailyHabits.dayID AS dateResult  FROM HABIT, DailyHabits " +
+            "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :first AND :secand ")
+    suspend fun getPointsWeekly2(
+        first: Long,
+        secand: Long//,
+//        third:Long,
+//        forth:Long,
+//        fifth:Long
+    ): List<PointsResult>
 
     /**
      * given max year return all months

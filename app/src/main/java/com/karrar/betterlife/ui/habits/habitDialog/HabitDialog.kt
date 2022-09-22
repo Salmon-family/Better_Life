@@ -47,6 +47,13 @@ class HabitDialog : BaseDialogFragment<DialogHabitBinding, HabitViewModel>() {
                     getString(R.string.toast_update)
                 )
             }
+            is DialogClickEvent.OnDialogFailedAddHabit -> {
+                dismiss()
+                activity?.showSnackMessage(
+                    R.id.constraint_habit_list_layout,
+                    getString(R.string.toast_failed)
+                )
+            }
             is DialogClickEvent.OnHabitAddClick -> {
                 dismiss()
                 activity?.showSnackMessage(
