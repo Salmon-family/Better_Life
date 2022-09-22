@@ -39,19 +39,18 @@ class StatisticsViewModel : ViewModel() {
         _count.postValue(0)
 
         val cal = Calendar.getInstance()
-        cal.add(Calendar.DAY_OF_YEAR, 30 * weekCounter.value!!)
-        val startOfWeek = cal.time.time
 
-        Log.e("TAG","${cal.get(Calendar.DAY_OF_MONTH)} ${cal.get(Calendar.MONTH)} ${cal.get(Calendar.WEEK_OF_YEAR)}")
+        cal.add(Calendar.MONTH, 1 * weekCounter.value!!)
+        val firstofMonth = cal.time.time
 
+        cal.add(Calendar.MONTH, 1)
+        val endofMonth = cal.time.time
 
-        cal.add(Calendar.DAY_OF_YEAR, 30 * weekCounter.value!!)
-        val endOfWeek = cal.time.time
-
-        Log.e("TAG","${cal.get(Calendar.DAY_OF_MONTH)} ${cal.get(Calendar.MONTH)} ${cal.get(Calendar.WEEK_OF_YEAR)}")
+        Log.e("TAG","$firstofMonth , $endofMonth")
 
         viewModelScope.launch {
-            val points = repository.getPointsWeekly(startOfWeek,endOfWeek)
+            val points =
+                repository.getPointsWeekly(firstofMonth, endofMonth)
             for (point in points) {
                 dailyList.add(point.pointsResult)
                 val monthName =

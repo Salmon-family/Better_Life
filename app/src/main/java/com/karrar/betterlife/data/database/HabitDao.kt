@@ -60,9 +60,13 @@ interface HabitDao {
                 "DailyHabits.dayID AS dateResult " +
                 "FROM HABIT, DailyHabits " +
                 "WHERE HABIT.habitID == dailyhabits.habitID " +
-                "AND DailyHabits.dayID BETWEEN :endWeek AND :startWeek "+
-                "GROUP BY strftime('%m-%w', dayID / 1000, 'unixepoch') ")
-    suspend fun getPointsWeekly(endWeek: Long,startWeek:Long): List<PointsResult>
+                "AND date(DailyHabits.dayID / 1000, 'unixepoch') BETWEEN date(:first / 1000, 'unixepoch') AND date(:end  / 1000, 'unixepoch')" +
+                "GROUP BY strftime('%m-%w', dayID / 1000, 'unixepoch') LIMIT 4"
+    )
+    suspend fun getPointsWeekly(
+        first: Long,
+        end: Long,
+    ): List<PointsResult>
 
     /**
      * given max year return all months
