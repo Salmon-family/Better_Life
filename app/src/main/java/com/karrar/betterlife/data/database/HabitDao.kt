@@ -30,7 +30,7 @@ interface HabitDao {
     @Query("delete from dailyhabits where habitID  == :habitId")
     suspend fun deleteHabitIdFromDailyHabit(habitId: Long)
 
-    @Query("SELECT * FROM Habit")
+    @Query("SELECT * FROM habit ORDER BY point DESC")
     fun getAllHabit(): Flow<List<Habit>>
 
     @Query("SELECT * FROM Habit WHERE name == :name")

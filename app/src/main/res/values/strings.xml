@@ -4,7 +4,7 @@
 
     <!-- home screen -->
     <string name="home_title">Today’s Habits</string>
-    <string name="home_text_done">Thank You!! \nAll done for today..</string>
+    <string name="home_text_done">Great job!\nAll done for today</string>
     <string name="home_banner_text">Better Habits \nBetter Life</string>
 
     <!-- statistics screen -->
@@ -53,8 +53,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="chart">Chart</string>
-    <string name="do_you_really_want_to_delete_this_habit_this_process_cannot_be_undone">Do you really want to delete this habit? This process cannot be undone.</string>
     <string name="habits">Habits</string>
+    <string name="you_didn_t_add_habits_yet">You didn\'t add habits yet</string>
 
     <!-- notifications strings -->
     <string name="notification_title">Reminder</string>

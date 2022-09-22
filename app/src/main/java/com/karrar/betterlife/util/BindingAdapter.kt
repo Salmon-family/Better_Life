@@ -1,12 +1,14 @@
 package com.karrar.betterlife.util
 
 import android.view.View
+import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -89,4 +91,24 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
         (view.adapter as BaseAdapter<T>?)?.setItems(items)
     } else
         (view.adapter as BaseAdapter<T>?)?.setItems((emptyList()))
+}
+
+@BindingAdapter("app:colorBasedOnPointsValue")
+fun setColorBasedOnPointsValue(view: TextView, points: Int) {
+    if (points > 0) {
+        view.setTextColor(view.getColorStateList(R.color.green))
+    } else {
+        view.setTextColor(view.getColorStateList(R.color.red))
+    }
+}
+
+@BindingAdapter("app:showWhenEmptyHabitList")
+fun showWhenEmptyHabitList(view: View, habits: List<Habit>?) {
+    view.isVisible = habits.isNullOrEmpty()
+    if (view is LottieAnimationView) view.playAnimation()
+}
+
+@BindingAdapter("app:showWhenNotEmptyHabitList")
+fun showWhenNotEmptyHabitList(view: View, habits: List<Habit>?) {
+    view.isVisible = !habits.isNullOrEmpty()
 }
