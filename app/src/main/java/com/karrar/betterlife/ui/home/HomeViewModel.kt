@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import com.karrar.betterlife.data.database.entity.DailyHabits
 import com.karrar.betterlife.data.database.entity.Habit
 import com.karrar.betterlife.data.repository.BetterRepository
-import com.karrar.betterlife.util.Event
 import kotlinx.coroutines.launch
 import java.util.*
 

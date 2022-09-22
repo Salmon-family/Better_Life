@@ -6,10 +6,7 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -35,6 +32,11 @@ fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
 @BindingAdapter("app:doneToday")
 fun setEnableButton(view: View, doneToday: Boolean) {
     view.isEnabled = !doneToday
+}
+
+@BindingAdapter("app:enableDone")
+fun enableButtonDone(button: View, list: List<String>?) {
+    button.isEnabled = !list.isNullOrEmpty()
 }
 
 @BindingAdapter("app:chipColor")
@@ -222,3 +224,4 @@ fun doOnTextChanged(view: EditText, function: () -> Unit) {
         }
     })
 }
+
