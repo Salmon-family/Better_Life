@@ -68,10 +68,8 @@ interface HabitDao {
         end: Long
     ): List<PointsResult>
 
-    @Query("SELECT SUM(HABIT.point) AS pointsResult , DailyHabits.dayID AS dateResult FROM HABIT, DailyHabits " +
-            "WHERE HABIT.habitID == dailyhabits.habitID AND " +
-            "dailyhabits.dayID BETWEEN :first AND :secand ")
-
+    @Query("SELECT  COALESCE(sum(HABIT.point), 0) AS pointsResult, DailyHabits.dayID AS dateResult  FROM HABIT, DailyHabits " +
+            "WHERE HABIT.habitID == dailyhabits.habitID  AND DailyHabits.dayID BETWEEN :first AND :secand ")
     suspend fun getPointsWeekly2(
         first: Long,
         secand: Long//,

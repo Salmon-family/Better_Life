@@ -159,11 +159,20 @@ class StatisticsViewModel : ViewModel() {
             cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
             val endofMonth = cal.time.time
 
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val thirdofMonth = cal.time.time
+
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val forthofMonth = cal.time.time
+
+            cal.add(Calendar.DAY_OF_YEAR, 6 * -1)
+            val fifthfMonth = cal.time.time
+
             Log.e("TAG", "$firstofMonth , $endofMonth")
 
             viewModelScope.launch {
                 val points =
-                    repository.getPointsWeekly2(endofMonth, firstofMonth)
+                    repository.getPointsWeekly2(endofMonth, firstofMonth )
                 for (point in points) {
                     dailyList.add(point.pointsResult)
                     val monthName =
