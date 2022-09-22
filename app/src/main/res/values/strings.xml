@@ -41,9 +41,9 @@
     <string name="delete">Delete</string>
 
     <!-- other strings -->
-    <string name="toast_success">Add habit is successfully</string>
-    <string name="toast_update">update habit is successfully</string>
-    <string name="toast_delete">delete habit is successfully</string>
+    <string name="toast_success">New habit was added</string>
+    <string name="toast_update">Habit was updated</string>
+    <string name="toast_delete">Habit was deleted</string>
     <string name="habit_points">Habit Points</string>
     <string name="zero">0</string>
     <string name="min_point">-100</string>
@@ -52,7 +52,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="chart">Chart</string>
-    <string name="do_you_really_want_to_delete_this_habit_this_process_cannot_be_undone">Do you really want to delete this habit? This process cannot be undone.</string>
     <string name="habits">Habits</string>
     <string name="you_didn_t_add_habits_yet">You didn\'t add habits yet</string>
 
