@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.karrar.betterlife.data.database.entity.Task" />
+
+        <variable
+            name="listener"
+            type="com.karrar.betterlife.ui.TasksInteractionListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:cardCornerRadius="@dimen/radius_small"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="4dp"
+                android:onClick="@{() -> listener.onClickCheck(item)}"
+                app:checkBasedOnState="@{item}"
+                app:chipColorBasedOnState="@{item}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_name" />
+
+            <EditText
+                android:id="@+id/text_name"
+                style="@style/TextStyle.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:paddingBottom="@dimen/spacing_small"
+                android:text="@={item.note}"
+                app:colorBasedOnState="@{item}"
+                app:doOnTextChanged="@{() -> listener.onTextChangedListener(item)}"
+                app:layout_constraintEnd_toStartOf="@+id/delete"
+                app:layout_constraintStart_toEndOf="@+id/checkbox"
+                app:layout_constraintTop_toTopOf="parent"
+                app:maxNumberOfLines="@{4}"
+                tools:text="Task" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:onClick="@{() -> listener.onClickDelete(item)}"
+                android:src="@drawable/ic_x"
+                app:colorBasedOnState="@{item}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_name"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

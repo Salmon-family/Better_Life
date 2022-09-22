@@ -109,43 +109,6 @@ class StatisticsViewModel : ViewModel() {
         }
     }
 
-//    private fun chartsWeekly() {
-//        val dailyList = mutableListOf<Any>()
-//        val daysName = mutableListOf<String>()
-//
-//        _statisticsCases.postValue(StatisticsCases.WEEKLY)
-//        val cal = Calendar.getInstance()
-//        if (weekCounter.value!! <= 0) {
-//            cal.add(Calendar.MONTH, 1 * weekCounter.value!!)
-//            val firstofMonth = cal.time.time
-//
-//            val monthName = android.text.format.DateFormat.format("MMMM", firstofMonth).toString()
-//
-//            cal.add(Calendar.MONTH, 1)
-//            val endofMonth = cal.time.time
-//
-//            Log.e("TAG", "$firstofMonth , $endofMonth")
-//
-//            viewModelScope.launch {
-//                val points =
-//                    repository.getPointsWeekly(firstofMonth, endofMonth)
-//                for (point in points) {
-//                    dailyList.add(point.pointsResult)
-//                    val monthName =
-//                        android.text.format.DateFormat.format("d MMMM", point.dateResult).toString()
-//                    daysName.add(monthName)
-//                }
-//                if (points.isNotEmpty()) {
-//                    _charts.postValue(DataCharts(dailyList, daysName))
-//                    _habit.postValue(monthName)
-//                }
-//            }
-//
-//        } else {
-//            weekCounter.value = 0
-//        }
-//    }
-
     private fun chartsWeekly2() {
         val dailyList = mutableListOf<Any>()
         val daysName = mutableListOf<String>()
@@ -171,6 +134,9 @@ class StatisticsViewModel : ViewModel() {
             Log.e("TAGDATE", "$firstofMonth , $endofMonth $thirdofMonth $forthofMonth $fifthfMonth")
 
             viewModelScope.launch {
+
+                val oldestDateInDatabase= repository.getOldestDate()
+
                 val points =
                     repository.getPointsWeekly2(fifthfMonth, forthofMonth,thirdofMonth,endofMonth, firstofMonth )
                 for (point in points) {
@@ -185,7 +151,6 @@ class StatisticsViewModel : ViewModel() {
                     +" - "+android.text.format.DateFormat.format("d MMMM", endofMonth).toString())
                 }
             }
-
         } else {
             weekCounter.value = 0
         }

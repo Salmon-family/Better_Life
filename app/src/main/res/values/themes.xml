@@ -40,6 +40,12 @@
         <item name="chipStrokeColor">@color/green</item>
         <item name="chipSurfaceColor">@color/white</item>
         <item name="chipStrokeWidth">@dimen/stroke_small</item>
+
+    </style>
+
+    <style name="Chip.State" parent="habitChip">
+        <item name="chipBackgroundColor">@color/color_chip_state</item>
+        <item name="android:textColor">@color/color_chip_text_state</item>
     </style>
 
     <style name="goodHabit">
@@ -73,14 +79,22 @@
     </style>
 
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/green_light</item>
+        <item name="android:color">@color/green_8</item>
     </style>
 
     <style name="ThemeBottomNavigationBar" parent="Widget.Material3.BottomNavigationView">
         <item name="backgroundTint">@color/white</item>
-        <item name="itemIconTint">@color/black_60</item>
+        <item name="itemIconTint">@color/green_dark</item>
         <item name="labelVisibilityMode">selected</item>
         <item name="itemActiveIndicatorStyle">@style/App.Custom.Indicator</item>
+    </style>
+
+    <style name="Theme.Button.IconButton.small" parent="Widget.Material3.Button.IconButton">
+        <item name="backgroundTint">@color/green</item>
+        <item name="iconTint">@color/white</item>
+        <item name="android:padding">@dimen/zero</item>
+        <item name="iconGravity">textTop</item>
+
     </style>
 
 </resources>

@@ -59,5 +59,10 @@
     <!-- notifications strings -->
     <string name="notification_title">Reminder</string>
     <string name="notification_subtitle">I would like to remind you to evaluate your habit</string>
+    <string name="new_task">New Task</string>
+    <string name="your_task">your task</string>
+    <string name="task_hint">Your checked tasks will be automatically disappeared on the next day, while unchecked ones will be still shown</string>
+    <string name="to_do">To Do</string>
+    <string name="tasks">Tasks</string>
 
 </resources>
