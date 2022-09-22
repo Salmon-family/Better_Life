@@ -11,5 +11,4 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding, StatisticsVie
     override val layoutIdFragment = R.layout.fragment_statistics
     override val viewModelClass = StatisticsViewModel::class.java
 
-    override fun setup() {}
 }

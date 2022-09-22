@@ -4,6 +4,7 @@
 
     <!-- home screen -->
     <string name="home_title">Today’s Habits</string>
+    <string name="home_text_done">Great job!\nAll done for today</string>
     <string name="home_banner_text">Better Habits \nBetter Life</string>
 
     <!-- statistics screen -->
@@ -41,11 +42,22 @@
 
     <!-- other strings -->
     <string name="toast_success">Add habit is successfully</string>
+    <string name="toast_failed">Sorry, this habit already found, you can delete it or update it. </string>
+    <string name="toast_update">update habit is successfully</string>
+    <string name="toast_delete">delete habit is successfully</string>
     <string name="habit_points">Habit Points</string>
     <string name="zero">0</string>
     <string name="min_point">-100</string>
     <string name="max_point">100</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="chart">Chart</string>
+    <string name="habits">Habits</string>
+    <string name="you_didn_t_add_habits_yet">You didn\'t add habits yet</string>
+
+    <!-- notifications strings -->
+    <string name="notification_title">Reminder</string>
+    <string name="notification_subtitle">I would like to remind you to evaluate your habit</string>
 
 </resources>

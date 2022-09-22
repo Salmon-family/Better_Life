@@ -1,43 +1,46 @@
 package com.karrar.betterlife.data.repository
 
 import com.karrar.betterlife.data.database.BetterLiveDatabase
+import com.karrar.betterlife.data.database.entity.DailyHabits
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.entity.HabitResult
 
 class BetterRepository {
     private val habitDao =
         BetterLiveDatabase.getInstanceByApplicationContext().habitDao()
 
-    private val dailyDao =
-        BetterLiveDatabase.getInstanceByApplicationContext().habitResultDao()
-
     suspend fun insertNewHabit(habit: Habit) = habitDao.insert(habit)
+
+    suspend fun insertHabits(habits: List<Habit>) = habitDao.insertHabits(habits)
 
     suspend fun updateHabit(habit: Habit) = habitDao.update(habit)
 
-    suspend fun getTotalPointsOfDay(day: Long) = dailyDao.getTotalPointsOfDay(day)
-
-    suspend fun getTotalHabitPointInResult(fromDate: Long, toDate: Long) = dailyDao.getTotalHabitPointInResult(fromDate, toDate)
+    suspend fun deleteHabit(habit: Habit) {
+        habitDao.delete(habit)
+        habitDao.deleteHabitIdFromDailyHabit(habit.habitID)
+    }
 
     fun getAllHabit() = habitDao.getAllHabit()
 
-    fun getAllResultHabit() = habitDao.getAllResultHabit()
+    suspend fun isHabitAdded(name: String) = habitDao.isHabitAdded(name)
 
-    suspend fun getHabitByID(habitID: Long) = habitDao.getHabitByID(id = habitID)
+    suspend fun getHabitById(habitId: Long) = habitDao.getHabitById(habitId)
 
-    suspend fun getAllHabitByIDs(habitIds: List<Long>) = habitDao.getAllHabitByIDs(habitIds)
+    suspend fun isAnyHabitsInThisDay(day: Long) = habitDao.isAnyHabitsInThisDay(day)
 
-    /**
-     * Daily Habits...
-     * */
-    suspend fun getTodayHabit(habitID: Long) = dailyDao.getTodayHabitResultByID(habitID)
+    suspend fun insertAllHabitsPerDay(todayHabits: List<DailyHabits>) = habitDao.insert(todayHabits)
 
-    suspend fun insertTodayHabit(habit: HabitResult) = dailyDao.insert(habit)
+    suspend fun getAllHabitPerDay(day: Long) = habitDao.getAllHabitPerDay(day)
 
-    suspend fun deleteHabit(habit: HabitResult) = dailyDao.delete(habit)
+    suspend fun getPointsWeekly(first: Long, end: Long) = habitDao.getPointsWeekly(first, end)
 
-    suspend fun isAnyHabitsInThisDay(day: Long) = dailyDao.isAnyHabitsByThisDay(day)
+    suspend fun getPointsWeekly2(first: Long, second: Long) = habitDao.getPointsWeekly2(first, second)
 
-    suspend fun getTotalHabitPointsInRange(fromDate: Long, toDate: Long) =
-        dailyDao.getTotalHabitPointsInRange(fromDate, toDate)
+    suspend fun getPointsInRange(startDate: Long, endDate: Long) =
+        habitDao.getPointsInRange(startDate, endDate)
+
+    suspend fun getPointDuringYearWithDate(maxYear: Long) =
+        habitDao.getPointDuringYearWithDate(maxYear)
+
+    suspend fun insertTodayHabits(todayHabits: DailyHabits) = habitDao.insert(todayHabits)
+
 }

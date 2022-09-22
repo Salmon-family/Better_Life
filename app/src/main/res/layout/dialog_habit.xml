@@ -9,22 +9,22 @@
 
         <variable
             name="viewModel"
-            type="com.karrar.betterlife.ui.home.addHabitDialog.AddHabitViewModel" />
+            type="com.karrar.betterlife.ui.habits.habitDialog.HabitViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rounded_dialog"
-        android:padding="@dimen/spacing_large">
+        android:padding="@dimen/spacing_large"
+        tools:context=".ui.habits.habitDialog.HabitDialog">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_new_habit"
+            style="@style/TextStyle.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_habit"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:text="@{viewModel.dialogTitle}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +43,10 @@
                 android:id="@+id/text_habit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
+                android:fontFamily="@font/poppins_regular"
+                android:maxLength="60"
+                android:maxLines="1"
                 android:text="@={viewModel.habitName}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -52,12 +56,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/points"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/layout_habit_name"
             app:layout_constraintTop_toBottomOf="@+id/layout_habit_name" />
-
 
         <TextView
             android:id="@+id/text_seek_bar_point"
@@ -71,19 +75,22 @@
             app:layout_constraintTop_toTopOf="@+id/text_point_part"
             tools:text="0" />
 
-        <SeekBar
+        <com.karrar.betterlife.util.CustomSeekBar
             android:id="@+id/seek_habit_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:max="100"
             android:min="-100"
+            android:paddingStart="@dimen/spacing_small"
+            android:paddingEnd="@dimen/spacing_small"
             android:progress="@={viewModel.habitPoints}"
-            android:progressTint="@color/green"
+            android:progressDrawable="@android:color/transparent"
             android:thumb="@drawable/seek_bar_custom_thumb"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_point_part" />
+            app:layout_constraintEnd_toEndOf="@+id/text_seek_bar_point"
+            app:layout_constraintStart_toStartOf="@+id/text_point_part"
+            app:layout_constraintTop_toBottomOf="@+id/text_point_part"
+            tools:targetApi="o" />
 
         <View
             android:id="@+id/line"
@@ -141,12 +148,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_habit_hint"
+            style="@style/TextStyle.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             android:text="@string/habit_hint"
             android:textColor="@color/black_60"
-            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/layout_habit_name"
             app:layout_constraintStart_toEndOf="@+id/image_idea"
@@ -161,11 +168,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
             android:enabled="@{viewModel.addHabitValidation}"
-            android:onClick="@{() -> viewModel.addNewHabit()}"
-            android:text="@string/add"
+            android:onClick="@{() -> viewModel.applyButtonClick()}"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@{viewModel.dialogButtonText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_habit_hint"
             app:layout_constraintTop_toBottomOf="@+id/text_habit_hint" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_close"
@@ -173,6 +182,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_medium"
             android:onClick="@{() -> viewModel.cancelDialog()}"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -181,10 +191,3 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-
-
-
-
-
-

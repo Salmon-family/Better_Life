@@ -7,10 +7,10 @@
         <variable
             name="viewModel"
             type="com.karrar.betterlife.ui.home.HomeViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/coordinate_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">
@@ -31,18 +31,6 @@
             android:layout_height="1dp"
             android:background="@color/black_8"
             app:layout_constraintTop_toBottomOf="@id/text_home_title" />
-
-        <ImageView
-            android:id="@+id/image_statistics"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/spacing_medium"
-            android:onClick="@{() -> viewModel.navigateToAddHabitStatistics()}"
-            android:src="@drawable/ic_statistics"
-            app:layout_constraintBottom_toBottomOf="@+id/text_home_title"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="@+id/text_home_title"
-            app:layout_constraintTop_toTopOf="@+id/text_home_title" />
 
         <ScrollView
             android:id="@+id/scrollView_habit"
@@ -98,46 +86,76 @@
                     app:layout_constraintStart_toEndOf="@+id/image_habit_banner"
                     app:layout_constraintTop_toTopOf="@+id/card_habit_home" />
 
-
                 <TextView
                     android:id="@+id/text_title"
+                    style="@style/TextStyle.Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
                     android:layout_marginTop="@dimen/spacing_medium"
-                    android:fontFamily="sans-serif-black"
                     android:text="@string/home_title"
-                    android:textSize="@dimen/text_extra_large"
+                    app:isDoneToday="@{viewModel.doneToday}"
                     app:layout_constraintTop_toBottomOf="@+id/card_habit_home" />
-
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup_habit"
+                    checkedChipButtonId="@={viewModel.todayHabitsList}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
                     app:chipSpacingHorizontal="@dimen/spacing_medium"
                     app:chipSpacingVertical="0dp"
+                    app:isDoneToday="@{viewModel.doneToday}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_title"
+                    app:setHabits="@{viewModel.allHabits}"
                     app:singleSelection="false" />
 
+                <TextView
+                    android:id="@+id/text_doneForToday"
+                    style="@style/TextStyle.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/spacing_medium"
+                    android:gravity="center"
+                    android:text="@string/home_text_done"
+                    android:textColor="@color/green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lottie_done_state"
+                    app:showDoneToday="@{viewModel.doneToday}" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_done_state"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_title"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/lottie_done"
+                    app:showDoneToday="@{viewModel.doneToday}" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> viewModel.navigateToAddHabitDialog()}"
-            app:doneToday="@{viewModel.doneToday}"
+            android:onClick="@{() -> viewModel.setDoneToday()}"
+            app:isDoneToday="@{viewModel.doneToday}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_add_24"
+            app:srcCompat="@drawable/ic_done"
             app:tint="@color/white" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

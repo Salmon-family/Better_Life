@@ -51,7 +51,7 @@
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">@color/red</item>
     </style>
-    
+
     <style name="Theme.AppCompat.SplashScreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/green</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_better_logo</item>
@@ -70,6 +70,17 @@
 
     <style name="MaterialButtonStyle.MaterialCancelButtonStyle">
         <item name="backgroundTint">@color/black_30</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/green_light</item>
+    </style>
+
+    <style name="ThemeBottomNavigationBar" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/white</item>
+        <item name="itemIconTint">@color/black_60</item>
+        <item name="labelVisibilityMode">selected</item>
+        <item name="itemActiveIndicatorStyle">@style/App.Custom.Indicator</item>
     </style>
 
 </resources>
