@@ -16,16 +16,20 @@
 
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:text="Statistics"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/text_statistics_title"
+            style="@style/TextStyle.Large"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:gravity="center_vertical"
+            android:text="@string/statistics"
             app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_8"
+            app:layout_constraintTop_toBottomOf="@id/text_statistics_title" />
 
 
         <com.google.android.material.chip.ChipGroup
@@ -35,7 +39,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/text_statistics_title"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip

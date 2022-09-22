@@ -15,9 +15,10 @@
         android:layout_height="match_parent"
         android:background="@color/background">
 
+<!--        style="@style/title_Toolbar"-->
         <TextView
             android:id="@+id/text_home_title"
-            style="@style/title_Toolbar"
+            style="@style/TextStyle.Large"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginStart="@dimen/spacing_medium"
