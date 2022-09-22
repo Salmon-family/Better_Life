@@ -7,13 +7,12 @@
         <variable
             name="viewModel"
             type="com.karrar.betterlife.ui.home.HomeViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/coordinate_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/coordinate_layout"
         android:background="@color/background">
 
         <TextView
@@ -89,13 +88,12 @@
 
                 <TextView
                     android:id="@+id/text_title"
+                    style="@style/TextStyle.Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
                     android:layout_marginTop="@dimen/spacing_medium"
-                    android:fontFamily="sans-serif-black"
                     android:text="@string/home_title"
-                    android:textSize="@dimen/text_extra_large"
                     app:isDoneToday="@{viewModel.doneToday}"
                     app:layout_constraintTop_toBottomOf="@+id/card_habit_home" />
 
@@ -116,36 +114,32 @@
 
                 <TextView
                     android:id="@+id/text_doneForToday"
+                    style="@style/TextStyle.Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_medium"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    android:fontFamily="sans-serif-black"
                     android:gravity="center"
                     android:text="@string/home_text_done"
-                    android:textSize="@dimen/text_extra_large"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/green"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_habit_home"
-                    app:layout_constraintVertical_bias="0.2"
+                    app:layout_constraintTop_toBottomOf="@id/lottie_done_state"
                     app:showDoneToday="@{viewModel.doneToday}" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_done_state"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/spacing_medium"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_doneForToday"
+                    app:layout_constraintTop_toBottomOf="@+id/text_title"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="false"
-                    app:lottie_rawRes="@raw/done"
+                    app:lottie_rawRes="@raw/lottie_done"
                     app:showDoneToday="@{viewModel.doneToday}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -161,6 +155,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_done"
             app:tint="@color/white" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
