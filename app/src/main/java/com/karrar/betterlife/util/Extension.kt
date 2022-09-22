@@ -17,6 +17,8 @@ import com.karrar.betterlife.data.HabitWithType
 import com.karrar.betterlife.databinding.ItemHabitBinding
 import com.karrar.betterlife.util.Constants.BAD
 import com.karrar.betterlife.util.Constants.GOOD
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun DialogFragment.setWidthPercent(percentage: Int) {
     val percent = percentage.toFloat() / 100
@@ -50,4 +52,10 @@ fun ChipGroup.createChip(item: Habit): View {
 }
 fun Activity.showSnackMessage(idLayout: Int, message: String) {
     Snackbar.make(this.findViewById(idLayout), message, Snackbar.LENGTH_LONG).show()
+}
+
+fun Long.toStringDate(format: String): String {
+    val date = Date(this)
+    val format = SimpleDateFormat(format)
+    return format.format(date)
 }

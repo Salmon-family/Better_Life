@@ -15,6 +15,19 @@
         android:layout_height="match_parent">
 
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:text="Statistics"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
             android:layout_width="wrap_content"
@@ -22,14 +35,13 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_Day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:onClick="@{()-> viewModel.chartsForPreviousAndNextDay()}"
                 android:text="Daily"
                 app:layout_constraintBottom_toTopOf="@+id/card_view"
@@ -62,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +85,8 @@
             <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
                 android:id="@+id/aa_chart_view"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:shopCharts="@{viewModel.charts }"
+                android:layout_height="380dp"
+                app:shopCharts="@{viewModel.charts}"
                 tools:ignore="MissingClass" />
 
         </androidx.cardview.widget.CardView>
@@ -83,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:onClick="@{() -> viewModel.previousDays()}"
             android:src="@drawable/ic_arrow_button_left"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,11 +104,24 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:onClick="@{() -> viewModel.nextDays()}"
             android:src="@drawable/ic_arrow_button_right"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@{viewModel.habit}"
+            tools:text="Sep 16 - Sep 22 2022"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
 
