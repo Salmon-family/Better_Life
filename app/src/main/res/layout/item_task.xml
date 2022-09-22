@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.karrar.betterlife.ui.tasks.TasksInteractionListener" />
+            type="com.karrar.betterlife.ui.TasksInteractionListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

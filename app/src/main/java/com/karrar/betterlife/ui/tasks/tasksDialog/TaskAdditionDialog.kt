@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.tasks.dialog
+package com.karrar.betterlife.ui.tasks.tasksDialog
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

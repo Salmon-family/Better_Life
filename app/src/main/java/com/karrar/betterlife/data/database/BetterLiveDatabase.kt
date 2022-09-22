@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.karrar.betterlife.BetterLifeApp
 import com.karrar.betterlife.data.database.entity.DailyHabits
 import com.karrar.betterlife.data.database.entity.Habit
+import com.karrar.betterlife.data.database.entity.Task
 
 
 @Database(entities = [Habit::class, DailyHabits::class, Task::class], version = 2)
@@ -15,7 +16,6 @@ import com.karrar.betterlife.data.database.entity.Habit
 abstract class BetterLiveDatabase : RoomDatabase() {
 
     abstract fun habitDao(): HabitDao
-    abstract fun habitResultDao(): HabitResultDao
     abstract fun taskDao(): TaskDao
 
     companion object {

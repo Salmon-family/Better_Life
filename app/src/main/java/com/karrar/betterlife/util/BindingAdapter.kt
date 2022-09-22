@@ -10,9 +10,6 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -20,18 +17,15 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.karrar.betterlife.R
 import com.karrar.betterlife.data.DataCharts
 import com.karrar.betterlife.data.database.entity.Habit
-import com.karrar.betterlife.data.database.DataCharts
 import com.karrar.betterlife.data.database.entity.Task
 import com.karrar.betterlife.ui.Charts
 import com.karrar.betterlife.ui.base.BaseAdapter
-import com.karrar.betterlife.ui.tasks.temp.BaseAdapter
 
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
@@ -93,11 +87,11 @@ fun setCheckedChipId(view: ChipGroup?, names: List<String>?) {
 
 @InverseBindingAdapter(attribute = "checkedChipButtonId", event = "checkedChipButtonId")
 fun getChipId(view: ChipGroup?): List<String>? {
-   val list = mutableListOf<String>()
+    val list = mutableListOf<String>()
     view?.children?.forEach {
         it as Chip
         if (it.isChecked) {
-          list.add(it.text.toString())
+            list.add(it.text.toString())
         }
     }
     return list
@@ -108,14 +102,6 @@ fun setChipsListener(view: ChipGroup?, attChange: InverseBindingListener) {
     view?.setOnCheckedStateChangeListener { group, checkedId ->
         attChange.onChange()
     }
-}
-
-@BindingAdapter(value = ["app:items"])
-fun <T> setRecyclerItems2(view: RecyclerView, items: List<T>?) {
-    if (items != null) {
-        (view.adapter as BaseAdapter<T>?)?.setItems(items)
-    } else
-        (view.adapter as BaseAdapter<T>?)?.setItems((emptyList()))
 }
 
 @BindingAdapter("app:colorBasedOnPointsValue")

@@ -1,4 +1,4 @@
-package com.karrar.betterlife.ui.tasks.temp
+package com.karrar.betterlife.ui.base
 
 import androidx.recyclerview.widget.DiffUtil
 
