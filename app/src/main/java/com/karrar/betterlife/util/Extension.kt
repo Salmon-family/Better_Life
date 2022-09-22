@@ -3,8 +3,8 @@ package com.karrar.betterlife.util
 import android.app.Activity
 import android.content.res.Resources
 import android.graphics.Rect
-import android.view.LayoutInflater
 import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -29,7 +29,6 @@ fun DialogFragment.setWidthPercent(percentage: Int) {
     dialog?.setCanceledOnTouchOutside(false)
 }
 
-
 fun Habit.asHabitWithType(): HabitWithType {
     return HabitWithType(
         id = habitID,
@@ -37,6 +36,8 @@ fun Habit.asHabitWithType(): HabitWithType {
         type = if (point > 0) GOOD else BAD
     )
 }
+
+fun View.getColor(color: Int) = ContextCompat.getColor(this.context, color)
 
 fun View.getColorStateList(color: Int) = ContextCompat.getColorStateList(this.context, color)
 

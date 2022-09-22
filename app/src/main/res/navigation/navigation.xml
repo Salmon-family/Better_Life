@@ -47,4 +47,20 @@
             android:name="add_edit_habit"
             app:argType="long" />
     </dialog>
+
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.karrar.betterlife.ui.tasks.TasksFragment"
+        android:label="ToDoFragment"
+        tools:layout="@layout/fragment_tasks">
+        <action
+            android:id="@+id/action_toDoFragment_to_taskAdditionDialog"
+            app:destination="@id/taskAdditionDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/taskAdditionDialog"
+        android:name="com.karrar.betterlife.ui.tasks.tasksDialog.TaskAdditionDialog"
+        android:label="TaskAdditionDialog"
+        tools:layout="@layout/dialog_task_addition" />
 </navigation>

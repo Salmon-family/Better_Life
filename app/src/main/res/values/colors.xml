@@ -8,6 +8,7 @@
     <color name="black_60">#99121212</color>
     <color name="black_30">#4D121212</color>
     <color name="black_8">#14121212</color>
+    <color name="gray">#6B6B6B</color>
 
     <color name="red">#FF3E38</color>
     <color name="red_light">#FFE5D7</color>
@@ -16,6 +17,7 @@
     <color name="green">#26B05D</color>
     <color name="green_8">#1426B05D</color>
     <color name="green_light">#6126B05D</color>
+    <color name="green_dark">#0B361C</color>
 
     <color name="background">#FFFFFFFF</color>
 
